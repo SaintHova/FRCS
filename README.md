@@ -45,3 +45,11 @@ Along with entering data, FRCS allows you to visualize data using interactive an
 - Ranking System
 - Improved documentation on how to use the site
 - REST API to enable compatibility with 3rd party software
+
+# Tech Stack Used
+Djago is a widely-used framework for creating web-applications, and was used to create FRCS.
+
+- Frontend
+  - HTML, CSS, TailwindCSS, JS
+- Backend 
+  - Python, PostgreSQL, DigitalOcean, NginX, Gunicorn
