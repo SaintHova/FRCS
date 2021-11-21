@@ -11,7 +11,7 @@
 - We also have an iOS and Android app!
 
 # The Home Page
-![frcs-ss](https://user-images.githubusercontent.com/47124521/142777613-0a5c1c18-0804-43c8-a5fb-dfa6dde328eb.png)
+![image](https://user-images.githubusercontent.com/47124521/142778490-c000bbf5-78d8-4401-9c0c-85bfced23b88.png)
 This is where you:
 - Register your team and users
 - Login to existing accounts
