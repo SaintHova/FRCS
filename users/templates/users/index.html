@@ -30,179 +30,347 @@
 </script>
 
 
-<br>
-<section class="darkmode-ignore welcome-sec">
-    <div class="welcome-area" id="welcome" style="padding-top: 0px;">
-        <div class="header-text">
-            <div class="container">
-                <div class="row">
-                    <div class="left-text col-lg-6 col-sm-12 col-xs-12"
-                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                        <h1>Rethinking the way we <em>SCOUT</em></h1>
-                        <p>FRCS is an online scouting platform for the FIRST Robotics Competition</p>
-                        {% if user.is_authenticated %}
-                        <a href="{% url 'scout-view' %}" id="scout-btn-left" class="main-button-slider">GAME SCOUT</a><a
-                            href="{% url 'Pitscout-view' %}" id="scout-btn-right" class="main-button-slider">PIT
-                            SCOUT</a>
-                        {%else%}
-                        <a href="{% url 'login-view' %}" id="scout-btn-left" class="main-button-slider">LOGIN</a><a
-                            href="{% url 'register-view' %}" id="scout-btn-right"
-                            class="main-button-slider">REGISTER</a>
-                        {%endif%}
-                    </div>
-                </div>
-            </div>
+
+
+<div class="w-full px-6 mt-24">
+    <div class="mt-8 relative rounded-lg bg-blue-500 container mx-auto flex flex-col items-center pt-12 sm:pt-24 pb-24 sm:pb-32 md:pb-48 lg:pb-56 xl:pb-64">
+        <svg class="mr-2 lg:mr-12 mt-2 lg:mt-12 absolute right-0 top-0" width="104px" height="95px" viewBox="0 0 104 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Work-in-Progress" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.122837612">
+                <g transform="translate(-1139.000000, -175.000000)" fill="#FFFFFF">
+                    <g id="Group-5" transform="translate(1139.000000, 175.000000)">
+                        <path d="M1.99948119,4 C0.897535668,4 0,3.10246433 0,1.99948119 C0,0.896498054 0.897535668,0 1.99948119,0 C3.10350195,0 4,0.896498054 4,1.99948119 C4,3.10246433 3.10350195,4 1.99948119,4" id="Fill-46"></path>
+                        <path d="M22,4 C20.8973029,4 20,3.10246433 20,1.99948119 C20,0.896498054 20.8973029,0 22,0 C23.1037344,0 24,0.896498054 24,1.99948119 C24,3.10246433 23.1037344,4 22,4" id="Fill-47"></path>
+                        <path d="M42,4 C40.8962656,4 40,3.10246433 40,1.99948119 C40,0.896498054 40.8962656,0 42,0 C43.1016598,0 44,0.896498054 44,1.99948119 C44,3.10246433 43.1016598,4 42,4" id="Fill-48"></path>
+                        <path d="M62.0005188,4 C60.8964981,4 60,3.10246433 60,1.99948119 C60,0.896498054 60.8964981,0 62.0005188,0 C63.1024643,0 64,0.896498054 64,1.99948119 C64,3.10246433 63.1024643,4 62.0005188,4" id="Fill-49"></path>
+                        <path d="M81.9984436,4 C80.8964981,4 80,3.10246433 80,1.99948119 C80,0.896498054 80.8964981,0 81.9984436,0 C83.1024643,0 84,0.896498054 84,1.99948119 C84,3.10246433 83.1024643,4 81.9984436,4" id="Fill-50"></path>
+                        <path d="M102,4 C100.89834,4 100,3.10246433 100,1.99948119 C100,0.896498054 100.89834,0 102,0 C103.103734,0 104,0.896498054 104,1.99948119 C104,3.10246433 103.103734,4 102,4" id="Fill-51"></path>
+                        <path d="M1.99948119,22 C0.897535668,22 0,21.1024643 0,19.9994812 C0,18.8964981 0.897535668,18 1.99948119,18 C3.10350195,18 4,18.8964981 4,19.9994812 C4,21.1024643 3.10350195,22 1.99948119,22" id="Fill-52"></path>
+                        <path d="M22,22 C20.8973029,22 20,21.1024643 20,19.9994812 C20,18.8964981 20.8973029,18 22,18 C23.1037344,18 24,18.8964981 24,19.9994812 C24,21.1024643 23.1037344,22 22,22" id="Fill-53"></path>
+                        <path d="M42,22 C40.8962656,22 40,21.1024643 40,19.9994812 C40,18.8964981 40.8962656,18 42,18 C43.1016598,18 44,18.8964981 44,19.9994812 C44,21.1024643 43.1016598,22 42,22" id="Fill-54"></path>
+                        <path d="M62.0005188,22 C60.8964981,22 60,21.1024643 60,19.9994812 C60,18.8964981 60.8964981,18 62.0005188,18 C63.1024643,18 64,18.8964981 64,19.9994812 C64,21.1024643 63.1024643,22 62.0005188,22" id="Fill-55"></path>
+                        <path d="M81.9984436,22 C80.8964981,22 80,21.1024643 80,19.9994812 C80,18.8964981 80.8964981,18 81.9984436,18 C83.1024643,18 84,18.8964981 84,19.9994812 C84,21.1024643 83.1024643,22 81.9984436,22" id="Fill-56"></path>
+                        <path d="M102,22 C100.89834,22 100,21.1024643 100,19.9994812 C100,18.8964981 100.89834,18 102,18 C103.103734,18 104,18.8964981 104,19.9994812 C104,21.1024643 103.103734,22 102,22" id="Fill-57"></path>
+                        <path d="M1.99948119,40 C0.897535668,40 0,39.1026971 0,38 C0,36.8973029 0.897535668,36 1.99948119,36 C3.10350195,36 4,36.8973029 4,38 C4,39.1026971 3.10350195,40 1.99948119,40" id="Fill-58"></path>
+                        <path d="M22,40 C20.8973029,40 20,39.1026971 20,38 C20,36.8973029 20.8973029,36 22,36 C23.1037344,36 24,36.8973029 24,38 C24,39.1026971 23.1037344,40 22,40" id="Fill-59"></path>
+                        <path d="M42,40 C40.8962656,40 40,39.1026971 40,38 C40,36.8973029 40.8962656,36 42,36 C43.1016598,36 44,36.8973029 44,38 C44,39.1026971 43.1016598,40 42,40" id="Fill-60"></path>
+                        <path d="M62.0005188,40 C60.8964981,40 60,39.1026971 60,38 C60,36.8973029 60.8964981,36 62.0005188,36 C63.1024643,36 64,36.8973029 64,38 C64,39.1026971 63.1024643,40 62.0005188,40" id="Fill-61"></path>
+                        <path d="M81.9984436,40 C80.8964981,40 80,39.1026971 80,38 C80,36.8973029 80.8964981,36 81.9984436,36 C83.1024643,36 84,36.8973029 84,38 C84,39.1026971 83.1024643,40 81.9984436,40" id="Fill-62"></path>
+                        <path d="M102,40 C100.89834,40 100,39.1026971 100,38 C100,36.8973029 100.89834,36 102,36 C103.103734,36 104,36.8973029 104,38 C104,39.1026971 103.103734,40 102,40" id="Fill-63"></path>
+                        <path d="M1.99948119,59 C0.897535668,59 0,58.1026971 0,57 C0,55.8973029 0.897535668,55 1.99948119,55 C3.10350195,55 4,55.8973029 4,57 C4,58.1026971 3.10350195,59 1.99948119,59" id="Fill-64"></path>
+                        <path d="M22,59 C20.8973029,59 20,58.1026971 20,57 C20,55.8973029 20.8973029,55 22,55 C23.1037344,55 24,55.8973029 24,57 C24,58.1026971 23.1037344,59 22,59" id="Fill-65"></path>
+                        <path d="M42,59 C40.8962656,59 40,58.1026971 40,57 C40,55.8973029 40.8962656,55 42,55 C43.1016598,55 44,55.8973029 44,57 C44,58.1026971 43.1016598,59 42,59" id="Fill-66"></path>
+                        <path d="M62.0005188,59 C60.8964981,59 60,58.1026971 60,57 C60,55.8973029 60.8964981,55 62.0005188,55 C63.1024643,55 64,55.8973029 64,57 C64,58.1026971 63.1024643,59 62.0005188,59" id="Fill-67"></path>
+                        <path d="M81.9984436,59 C80.8964981,59 80,58.1026971 80,57 C80,55.8973029 80.8964981,55 81.9984436,55 C83.1024643,55 84,55.8973029 84,57 C84,58.1026971 83.1024643,59 81.9984436,59" id="Fill-68"></path>
+                        <path d="M102,59 C100.89834,59 100,58.1026971 100,57 C100,55.8973029 100.89834,55 102,55 C103.103734,55 104,55.8973029 104,57 C104,58.1026971 103.103734,59 102,59" id="Fill-69"></path>
+                        <path d="M1.99948119,77 C0.897535668,77 0,76.1026971 0,75 C0,73.8973029 0.897535668,73 1.99948119,73 C3.10350195,73 4,73.8973029 4,75 C4,76.1026971 3.10350195,77 1.99948119,77" id="Fill-70"></path>
+                        <path d="M22,77 C20.8973029,77 20,76.1026971 20,75 C20,73.8973029 20.8973029,73 22,73 C23.1037344,73 24,73.8973029 24,75 C24,76.1026971 23.1037344,77 22,77" id="Fill-71"></path>
+                        <path d="M42,77 C40.8962656,77 40,76.1026971 40,75 C40,73.8973029 40.8962656,73 42,73 C43.1016598,73 44,73.8973029 44,75 C44,76.1026971 43.1016598,77 42,77" id="Fill-72"></path>
+                        <path d="M62.0005188,77 C60.8964981,77 60,76.1026971 60,75 C60,73.8973029 60.8964981,73 62.0005188,73 C63.1024643,73 64,73.8973029 64,75 C64,76.1026971 63.1024643,77 62.0005188,77" id="Fill-73"></path>
+                        <path d="M81.9984436,77 C80.8964981,77 80,76.1026971 80,75 C80,73.8973029 80.8964981,73 81.9984436,73 C83.1024643,73 84,73.8973029 84,75 C84,76.1026971 83.1024643,77 81.9984436,77" id="Fill-74"></path>
+                        <path d="M102,77 C100.89834,77 100,76.1026971 100,75 C100,73.8973029 100.89834,73 102,73 C103.103734,73 104,73.8973029 104,75 C104,76.1026971 103.103734,77 102,77" id="Fill-75"></path>
+                        <path d="M1.99948119,95 C0.897535668,95 0,94.1024643 0,92.9994812 C0,91.8964981 0.897535668,91 1.99948119,91 C3.10350195,91 4,91.8964981 4,92.9994812 C4,94.1024643 3.10350195,95 1.99948119,95" id="Fill-76"></path>
+                        <path d="M22,95 C20.8973029,95 20,94.1024643 20,92.9994812 C20,91.8964981 20.8973029,91 22,91 C23.1037344,91 24,91.8964981 24,92.9994812 C24,94.1024643 23.1037344,95 22,95" id="Fill-77"></path>
+                        <path d="M42,95 C40.8962656,95 40,94.1024643 40,92.9994812 C40,91.8964981 40.8962656,91 42,91 C43.1016598,91 44,91.8964981 44,92.9994812 C44,94.1024643 43.1016598,95 42,95" id="Fill-78"></path>
+                        <path d="M62.0005188,95 C60.8964981,95 60,94.1024643 60,92.9994812 C60,91.8964981 60.8964981,91 62.0005188,91 C63.1024643,91 64,91.8964981 64,92.9994812 C64,94.1024643 63.1024643,95 62.0005188,95" id="Fill-79"></path>
+                        <path d="M81.9984436,95 C80.8964981,95 80,94.1024643 80,92.9994812 C80,91.8964981 80.8964981,91 81.9984436,91 C83.1024643,91 84,91.8964981 84,92.9994812 C84,94.1024643 83.1024643,95 81.9984436,95" id="Fill-80"></path>
+                        <path d="M102,95 C100.89834,95 100,94.1024643 100,92.9994812 C100,91.8964981 100.89834,91 102,91 C103.103734,91 104,91.8964981 104,92.9994812 C104,94.1024643 103.103734,95 102,95" id="Fill-81"></path>
+                        <polyline id="Fill-82" points="75 87 13 26 75 26 75 87"></polyline>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <svg class="ml-2 lg:ml-12 mb-2 lg:mb-12 absolute bottom-0 left-0" width="104px" height="95px" viewBox="0 0 104 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="Work-in-Progress" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.122837612">
+                <g transform="translate(-206.000000, -596.000000)" fill="#FFFFFF">
+                    <g id="Group-5" transform="translate(258.000000, 643.500000) scale(-1, -1) translate(-258.000000, -643.500000) translate(206.000000, 596.000000)">
+                        <path d="M1.99948119,4 C0.897535668,4 0,3.10246433 0,1.99948119 C0,0.896498054 0.897535668,0 1.99948119,0 C3.10350195,0 4,0.896498054 4,1.99948119 C4,3.10246433 3.10350195,4 1.99948119,4" id="Fill-46"></path>
+                        <path d="M22,4 C20.8973029,4 20,3.10246433 20,1.99948119 C20,0.896498054 20.8973029,0 22,0 C23.1037344,0 24,0.896498054 24,1.99948119 C24,3.10246433 23.1037344,4 22,4" id="Fill-47"></path>
+                        <path d="M42,4 C40.8962656,4 40,3.10246433 40,1.99948119 C40,0.896498054 40.8962656,0 42,0 C43.1016598,0 44,0.896498054 44,1.99948119 C44,3.10246433 43.1016598,4 42,4" id="Fill-48"></path>
+                        <path d="M62.0005188,4 C60.8964981,4 60,3.10246433 60,1.99948119 C60,0.896498054 60.8964981,0 62.0005188,0 C63.1024643,0 64,0.896498054 64,1.99948119 C64,3.10246433 63.1024643,4 62.0005188,4" id="Fill-49"></path>
+                        <path d="M81.9984436,4 C80.8964981,4 80,3.10246433 80,1.99948119 C80,0.896498054 80.8964981,0 81.9984436,0 C83.1024643,0 84,0.896498054 84,1.99948119 C84,3.10246433 83.1024643,4 81.9984436,4" id="Fill-50"></path>
+                        <path d="M102,4 C100.89834,4 100,3.10246433 100,1.99948119 C100,0.896498054 100.89834,0 102,0 C103.103734,0 104,0.896498054 104,1.99948119 C104,3.10246433 103.103734,4 102,4" id="Fill-51"></path>
+                        <path d="M1.99948119,22 C0.897535668,22 0,21.1024643 0,19.9994812 C0,18.8964981 0.897535668,18 1.99948119,18 C3.10350195,18 4,18.8964981 4,19.9994812 C4,21.1024643 3.10350195,22 1.99948119,22" id="Fill-52"></path>
+                        <path d="M22,22 C20.8973029,22 20,21.1024643 20,19.9994812 C20,18.8964981 20.8973029,18 22,18 C23.1037344,18 24,18.8964981 24,19.9994812 C24,21.1024643 23.1037344,22 22,22" id="Fill-53"></path>
+                        <path d="M42,22 C40.8962656,22 40,21.1024643 40,19.9994812 C40,18.8964981 40.8962656,18 42,18 C43.1016598,18 44,18.8964981 44,19.9994812 C44,21.1024643 43.1016598,22 42,22" id="Fill-54"></path>
+                        <path d="M62.0005188,22 C60.8964981,22 60,21.1024643 60,19.9994812 C60,18.8964981 60.8964981,18 62.0005188,18 C63.1024643,18 64,18.8964981 64,19.9994812 C64,21.1024643 63.1024643,22 62.0005188,22" id="Fill-55"></path>
+                        <path d="M81.9984436,22 C80.8964981,22 80,21.1024643 80,19.9994812 C80,18.8964981 80.8964981,18 81.9984436,18 C83.1024643,18 84,18.8964981 84,19.9994812 C84,21.1024643 83.1024643,22 81.9984436,22" id="Fill-56"></path>
+                        <path d="M102,22 C100.89834,22 100,21.1024643 100,19.9994812 C100,18.8964981 100.89834,18 102,18 C103.103734,18 104,18.8964981 104,19.9994812 C104,21.1024643 103.103734,22 102,22" id="Fill-57"></path>
+                        <path d="M1.99948119,40 C0.897535668,40 0,39.1026971 0,38 C0,36.8973029 0.897535668,36 1.99948119,36 C3.10350195,36 4,36.8973029 4,38 C4,39.1026971 3.10350195,40 1.99948119,40" id="Fill-58"></path>
+                        <path d="M22,40 C20.8973029,40 20,39.1026971 20,38 C20,36.8973029 20.8973029,36 22,36 C23.1037344,36 24,36.8973029 24,38 C24,39.1026971 23.1037344,40 22,40" id="Fill-59"></path>
+                        <path d="M42,40 C40.8962656,40 40,39.1026971 40,38 C40,36.8973029 40.8962656,36 42,36 C43.1016598,36 44,36.8973029 44,38 C44,39.1026971 43.1016598,40 42,40" id="Fill-60"></path>
+                        <path d="M62.0005188,40 C60.8964981,40 60,39.1026971 60,38 C60,36.8973029 60.8964981,36 62.0005188,36 C63.1024643,36 64,36.8973029 64,38 C64,39.1026971 63.1024643,40 62.0005188,40" id="Fill-61"></path>
+                        <path d="M81.9984436,40 C80.8964981,40 80,39.1026971 80,38 C80,36.8973029 80.8964981,36 81.9984436,36 C83.1024643,36 84,36.8973029 84,38 C84,39.1026971 83.1024643,40 81.9984436,40" id="Fill-62"></path>
+                        <path d="M102,40 C100.89834,40 100,39.1026971 100,38 C100,36.8973029 100.89834,36 102,36 C103.103734,36 104,36.8973029 104,38 C104,39.1026971 103.103734,40 102,40" id="Fill-63"></path>
+                        <path d="M1.99948119,59 C0.897535668,59 0,58.1026971 0,57 C0,55.8973029 0.897535668,55 1.99948119,55 C3.10350195,55 4,55.8973029 4,57 C4,58.1026971 3.10350195,59 1.99948119,59" id="Fill-64"></path>
+                        <path d="M22,59 C20.8973029,59 20,58.1026971 20,57 C20,55.8973029 20.8973029,55 22,55 C23.1037344,55 24,55.8973029 24,57 C24,58.1026971 23.1037344,59 22,59" id="Fill-65"></path>
+                        <path d="M42,59 C40.8962656,59 40,58.1026971 40,57 C40,55.8973029 40.8962656,55 42,55 C43.1016598,55 44,55.8973029 44,57 C44,58.1026971 43.1016598,59 42,59" id="Fill-66"></path>
+                        <path d="M62.0005188,59 C60.8964981,59 60,58.1026971 60,57 C60,55.8973029 60.8964981,55 62.0005188,55 C63.1024643,55 64,55.8973029 64,57 C64,58.1026971 63.1024643,59 62.0005188,59" id="Fill-67"></path>
+                        <path d="M81.9984436,59 C80.8964981,59 80,58.1026971 80,57 C80,55.8973029 80.8964981,55 81.9984436,55 C83.1024643,55 84,55.8973029 84,57 C84,58.1026971 83.1024643,59 81.9984436,59" id="Fill-68"></path>
+                        <path d="M102,59 C100.89834,59 100,58.1026971 100,57 C100,55.8973029 100.89834,55 102,55 C103.103734,55 104,55.8973029 104,57 C104,58.1026971 103.103734,59 102,59" id="Fill-69"></path>
+                        <path d="M1.99948119,77 C0.897535668,77 0,76.1026971 0,75 C0,73.8973029 0.897535668,73 1.99948119,73 C3.10350195,73 4,73.8973029 4,75 C4,76.1026971 3.10350195,77 1.99948119,77" id="Fill-70"></path>
+                        <path d="M22,77 C20.8973029,77 20,76.1026971 20,75 C20,73.8973029 20.8973029,73 22,73 C23.1037344,73 24,73.8973029 24,75 C24,76.1026971 23.1037344,77 22,77" id="Fill-71"></path>
+                        <path d="M42,77 C40.8962656,77 40,76.1026971 40,75 C40,73.8973029 40.8962656,73 42,73 C43.1016598,73 44,73.8973029 44,75 C44,76.1026971 43.1016598,77 42,77" id="Fill-72"></path>
+                        <path d="M62.0005188,77 C60.8964981,77 60,76.1026971 60,75 C60,73.8973029 60.8964981,73 62.0005188,73 C63.1024643,73 64,73.8973029 64,75 C64,76.1026971 63.1024643,77 62.0005188,77" id="Fill-73"></path>
+                        <path d="M81.9984436,77 C80.8964981,77 80,76.1026971 80,75 C80,73.8973029 80.8964981,73 81.9984436,73 C83.1024643,73 84,73.8973029 84,75 C84,76.1026971 83.1024643,77 81.9984436,77" id="Fill-74"></path>
+                        <path d="M102,77 C100.89834,77 100,76.1026971 100,75 C100,73.8973029 100.89834,73 102,73 C103.103734,73 104,73.8973029 104,75 C104,76.1026971 103.103734,77 102,77" id="Fill-75"></path>
+                        <path d="M1.99948119,95 C0.897535668,95 0,94.1024643 0,92.9994812 C0,91.8964981 0.897535668,91 1.99948119,91 C3.10350195,91 4,91.8964981 4,92.9994812 C4,94.1024643 3.10350195,95 1.99948119,95" id="Fill-76"></path>
+                        <path d="M22,95 C20.8973029,95 20,94.1024643 20,92.9994812 C20,91.8964981 20.8973029,91 22,91 C23.1037344,91 24,91.8964981 24,92.9994812 C24,94.1024643 23.1037344,95 22,95" id="Fill-77"></path>
+                        <path d="M42,95 C40.8962656,95 40,94.1024643 40,92.9994812 C40,91.8964981 40.8962656,91 42,91 C43.1016598,91 44,91.8964981 44,92.9994812 C44,94.1024643 43.1016598,95 42,95" id="Fill-78"></path>
+                        <path d="M62.0005188,95 C60.8964981,95 60,94.1024643 60,92.9994812 C60,91.8964981 60.8964981,91 62.0005188,91 C63.1024643,91 64,91.8964981 64,92.9994812 C64,94.1024643 63.1024643,95 62.0005188,95" id="Fill-79"></path>
+                        <path d="M81.9984436,95 C80.8964981,95 80,94.1024643 80,92.9994812 C80,91.8964981 80.8964981,91 81.9984436,91 C83.1024643,91 84,91.8964981 84,92.9994812 C84,94.1024643 83.1024643,95 81.9984436,95" id="Fill-80"></path>
+                        <path d="M102,95 C100.89834,95 100,94.1024643 100,92.9994812 C100,91.8964981 100.89834,91 102,91 C103.103734,91 104,91.8964981 104,92.9994812 C104,94.1024643 103.103734,95 102,95" id="Fill-81"></path>
+                        <polyline id="Fill-82" points="75 87 13 26 75 26 75 87"></polyline>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        <div class="w-11/12 sm:w-2/3 mb-5 sm:mb-10">
+            <h1 data-aos="smooth" data-aos-easing="ease-in-out-cubic" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">Rethinking the Way We Scout Data</h1>
+        </div>
+        <div class="flex justify-center items-center mb-10 sm:mb-20">
+            <button data-aos="smooth2" data-aos-easing="ease-in-out-cubic" onclick='window.location.href="{% url 'register-view' %}"' class="font-semibold hover:bg-transparent bg-white border-2 border-white text-semibold transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg text-black px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Get Started</button>
+            <button data-aos="smooth2" data-aos-easing="ease-in-out-cubic" id='learn-btn' class="font-semibold hover:bg-transparent bg-transparent border-2 border-white text-semibold transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg text-white px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Learn More</button>
         </div>
     </div>
-</section>
-<section class="section" id="promotion">
-    <div class="container">
-        <div>
-            <ul>
-                <li>
-                    <div>
-                        <h4 id="subtitle">Important Notices</h4>
-                        <p id="text_p">Team Admins: Please make sure your team members are using the input form
-                            appropriately, and are filling out team numbers and match numbers! Data Analysis will be
-                            useless without those two inputs!</p>
-                    </div>
-                </li>
-
-                <li>
-                    <div>
-                        <h4 id="subtitle">New Features for the 2020 season</h4>
-                        <p id="text_p">The new season brings many great things to FRCS. We have added:</p>
-                        <ul>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Completely New UI</p>
-                            </li>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - New Redesigned and Optimized Dark Mode</p>
-                            </li>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Added More Questions for more in depth analysis
-                                </p>
-                            </li>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - ALL NEW PIT SCOUTING</p>
-                            </li>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Email Verification</p>
-                            </li>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Data editing and removal</p>
-                            </li>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Password Reset</p>
-                            </li>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Profile updating and removal</p>
-                            </li>
-                        </ul>
-
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <h4 id="subtitle">What We Are Adding</h4>
-                        <p id="text_p">Although the site is live and usable, more features will continue to be added as
-                            the season goes on</p>
-                        <ul>
-                            <li>
-                                <p id="p_text">&nbsp&nbsp&nbsp&nbsp - Ranking system</p>
-                            </li>
-
-
-                        </ul>
-
-                    </div>
-                </li>
-                <li>
-                    <div class>
-                        <h4 id="subtitle">Get The Word Out</h4>
-                        <p id="text_p">Make sure to share FRCS at competitions, the more users 🠆 the better the data.</p>
-                    </div>
-                </li>
-            </ul>
+    <div data-aos="smooth3" data-aos-easing="ease-in-out-cubic" class="container mx-auto flex justify-center md:-mt-56 -mt-20 sm:-mt-40" id='main-img'>
+        <div class="relative sm:w-2/3 w-11/12">
+            <img src="../../static/users/assets/images/ss.png"  role="img" class="absolute rounded-2xl shadow-xl" />
         </div>
-</section>
-<section class="section">
-    <div class="container">
-        <ul>
-            <li>
-                <div>
-                    <h4 id="subtitle">Why Use FRCS?</h4>
-                    <p id="text_p">The reason we made FRCS is because every year, teams build new scouting systems from
-                        the ground up. This wastes time, resources, and is overall inefficient. The way we see it, teams
-                        are all collecting data in a similar fashion to one another, why keep our data separate? This
-                        data will soon be able to be averaged out to provide a more objective and comprehensive model.
-                        With onsite data analytics it's the easiest and most logical next step in FRC scouting. We look
-                        at all feedback submitted so if you think there's something missing we'll try our best to help
-                        out.<br>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <h4 id="subtitle">The Nitty Gritty</h4>
-                    <p id="text_p">Sure, lots of data available at a quick glance is great! But FRCS also enables you to
-                        view independent and comprehensible data on almost every aspect of the team. Keep track of data
-                        submissions, notes, scores and more. The data collected is automatically graphed into box plots.
-                        All of this detailed data is accessible from the Game and Pit scouting pages.</p>
-                </div>
-            </li>
-        </ul>
     </div>
-    <br>
-    <br>
-    <center><script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support FRCS', '#29abe0', 'J3J01ORHN');kofiwidget2.draw();</script></center>
-    <br>
-    <section id="feedback">
-        <div class="container">
-            <div class="footer-content">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <center>
-                            <div class="contact-form">
-                                <form id="contact" method="post">
-                                    {% csrf_token %}
-                                    <h1 id="feedback-h1">Feedback</h1>
-                                    </br>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-12">
-                                            <fieldset>
-                                                {{form.first_name}}
-                                            </fieldset>
-                                        </div>
-                                        <!--<div class="col-md-6 col-sm-12">
-                                    <fieldset>
-                                        {{form.team_num}}
-                                    </fieldset>
-                                </div>-->
-                                        <div class="col-lg-12">
-                                            <fieldset>
-                                                {{form.message}}
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <fieldset>
-                                                <button type="submit" id="form-submit" class="main-button">Submit
-                                                    Feedback</button>
-                                            </fieldset>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br>
-    <br>
-    <footer style="background-color: black">
-        <p style="text-align: center; color: white;">FRCS was created by FRC Team 810, Smithtown Robotics, The
-            Mechanical Bulls</p>
+</div>
 
-    </footer>
-    </body>
+<section id='about' class="text-gray-400 body-font mt-32">
+    <div class="container px-5 py-24 mx-auto pt-96">
+      <div class="flex flex-col text-center w-full mb-20">
+        
+        <h1 class="sm:text-3xl md:text-5xl title-font mb-4 text-black font-bold">What is FRCS</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">FRCS is an online scouting platform for the FIRST Robotics Competition. There are lots of new features in the new version of FRCS. From the user interface, to the data collection, everything was redesigned for efficiency and convenience</p>
+      </div>
+      <div class="flex flex-wrap" >
+        <div class="md:w-1/2 p-4 mx-auto">
+          <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+            <div class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-gray-200 text-black mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+            </div>
+            <h2 class="text-lg text-black font-semibold title-font mb-2">Game Scouting</h2>
+            <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waist co, subway tile poke farm.</p>
+          </div>
+        </div>
+        <div class="md:w-1/2 p-4" > 
+            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl" data-aos="smooth2" data-aos-easing="ease-in-out-cubic">
+                <div class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-gray-200 text-black mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                      </svg>
+                </div>
+                <h2 class="text-lg text-black font-semibold title-font mb-2">Pit Scouting</h2>
+                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waist co, subway tile poke farm.</p>
+              </div>
+        </div>
+        
+      </div>
+
+    </div>
+  </section>
+
+  <section id='why' class="text-gray-400 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-20">
+        
+        <h1 class="sm:text-3xl md:text-5xl title-font mb-4 text-black font-bold">Why Use FRCS</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">The reason we made FRCS is because every year, teams build new scouting systems from
+          the ground up. This wastes time, resources, and is overall inefficient. The way we see it, teams
+          are all collecting data in a similar fashion to one another, why keep our data separate? This
+          data will soon be able to be averaged out to provide a more objective and comprehensive model.
+          With onsite data analytics it's the easiest and most logical next step in FRC scouting. We look
+          at all feedback submitted so if you think there's something missing we'll try our best to help
+          out</p>
+      </div>
+      <h1 class="sm:text-3xl md:text-3xl text-center title-font mb-4 text-black font-bold">New Features</h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-center text-base">Here are some new features we added</p>
+      <div class="flex flex-wrap mt-5">
+
+        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
+          <div class="pt-4 mx-auto">
+            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+              
+              <h2 class="text-lg text-center text-black font-semibold title-font">Data Editing</h2>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
+          <div class="pt-4 mx-auto">
+            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+              
+              <h2 class="text-lg text-center text-black font-semibold title-font">Pit Scouting</h2>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
+          <div class="pt-4 mx-auto">
+            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+              
+              <h2 class="text-lg text-center text-black font-semibold title-font">Redesigned UI</h2>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
+          <div class="pt-4 mx-auto">
+            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+              
+              <h2 class="text-lg text-center text-black font-semibold title-font">Data Flagging</h2>
+              
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+      <h1 class="sm:text-3xl md:text-3xl text-center title-font mb-4 text-black font-bold mt-4">Get The Word Out</h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-center text-base">Laboris occaecat quis in voluptate id culpa sint ut labore. Officia amet ad incididunt ipsum culpa non fugiat voluptate culpa sint excepteur eu nisi ad. Cupidatat proident nulla cillum ex nulla ullamco incididunt tempor quis ex excepteur enim.</p>
+        
+
+          <div class='flex mx-auto justify-content-center mt-5'>
+            <div class='h-20 w-20 rounded-full'>
+              <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/prodify/avatar(1).png"
+                    alt="avatar image" data-aos="grow2" data-aos-easing="ease-in-out-cubic" data-aos-delay="100ms" />
+
+            </div>
+            <div class='h-20 w-20 rounded-full'>
+              <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/prodify/avatar(2).png"
+                    alt="avatar image" data-aos="grow2" data-aos-easing="ease-in-out-cubic" data-aos-delay="100ms" />
+
+            </div>
+            <div class='h-20 w-20 rounded-full'>
+            <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/prodify/avatar(3).png"
+                    alt="avatar image" data-aos="grow2" data-aos-easing="ease-in-out-cubic" data-aos-delay="100ms" />
+              </div>
+
+          </div>
+          
+         
+
+
+    </div>
+  </section>
+
+<section class="text-gray-600 body-font relative">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl md:text-5xl title-font mb-4 text-black font-bold">Contact</h1>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify.</p>
+    </div>
+    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+      <form action="#" method="POST" >
+      {% csrf_token %}
+      <div class="flex flex-wrap -m-2">
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+            <!-- <input type="text" id="name" name="name" class="form-single"> -->
+            {{form.first_name}}
+          </div>
+        </div>
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-600">Team Number</label>
+            {{form.team_num}}
+            <!-- <input type="email" id="email" name="email" class="form-single"> -->
+          </div>
+        </div>
+        <div class="p-2 w-full">
+          <div class="relative">
+            <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+            {{form.message}}
+            <!-- <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea> -->
+          </div>
+        </div>
+        <div class="p-2 w-full">
+          <button class="transition font-semibold mx-auto w-full text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded-lg text-lg text-center">Submit</button>
+        </div>
+        <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
+          <a class="text-indigo-500">smithtownrobotics@gmail.com</a>
+         <br>
+          <span class="inline-flex mt-2">
+            <a class="text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a class="ml-4 text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="ml-4 text-gray-500">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            <a class="ml-4 text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</section>
+<script src="../../static/users/assets/js/parallax.min.js"></script>
+
+<script>
+  new vanillaJsuParallax({
+    items: document.getElementById('main-img'),
+});
+</script>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script>
+    AOS.init();
+  
+  // You can also pass an optional settings object
+  // below listed default settings
+  AOS.init({
+    // Global settings:
+    disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+    startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+    initClassName: 'aos-init', // class applied after initialization
+    animatedClassName: 'aos-animate', // class applied on animation
+    useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+    disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+    debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+    throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+    
+  
+    // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+    offset: 120, // offset (in px) from the original trigger point
+    delay: 0, // values from 0 to 3000, with step 50ms
+    duration: 400, // values from 0 to 3000, with step 50ms
+    easing: 'ease', // default easing for AOS animations
+    once: true, // whether animation should happen only once - while scrolling down
+    mirror: false, // whether elements should animate out while scrolling past them
+    anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+  
+  });
+
+  $('#learn-btn').click(function (){
+
+    $('html, body').animate({
+      scrollTop: window.pageYOffset + document.getElementById('about').offsetTop + 400
+    },'fast')}
+  );
+  </script>
     {%endblock content%}

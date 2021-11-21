@@ -9,64 +9,25 @@
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/data.css">
 <link rel="stylesheet" href="../../static/users/assets/css/hub.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 {%endblock styles%}
 {%block content%}
+
+
+
 <script>
-    var options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff', // default: '#fff'
-        buttonColorDark: '#100f2c', // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: true, // default: true,
-        label: '', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
-
-    function toggle() {
-        darkmode.toggle();
-
-    }
-
-    var auto = {{object.robot_autonomous}}
+    $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{object.team_num}}' + "/simple", {
+        "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+    }, function (data) {
+        var jObject = (data);
+        $("#nickname").html(jObject['nickname']);
+    })
 </script>
-<center>
-    <h1 style='padding-top: 10px;' id="media-header">Pit Scouting Data for Team {{object.team_num}}</h1>
-    <script>
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + {{object.team_num}} + "/simple", {
-            "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-          }, function (data) {
-            var jObject = (data);
-            $("#nickname").html(jObject['nickname']);
-          })
-    </script>
-    <p style='padding-top: 20px; font-size: 20px; font-weight: bold;' id='nickname'></p>
-</center>
-<center>
-    <button id='incoreect-btn' class='btn btn-outline-danger' onclick='location.href="{% url 'pit-flag-view' pk=object.pk %}"'>Incorrect Data</button>
-</center>
 
-<div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <center><h3>Incorrect Data</h3></center>
-      <br>
-      <br>
-      <hr>
-        <button onclick='location.href="{% url 'pit-flag-view' pk=object.pk %}"' class='btn btn-outline-danger'>Flag as Incorrect</button>
-      
-      
-    </div>
-  
-  </div>
 
-  <script>
+<script>
     var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
@@ -80,190 +41,211 @@
     var confirmBtn = document.getElementById('flag-btn');
 
     // When the user clicks on the button, open the modal
-    btn.onclick = function() {
-    modal.style.display = "block";
+    btn.onclick = function () {
+        modal.style.display = "block";
     }
 
-    confirmBtn.onclick = function() {
+    confirmBtn.onclick = function () {
         document.getElementById("flag-cbx").checked = true;
     }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-    modal.style.display = "none";
+    span.onclick = function () {
+        modal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-        document.getElementById("flag-cbx").checked = false;
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            document.getElementById("flag-cbx").checked = false;
+        }
     }
-    }
-  </script>
+</script>
 <hr>
 <center>
 
-    <!--<center><p class="warning"><strong>It is best to view chart data in light mode</strong></p>-->
-    <script>
-        window.onload = async function getData() {
-            
-            var autoEl = $('#auto')
-            if (auto === 100) {
-                autoEl.append("Yes")
-                autoEl.css('background-color', '#4dff5b')
-            } else {
-                autoEl.append("No")
-                autoEl.css('background-color', '#ff4f4f')
-            }
-            //------------------------------
-            var vision = {{object.robot_vision_implement}}
-            var visionEl = $('#vision')
-            if (vision === 100) {
-                visionEl.append("Yes")
-                visionEl.css('background-color', '#4dff5b')
-            } else {
-                visionEl.append("No")
-                visionEl.css('background-color', '#ff4f4f')
-            }
 
-            //------------------------------
-            var climb = {{object.robot_climb}}
-            var climbEl = $('#climb')
-            if (climb === 100) {
-                climbEl.append("Yes")
-                climbEl.css('background-color', '#4dff5b')
-            } else {
-                climbEl.append("No")
-                climbEl.css('background-color', '#ff4f4f')
-            }
 
-            var buddy = {{object.robot_buddy_climb}}
-            var buddyEl = $('#buddy')
-            if (buddy === 100) {
-                buddyEl.append("Yes")
-                buddyEl.css('background-color', '#4dff5b')
-            } else {
-                buddyEl.append("No")
-                buddyEl.css('background-color', '#ff4f4f')
-            }
 
-            var pos = {{object.robot_control_panel_pos}}
-            var posEl = $('#pos')
-            if (pos === 100) {
-                posEl.append("Yes")
-                posEl.css('background-color', '#4dff5b')
-            } else {
-                posEl.append("No")
-                posEl.css('background-color', '#ff4f4f')
 
-            }
 
-            var rot = {{object.robot_control_panel_rot}}
-            var rotEl = $('#rot')
-            if (rot === 100) {
-                rotEl.append("Yes")
-                rotEl.css('background-color', '#4dff5b')
-            } else {
-                rotEl.append("No")
-                rotEl.css('background-color', '#ff4f4f')
-            }
+    <div class="flex bg-gray-50 dark:bg-gray-900">
+        <!-- Desktop sidebar -->
 
-            if ($('#vision_type').text() == "None") {
-                $('#vision_type').css('background-color', '#ff4f4f')
-            }
-            if ($('#vision_type').text() == "Limelight") {
-                $('#vision_type').css('background-color', '#4dff5b')
-            }
+        <!-- Mobile sidebar -->
+        <!-- Backdrop -->
 
-            if ($('#vision_type').text() == "Raspberry Pi") {
-                $('#vision_type').css('background-color', '#4060ff')
-            }
-            if ($('#vision_type').text() == "Other") {
-                $('#vision_type').css('background-color', '#cccccc')
-            }
 
-        }
-    </script>
-    <br>
-        <center>
-            <p class="questions"><strong>Robot Weight</strong></p>
-        <center>
-        <p class="choicepercent"><strong>{{object.robot_weight}}LBS</strong></p>
-    <br>
-        <center>
-            <p class="questions"><strong>Robot Frame Perimeter</strong></p>
-        <center>
-        <div class='perim-container' style='display: flex; flex-wrap: wrap; justify-content: center;'><p style='margin-right: 5; width: 44.53%; display:inline-block; overflow: hidden;' class="choicepercent"><strong>Width: {{object.robot_frame_width}} in </strong></p><p style='margin-left: 5; width: 44.53%; overflow: hidden;' class="choicepercent"><strong>Length: {{object.robot_frame_length}} in</strong></p></div>
-    <br>
-        <center>
-            <p class="questions"><strong>Is it a High Or Low Bot</strong></p>
-        <center>
-        <p class="choicepercent"><strong>{{object.robot_highlow}}</strong></p>
-    <br>
-        <center>
-            <p class="questions"><strong>DriveTrain Type</strong></p>
-        <center>
-        <p id='DTT' class="choicepercent"><strong>{{object.robot_drivetrain_type}}</strong></p>
-    <br>
-        <center>
-            <p class="questions"><strong>Does the Robot Shoot for Low Or High Goal or Both</strong></p>
-        <center>
-        <p id='goal' class="choicepercent"><strong>{{object.robot_goal}}</strong></p>
-    <br>
-        <center>
-            <p class="questions"><strong>Does the Robot Complete The Positional Control Panel</strong></p>
-        <center>
-            <p id="pos" class="choicepercent"><strong></strong></p>
-    <br>
-        <center>
-            <p class="questions"><strong>Does the Robot Complete The Rotational Control Panel</strong></p>
-        <center>
-        <p id="rot" class="choicepercent"><strong></strong></p>
-    <br>
+        <div class="flex flex-col flex-1 w-full">
 
-        <center>
-            <p class="questions"><strong>Does the Robot perform in Autonomous</strong></p>
-        <center>
-        <p id="auto" class="choicepercent"><strong></strong></p>
-    <br>
-        <center>
-            <p class="questions"><strong>Is Vision Implemented during the Match</strong></p>
-        <center>
-        <p id="vision" class="choicepercent"><strong></strong></p>
 
-    <br>
-        <center>
-            <p class="questions"><strong>Vision Type</strong></p>
-        <center>
-        <p id='vision_type' class="choicepercent"><strong>{{object.robot_vision_type}}</strong>
-    </p>
-    <br>
 
-        <center>
-            <p class="questions"><strong>Does the Robot Climb</strong></p>
-        <center>
-        <p id="climb" class="choicepercent"><strong></strong></p>
-    <br>
 
-        <center>
-            <p class="questions"><strong>Does the Robot Help Others Climb</strong></p>
-        <center>
-        <p id="buddy" class="choicepercent"><strong></strong></p>
-    <br>
 
-        <center>
-            <p class="questions" id="notes"><strong>Notes</strong></p>
-            <div id="textBlock"> <p id="notes"> <strong>{{object.notes}}</strong></p></div>
-        </center>
-    <br>
-        <center>
-            <p>This data was scouted by Team{{object.scouted_team_num}}</p>
-        </center>
-    <form>
-    {% csrf_token %}
-    {{form.as_p}}
-    </form>
+            <main class="h-full overflow-y-auto">
+
+                <div class="container px-6 mx-auto grid">
+                    <div class='flex justify-between'>
+                        <div>
+
+                            <h2 class="mt-6 text-left text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                                Pit Data for Team {{object.team_num}}
+                            </h2>
+                            <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
+                        </div>
+                        <button onclick='location.href="{% url 'pit-flag-view' pk=object.pk %}"'
+                            class='inline-flex mt-6 w-14 h-14 items-center text-lg justify-center font-semibold tracking-wide text-white transition duration-200 bg-red-500 rounded-lg hover:bg-red-600'>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+                    <!-- CTA -->
+
+
+                    <!-- Cards -->
+                    <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2">
+                        <!-- Card -->
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Robot weight
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_weight}}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Robot height
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_highlow}}
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Robot width
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_frame_width}} in
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Robot length
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_frame_length}} in
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Robot drivetrain
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_drivetrain_type}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Robot vision type
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_vision_type}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+
+                            <div>
+                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Is vision implemented
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_vision_implement}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Does the robot climb
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_climb}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                            <div>
+                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Does the robot help others climb
+                                </p>
+                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                    {{object.robot_climb}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Notes
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                {{object.notes}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
 
     {%endblock content%}
     <!--This is really bad formatting but it looks really cool so im keeing it-->

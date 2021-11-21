@@ -24,11 +24,53 @@ from django.contrib import messages
 from users.models import Profile, CustomUser
 from random import randint
 from django.core.paginator import Paginator
+import json
+from django.db.models import Avg
 
 
 
 def scouthub(request):
-    return render(request, 'stats/scout-hub.html', {'team_count': Team.objects.all().count(), 'sub_count': Game_stats.objects.all().count()})
+   
+    context = {
+    'team_count': Team.objects.all().count(),
+    'sub_count': Game_stats.objects.all().count(),
+    'teams': Game_stats.objects.all(),
+    
+    'pit_stats_vision_none':  Pit_stats.objects.filter(robot_vision_type='None').count(),
+    'pit_stats_vision_limelight':  Pit_stats.objects.filter(robot_vision_type='Limelight').count(),
+    'pit_stats_vision_rpi':  Pit_stats.objects.filter(robot_vision_type='Raspberry Pi').count(),
+    'pit_stats_vision_other':  Pit_stats.objects.filter(robot_vision_type='Other').count(),
+    
+    'pit_stats_dt_4skid':  Pit_stats.objects.filter(robot_drivetrain_type='4 Wheel Skid').count(),
+    'pit_stats_dt_6skid':  Pit_stats.objects.filter(robot_drivetrain_type='6 Wheel Skid').count(),
+    'pit_stats_dt_8skid':  Pit_stats.objects.filter(robot_drivetrain_type='8 Wheel Skid').count(),
+    'pit_stats_dt_tread':  Pit_stats.objects.filter(robot_drivetrain_type='Treads').count(),
+    'pit_stats_dt_omni':  Pit_stats.objects.filter(robot_drivetrain_type='Omni').count(),
+    'pit_stats_dt_swerve':  Pit_stats.objects.filter(robot_drivetrain_type='Swerve').count(),
+    'pit_stats_dt_other':  Pit_stats.objects.filter(robot_drivetrain_type='Other').count(),
+    
+    'pit_stats_vision_yes':  Pit_stats.objects.filter(robot_vision_implement='Yes').count(),
+    'pit_stats_vision_no':  Pit_stats.objects.filter(robot_vision_implement='No').count(),
+    
+    'pit_stats_climb_yes':  Pit_stats.objects.filter(robot_climb='Yes').count(),
+    'pit_stats_climb_no':  Pit_stats.objects.filter(robot_climb='No').count(),
+    
+    'pit_stats_buddy_yes':  Pit_stats.objects.filter(robot_buddy_climb='Yes').count(),
+    'pit_stats_buddy_no':  Pit_stats.objects.filter(robot_buddy_climb='No').count(),
+    
+    'pit_stats_height_short':  Pit_stats.objects.filter(robot_highlow='Low - below 28"').count(),
+    'pit_stats_height_tall':  Pit_stats.objects.filter(robot_highlow='High - above 28"').count(),
+    
+    'pit_stats_weight': str(Pit_stats.objects.all().aggregate(Avg('robot_weight'))).split('(')[1].split(')')[0].split("'")[1],
+    'pit_stats_width': str(Pit_stats.objects.all().aggregate(Avg('robot_frame_width'))).split('(')[1].split(')')[0].split("'")[1],
+    'pit_stats_length': str(Pit_stats.objects.all().aggregate(Avg('robot_frame_length'))).split('(')[1].split(')')[0].split("'")[1]
+    
+    
+
+    }
+    
+
+    return render(request, 'stats/scout-hub.html', context)
 
 
 def returnVal(stats, id):
@@ -105,6 +147,8 @@ def pit_scout(request):
             team_num = form.cleaned_data['team_num']
             obj.scout = Profile.objects.get(user=request.user)
             
+            obj.is_incorrect = False
+            
             obj.scouted_team_num = request.user.team_num
             obj.stat_id = randomIDGenerator()
 
@@ -117,7 +161,7 @@ def pit_scout(request):
                     pk = Pit_stats.objects.get(team_num=team_num).pk
                     return redirect('pitdata-view', pk=pk)
                 else:
-                    messages.error(request, "Error: Team pit entry already exists")
+                    messages.error(request, "Team pit entry already exists")
                     return redirect('Pitscout-view')
             form.save()
             messages.success(request, "Pit entry submitted, Thank You")
@@ -125,7 +169,7 @@ def pit_scout(request):
 
         
         else:
-            messages.error(request, "Error: Form invalid, Try submitting data again properly")
+            messages.error(request, "Form invalid, Try submitting data again properly")
             return redirect('Pitscout-view')
     return render(request, 'stats/pit-scout.html', {'form': form})
 

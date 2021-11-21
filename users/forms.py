@@ -18,32 +18,30 @@ User = get_user_model()
 class UserCreationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={
-            'class': 'form-control',
-            'placeholder': 'Password',
-            'id': 'password-form',
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'placeholder': 'Password'
 
 
         }
     ))
     username = forms.CharField(label='Username', widget=forms.TextInput(
         attrs={
-            'class': 'form-control',
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
             'placeholder': 'Username'
         }
     ))
     email = forms.EmailField(validators=[validate_email], label='Email', widget=forms.EmailInput(
         attrs={
-            'class': 'form-control',
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md  focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
             'placeholder': 'Email',
             'id': 'email-form',
         }
     ))
     team_num = forms.IntegerField(label='Username', widget=forms.NumberInput(
         attrs={
-            'class': 'form-control',
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
             'placeholder': 'Team Number',
             'id': 'team_num_reg',
-            'onchange': 'changeRegName()'
         }
     ))
     is_team_admin = forms.BooleanField(label='Is Admin', required=False, widget=forms.CheckboxInput(
@@ -74,13 +72,14 @@ class UserCreationForm(forms.ModelForm):
 class UserLoginForm(forms.Form):
     query = forms.CharField(label='Username / Email', widget=forms.TextInput(
         attrs={
-            'class': 'form-control',
-            'placeholder': 'Username'
+            'id':"email-address",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'placeholder':'Username'
         }
     ))
     password = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={
-            'class': 'form-control',
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
             'placeholder': 'Password'
         }
     ))
@@ -136,14 +135,14 @@ class NameEditForm(forms.ModelForm):
     
     first_name = forms.CharField(label='First Name', required=False, widget=forms.TextInput(
         attrs={
-            'class': 'form-control',
+            'class': 'form-single',
             'id': 'form-first_name'
         }
     ))
     
     last_name = forms.CharField(label='Last Name', required=False, widget=forms.TextInput(
         attrs={
-            'class': 'form-control',
+            'class': 'form-single',
             'id': 'form-last_name'
             
         }
@@ -174,19 +173,11 @@ class ProfileSettingsForm(forms.ModelForm):
             'id': 'cbx1',
         }
     ))
-    
-    search = forms.CharField(label='Username', required=False, widget=forms.TextInput(
-        attrs={
-            'class': 'form-control',
-            'placeholder': 'Key',
-            'style': 'width: 200px',
-            'id': 'key-envoke-form'
-        }
-    ))
+
     
     class Meta:
         model = Profile
-        fields = ('viewPitResubmit','relativeScoring', 'search')
+        fields = ('viewPitResubmit','relativeScoring')
 
 class TeamSettingsForm(forms.ModelForm):
 

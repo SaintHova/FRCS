@@ -177,7 +177,7 @@ input[type=text]{
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-color: #f1f3f6;
+    ;
 }
 
 .darkmode--activated body{
@@ -185,13 +185,13 @@ body{
 }
 
 .form{
-    background-color: #f1f3f6;
+    ;
     box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
     border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
 .darkmode--activated .form{
-background-color: #f1f3f6;
+;
         box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);    
     border: 0.004em solid rgba(255, 255, 255, 0.3);   
 }

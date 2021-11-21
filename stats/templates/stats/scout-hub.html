@@ -1,165 +1,549 @@
 {%extends 'users/base.html'%}
 
-{%block styles%}
 
-<link rel="stylesheet" href="../../static/users/assets/css/scout.css">
-<link rel="stylesheet" href="../../static/users/assets/css/hub.css">
-{%endblock styles%}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-{%block content%}
-<script>
-    var options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff', // default: '#fff'
-        buttonColorDark: '#100f2c', // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: true, // default: true,
-        label: '', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
 
-    function toggle() {
-        darkmode.toggle();
+<div class="flex bg-gray-50 dark:bg-gray-900">
+    <!-- Desktop sidebar -->
 
-    }
-</script>
+    <!-- Mobile sidebar -->
+    <!-- Backdrop -->
 
-<div class="content">
-    <div id="textBlock">
-        <h1 id="blockText" style="font-size: calc(3vw + 1em);">Important Notices</h1>
-        <h2 id="blockText2" style="font-size: calc(1vw + 1em);">Team Admins: Please make sure your team members are
-            using the input form appropriately, <br>and are filling out team numbers and match numbers! Data analysis
-            will be useless without those 2 inputs!</h2><br><br>
-        <h3 id="blockText4" style="font-size: calc(1vw + 1em);">Make sure you share FRCS at competitions, the more users
-            -> the better the data.</h3>
-    </div>
-    <div id="textBlockStats">
-        <center>
-            <div id="dataTableDiv">
-                <table id="dataTable">
-                    <tr>
-                        <th>Registered Teams</th>
-                        <th>Data Submissions</th>
-                    </tr>
-                    <div>
 
-                        <tr>
-                            <td id="teamCount">{{team_count}}</td>
-                            <td id="dataCount">{{sub_coun}}</td>
-                        </tr>
-                </table>
+    <div class="flex flex-col flex-1 w-full">
+
+
+
+
+
+        <main class="h-full overflow-y-auto">
+            <div class="container px-6 mx-auto grid">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Dashboard
+                </h2>
+                <!-- CTA -->
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                    href="https://github.com/estevanmaito/windmill-dashboard">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <span>Welcome to the new FRCS dashboard</span>
+
+                    </div>
+                    <a>
+                        <div class='transition hover:text-black cursor-pointer'>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                <!-- Cards -->
+                <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div
+                            class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Teams Registered
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                {{team_count}}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div
+                            class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Data Submissions
+                            </p>
+                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                                {{sub_count}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col w-full mx-auto">
+                    <div class="-my-2  sm:-mx-6 lg:-mx-8">
+                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                            <div class=" overflow-hidden border-b border-gray-200 sm:rounded-md">
+
+                                <table class="min-w-full divide-y divide-gray-200" id='data-table'>
+                                    <thead class="bg-white">
+                                        <tr>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Team Number
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Rank
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+
+                                        <tr>
+
+                                            <td class=" py-4 whitespace-nowrap">
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-black">
+                                                        <p class='text-black font-semibold'>The Mechanical Bulls</p>
+                                                        <p class='text-gray-500 font-semibold text-sm'>Team 810</p>
+
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <p class="text-black font-bold">1</p>
+                                            </td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Global Data
+                </h2>
+                <!-- Cards -->
+                <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2">
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Average robot weight
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                {{pit_stats_weight}}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Average robot width
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                {{pit_stats_width}} in
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Average robot length
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                                {{pit_stats_length}} in
+                            </p>
+                        </div>
+                    </div>
+                
+
+                   
+                </div>
+
+
             </div>
-        </center>
+        </main>
+
+        <div class="grid gap-6 mb-8 md:grid-cols-2 container px-6 mx-auto">
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Vision Types
+                </h4>
+                <canvas id="pie2"></canvas>
+
+            </div>
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Vision Usage
+                </h4>
+                <canvas id="pie"></canvas>
+
+            </div>
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Climb
+                </h4>
+                <canvas id="pie3"></canvas>
+
+            </div>
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Buddy Climb
+                </h4>
+                <canvas id="pie4"></canvas>
+
+            </div>
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Drivetrain Type
+                </h4>
+                <canvas id="pie5"></canvas>
+
+            </div>
+        </div>
     </div>
+    </main>
 </div>
-<!--<center><h1>Bot Size</h1></center>
-<canvas id="myChart"></canvas>
-<br>
-<center><h1>Bot Climb</h1></center>
-<canvas id="myChart2"></canvas>
-<br>
-<center><h1>Bot Vision</h1></center>
-<canvas id="myChart3"></canvas>
+</div>
 
 
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <script>
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Low Bot', 'High Bot'],
+    var visionTypeCanvas = document.getElementById("pie2");
+    var visionTypectx = visionTypeCanvas.getContext('2d');
+
+    // Global Options:
+    var visionTypeData = {
+        labels: ["None", "Limelight", "RPI", "Other"],
         datasets: [{
-            label: '',
-            data: [12, 19],
+            fill: true,
             backgroundColor: [
-                'rgba(240, 96, 97, 1)',
-                'rgba(37, 213, 200, 1)',
-
-
-
+                '#c3c3c3',
+                '#3af3bb',
+                '#17a1cc',
+                '#176079'
             ],
+            data: ['{{pit_stats_vision_none}}', '{{pit_stats_vision_limelight}}',
+                '{{pit_stats_vision_rpi}}', '{{pit_stats_vision_other}}'
+            ],
+
+
         }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
+    };
+
+
+    // Notice the rotation from the documentation.
+
+    var visionTypeOptions = {
+
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: false,
+                text: 'Chart.js Pie Chart'
+            }
+
+        },
+
+
+
+    };
+
+
+    // Chart declaration:
+    var myPieChart = new Chart(visionTypectx, {
+        type: 'pie',
+        data: visionTypeData,
+        options: visionTypeOptions
+    });
+
+    // Fun Fact: I've lost exactly 3 of my favorite T-shirts and 2 hoodies this way :|
+</script>
+
+<script>
+
+
+
+    var visionUsedCanvas = document.getElementById("pie");
+    var visionUsedctx = visionUsedCanvas.getContext('2d');
+
+    // Global Options:
+
+
+
+
+    var visionUsedData = {
+        labels: ["No", "Yes"],
+        datasets: [{
+            fill: true,
+            backgroundColor: [
+                '#c3c3c3',
+                '#3af3bb',
+            ],
+            data: ['{{pit_stats_vision_yes}}', '{{pit_stats_vision_no}}'],
+
+
+        }]
+    };
+
+
+    // Notice the rotation from the documentation.
+
+    var visionUsedOptions = {
+
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: false,
+                text: 'Chart.js Pie Chart'
+            }
+        },
+    };
+
+
+    // Chart declaration:
+    var myPieChart = new Chart(visionUsedctx, {
+        type: 'pie',
+        data: visionUsedData,
+        options: visionUsedOptions
+    });
+
+    // Fun Fact: I've lost exactly 3 of my favorite T-shirts and 2 hoodies this way :|
+</script>
+
+
+
+
+<script>
+
+
+
+    var climbCanvas = document.getElementById("pie3");
+    var climbctx = climbCanvas.getContext('2d');
+
+    // Global Options:
+
+
+
+
+    var climbData = {
+        labels: ["No", "Yes"],
+        datasets: [{
+            fill: true,
+            backgroundColor: [
+                '#c3c3c3',
+                '#3af3bb',
+            ],
+            data: ['{{pit_stats_climb_no}}', '{{pit_stats_climb_yes}}'],
+
+
+        }]
+    };
+
+
+    // Notice the rotation from the documentation.
+
+    var climbOptions = {
+
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: false,
+                text: 'Chart.js Pie Chart'
+            }
+
+        },
+
+
+
+    };
+
+
+    // Chart declaration:
+    var myPieChart = new Chart(climbctx, {
+        type: 'pie',
+        data: climbData,
+        options: climbOptions
+    });
+
 
 </script>
+
+
+
+
+</script>
+
+
+
+
 <script>
-var ctx = document.getElementById('myChart2');
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Climb', 'Doesnt Climb'],
+    console.log('{{pit_stats_vision_none}}')
+
+
+    var buddyCanvas = document.getElementById("pie4");
+    var buddyctx = buddyCanvas.getContext('2d');
+
+    // Global Options:
+
+
+
+
+    var buddyData = {
+        labels: ["No", "Yes"],
         datasets: [{
-            label: '',
-            data: [12, 19],
+            fill: true,
             backgroundColor: [
-                'rgba(240, 96, 97, 1)',
-                'rgba(37, 213, 200, 1)',
-
-
-
+                '#c3c3c3',
+                '#3af3bb',
             ],
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
+            data: ['{{pit_stats_buddy_no}}', '{{pit_stats_buddy_yes}}'],
 
+
+        }]
+    };
+
+
+    // Notice the rotation from the documentation.
+
+    var buddyOptions = {
+
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: false,
+                text: 'Chart.js Pie Chart'
+            }
+
+        },
+
+
+
+    };
+
+
+    // Chart declaration:
+    var myPieChart = new Chart(buddyctx, {
+        type: 'pie',
+        data: buddyData,
+        options: buddyOptions
+    });
+
+    // Fun Fact: I've lost exactly 3 of my favorite T-shirts and 2 hoodies this way :|
 </script>
+
+
+
 <script>
-var ctx = document.getElementById('myChart3');
-var myChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Vision', 'No Vision'],
+    console.log('{{pit_stats_vision_none}}')
+
+
+    var dtCanvas = document.getElementById("pie5");
+    var dtctx = dtCanvas.getContext('2d');
+
+    // Global Options:
+
+
+
+
+    var dtData = {
+        labels: ["4 Wheel Skid", "6 Wheel Skid", "8 Wheel Skid", "Treads", "Omni", "Swerve", "Other"],
         datasets: [{
-            label: '',
-            data: [12, 19],
+            fill: true,
             backgroundColor: [
-                'rgba(240, 96, 97, 1)',
-                'rgba(37, 213, 200, 1)',
-
-
-
+            '#c3c3c3',
+            '#3af3bb',
+            '#17a1cc',
+            '#176079',
+            '#3ab3bb',
+            '#fff000',
+            '#3ab1bb',
+            
             ],
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
+            data: ['{{pit_stats_dt_4skid}}', '{{pit_stats_dt_6skid}}', '{{pit_stats_dt_8skid}}', '{{pit_stats_dt_tread}}', '{{pit_stats_dt_tread}}', '{{pit_stats_dt_omni}}', '{{pit_stats_dt_swerve}}', '{{pit_stats_dt_other}}'],
 
-</script>-->
+
+        }]
+    };
+
+
+    // Notice the rotation from the documentation.
+
+    var dtOptions = {
+
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: false,
+                text: 'Chart.js Pie Chart'
+            }
+
+        },
+
+
+
+    };
+
+
+    // Chart declaration:
+    var myPieChart = new Chart(dtctx, {
+        type: 'pie',
+        data: dtData,
+        options: dtOptions
+    });
+
+    // Fun Fact: I've lost exactly 3 of my favorite T-shirts and 2 hoodies this way :|
+</script>
+
+
+
 {%endblock content%}

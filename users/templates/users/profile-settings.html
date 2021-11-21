@@ -70,10 +70,7 @@
             </svg></span><span id="checkbox-text">Switch Scoring </span></label><br>
             <label>Switch the scoring values based on actual game piece values or singular game piece values</label>
         <div style='padding: 7px;'></div>
-        <label>Search Envoke Key</label>
-        {{p_form.search}}
-        <label>This allows you to change the key used to envoke the global search bar <br> *Keep empty if you would like to disable the search bar*</label>
-        <br>
+        
 
         <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
     </form>
@@ -192,9 +189,7 @@
             document.getElementById("form-first_name").value = f_name;
             document.getElementById("form-last_name").value = l_name;
 
-            var key = "{{envokeKey}}"
             
-            document.getElementById('key-envoke-form').value = key;
 
 
         </script>

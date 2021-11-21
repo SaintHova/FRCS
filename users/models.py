@@ -102,7 +102,6 @@ class CustomUser(AbstractBaseUser):
 #Profile model
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    username = models.CharField(verbose_name="Username", max_length=254, default=CustomUser.username)
 
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
     first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
@@ -110,7 +109,6 @@ class Profile(models.Model):
     viewPitResubmit = models.BooleanField(default=False)
     canEditStats = models.BooleanField(default=True)
     relativeScoring = models.BooleanField(default=False)
-    search = models.CharField(max_length=1, blank=True, default='s')
     
     def __str__(self):
        return f'{self.user.username}'

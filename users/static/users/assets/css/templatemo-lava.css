@@ -54,7 +54,6 @@ header, nav, section, article, aside, footer, hgroup {
 
 html, body {
   font-weight: 400;
-  background-color: #eee;
   min-height: 100%;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
@@ -623,7 +622,7 @@ header
     color: #191a20 !important;
   }
   .header-area .main-nav .nav li a:hover {
-    background: #eee !important;
+     !important;
     color: lightblue!important;
   }
   .header-area .main-nav .nav li.submenu ul {
@@ -1216,7 +1215,7 @@ box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .contact-form {
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
@@ -1227,7 +1226,7 @@ box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 body{
-  background-color: #f1f3f6;
+  ;
 }
 
 .darkmode--activated html{
@@ -1246,13 +1245,13 @@ body{
   margin-left: auto;
   margin-right: auto;
   width: 75%;
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
 
 .darkmode--activated .card{
-  background-color: #f1f3f6;
+  ;
   box-shadow: 0px -6px 10px rgb(0, 0, 0), 0px 4px 15px rgba(0, 0, 0, 0.15);    
   border: 0.004em solid rgba(0, 0, 0, 0.3);
   
@@ -1317,7 +1316,7 @@ body{
   margin-right: auto;
   margin-left: auto;
   display: block;
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   animation: wel3 1 2s;
   font-weight: bolder;
@@ -1593,7 +1592,7 @@ transition: all 0.6s ease;
 }
 
 #msg-form:not(:focus){
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
@@ -1631,7 +1630,7 @@ transition: all 0.6s ease;
 
 
 #msg-form:focus{
-  background-color: #f1f3f6;
+  ;
 
 }
 
@@ -1640,7 +1639,7 @@ transition: all 0.6s ease;
 }
 
 #name-form:not(:focus){
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
@@ -1650,16 +1649,16 @@ transition: all 0.6s ease;
 }
 
 #team-form{
-  background-color: #f1f3f6;
+  ;
 }
 
 #team-form:not(:focus){
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .darkmode--activated #team-form:not(:focus){
-  background-color: #f1f3f6;
+  ;
   box-shadow: 0px -6px 10px rgb(0, 0, 0), 0px 4px 15px rgba(0, 0, 0, 0.15);    
   border: 0.004em solid rgba(255, 255, 255, 0.3);
 }
@@ -1684,11 +1683,11 @@ transition: all 0.6s ease;
 }
 
 .darkmode--activated #cred-card{
-  background-color: #000;
+  background-color: transparent;
 }
 
 .darkmode--activated #login-head{
-  color: white;
+  color: black;
 }
 
 .color-bar{
@@ -1739,12 +1738,7 @@ input#search-bar::placeholder{
   font-weight: bolder;
 }
 
-input#search-bar{
-  box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
-  background-color: #f1f3f6;
-  border-color: transparent;
-}
- 
+
  
 
 
@@ -1912,7 +1906,7 @@ input#search-bar{
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: #f1f3f6;
+  ;
   opacity: .75;
   filter: blur(8px);
   -webkit-filter: blur(8px);
@@ -1969,3 +1963,84 @@ input#search-bar{
   float: left;
   margin-right: 10px;
 }
+
+.forgot-pswd{
+  margin-top: 10px;
+  color: black;
+}
+
+.darkmode--activated .forgot-pswd{
+  color: black;
+}
+
+.form-control{
+  border-radius: 10px;
+}
+
+[data-aos="smooth"] {
+	opacity: 0;
+	transition-property: transform;
+  }
+  
+  
+  
+  [data-aos="smooth"].aos-animate {
+	opacity: 1;
+	-webkit-animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+
+[data-aos="smooth2"] {
+	opacity: 0;
+	transition-property: transform;
+  }
+  
+  
+  
+  [data-aos="smooth2"].aos-animate {
+	opacity: 1;
+;
+	-webkit-animation: slide-top 0.7s .1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-top 0.7s .1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  [data-aos="smooth3"] {
+    opacity: 0;
+    transition-property: transform;
+    }
+    
+    
+    
+    [data-aos="smooth3"].aos-animate {
+    opacity: 1;
+  ;
+    -webkit-animation: slide-top 0.7s .2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-top 0.7s .2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    [data-aos="smooth4"] {
+      opacity: 0;
+      transition-property: transform;
+      }
+      
+      
+      
+      [data-aos="smooth4"].aos-animate {
+      opacity: 1;
+    ;
+      -webkit-animation: slide-top 0.7s .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      animation: slide-top 0.7s .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+
+  @keyframes slide-top {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    
+    100% {
+      transform: translateY(-30px);
+      opacity: 1;
+    }
+    }

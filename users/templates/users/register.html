@@ -3,9 +3,9 @@
 {%block styles%}
 <link rel="stylesheet" href="../../static/users/assets/css/register.css">
 <link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
 
 {%endblock styles%}
-
 {%block content%}
 <script>
     var options = {
@@ -23,81 +23,247 @@
     }
     const darkmode = new Darkmode(options);
 
-    function toggle() {
-        darkmode.toggle();
-
-    }
+  
 </script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<br>
-<center>
-    <div class='col-sm-6 col-sm-offset-3'>
-        {% if messages %}
-        {% for message in messages %}
-        <div class='alert alert-{{message.tags}}' role='alert'>{{message}}</div>
 
-        {% endfor %}
-        {% endif %}
-    </div>
-</center>
+<body>
 
-<div class=form>
-    <div class="card" id="cred-card" style="transform: translateY(-7%); width: 90%;">
-        <h1 id="login-head" style="margin-left: 5%; padding-bottom: 20px; padding-top: 15px;">Register</h1>
-        <form id="registerForm" method="post">
-            {% csrf_token %}
-            <div class="form-group" style="width: 90%;">
-                <label class='user-label' id="label">Username</label>
+    <div class=" flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-md w-full space-y-8">
+          <div>
+            <h2 style='color: black;' class="mt-6 text-center text-4xl font-extrabold">
+              Register an account
+            </h2>
+            <p style='color: black;' class="mt-2 text-center text-sm">
+                Or
+                <a href="{% url 'login-view' %}"  class="font-medium text-black">
+                  Login
+                </a>
+              </p>
+          </div>
+          <form class="mt-8 space-y-6" action="#" method="POST">
+            {%csrf_token%}
+            <input type="hidden" name="remember" value="true">
+            <div class="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label for="email-address" class="sr-only">Username</label>
                 {{form.username}}
-                <p style='color: red; font-weight: 500;' id='user-match'></p>
-                <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
-            </div>
-            <div class="form-group" style="width: 90%;">
-                <div>
-                </div>
-                <label class='email-label' id="label">Email</label>
+                <!-- <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address"> -->
+              </div>
+              <div>
+                <label for="password" class="sr-only">Email</label>
                 {{form.email}}
-                <p id='email-exist'></p>
-                <!--<input class="form-control" type="email" id="email" placeholder="Enter Email">-->
-            </div>
-            <div class="form-group" style="width: 90%;">
-                <label class='pass-label' id="label">Password</label>
+                <!-- <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password"> -->
+              </div>
+              <div>
+                <label for="password" class="sr-only">Password</label>
                 {{form.password}}
-                <p id='pass-letter' style="overflow: hidden;
-            white-space: nowrap;">Password must have at least 1 uppercase letter</p>
-                <p id='pass-character'>Password must contain 6 or more characters</p>
-                <p id='pass-similar'>Password must not be too similar to email</p>
-                <p id='pass-number'>Password must have at least 1 number</p>
-
-                <!--<input class="form-control" type="password" id="password" placeholder="Enter Password">-->
+                <!-- <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password"> -->
+              </div>
+              <div>
+                <label for="password" class="sr-only">Password</label>
+                <input id="confirm" name="confirm" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm" placeholder="Verify Password">
+              </div>
+              <div>
+                <div class='hidden'>{{form.team_num}}</div>
+                <!-- <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password"> -->
+              </div>
             </div>
-            <div class="form-group" style="width: 90%;">
-                <label class='verify-pass-label' id="label">Verify Password</label>
-                <input class="form-control" type="password" id="password-match" placeholder="Verify Password">
-                <p id='pass-match'>Passwords Match</p>
+            <legend class="checkbox-group-legend" style='color: black;'>Enter team code</legend>
+
+           <center><div class="pin-component"></div></center>
+
+
+            <fieldset class="checkbox-group">
+                <legend class="checkbox-group-legend" style='color: black;'>Choose your position</legend>
+                <div class="checkbox">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id='mentor-cbx' class="checkbox-input" onclick='mentorToggled()' />
+                        <span class="checkbox-tile">
+                            <span class="checkbox-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                            </span>
+                            <span class="checkbox-label">Mentor</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id='member-cbx' class="checkbox-input" onclick=memberToggled() checked />
+                        <span class="checkbox-tile">
+                            <span class="checkbox-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                  </svg>
+                            </span>
+                            <span class="checkbox-label">Member</span>
+                        </span>
+                    </label>
+                </div>                
+            </fieldset>
+            <div>
+              <button type="submit" class="btn-default">
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <!-- Heroicon name: solid/lock-closed -->
+                  <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <p class='font-semibold text-white'>Register</p>
+              </button>
             </div>
-            <div class="form-group" style="width: 90%;">
-                <label class='team-label' id="label">Team Number</label>
-                {{form.team_num}}
-                <!-- <input class="form-control" type="number" id="team" placeholder="Enter Team Number">-->
-            </div>
-            <!--<input class="inp-cbx" id="cbx" type="checkbox" style="display: none;"/>-->
-            {{form.is_team_admin}}
-            <label class="cbx" for="cbx"><span>
-            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-            </svg></span><span id="checkbox-text">I'm a team leader</span></label>
+          </form>
+        </div>
+      </div>
 
-            <p class="text-color-theme" id="welcome-team"></p>
+      
 
-            <button style="width: 90%;" id="submit" type="submit" class="btn btn-primary">Register</button>
+      <style>
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+            -webkit-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+          }
+          .checkbox-group > * {
+            margin: 0.5rem 0.5rem;
+          }
+          
+          .checkbox-group-legend {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #9c9c9c;
+            text-align: center;
+            line-height: 1.125;
+            margin-bottom: 1.25rem;
+          }
+          
+          .checkbox-input {
+            clip: rect(0 0 0 0);
+            -webkit-clip-path: inset(100%);
+                    clip-path: inset(100%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          .checkbox-input:checked + .checkbox-tile {
+            border-color: #3B82F6
+            ;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            color: #3B82F6
+            ;
+          }
+          .checkbox-input:checked + .checkbox-tile:before {
+            transform: scale(1);
+            opacity: 1;
+            background-color: #3B82F6
+            ;
+            border-color: #3B82F6
+            ;
+          }
+          .checkbox-input:checked + .checkbox-tile .checkbox-icon, .checkbox-input:checked + .checkbox-tile .checkbox-label {
+            color: #3B82F6
+            ;
+          }
+          .checkbox-input:focus + .checkbox-tile {
+            border-color: #3B82F6
+            ;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
+          }
+          .checkbox-input:focus + .checkbox-tile:before {
+            transform: scale(1);
+            opacity: 1;
+          }
+          
+          .checkbox-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 7rem;
+            height: 7rem;
 
-            <strong>
-                <div class="hr-sect">Login if you already have an account</div>
-            </strong>
+            border-radius: 0.5rem;
+            border: 2px solid #b5bfd9;
+            background-color: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.15s ease;
+            cursor: pointer;
+            position: relative;
+          }
+          .checkbox-tile:before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #b5bfd9;
+            background-color: #fff;
+            border-radius: 50%;
+            top: 0.25rem;
+            left: 0.25rem;
+            opacity: 0;
+            transform: scale(0);
+            transition: 0.25s ease;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: 12px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+          }
+          .checkbox-tile:hover {
+            border-color: #3B82F6
+            ;
+          }
+          .checkbox-tile:hover:before {
+            transform: scale(1);
+            opacity: 1;
+          }
+          
+          .checkbox-icon {
+            transition: 0.375s ease;
+            color: #494949;
+          }
+          .checkbox-icon svg {
+            width: 3rem;
+            height: 3rem;
+          }
+          
+          .checkbox-label {
+            color: #707070;
+            transition: 0.375s ease;
+            text-align: center;
+          }
+      </style>
 
-            <a href="{% url 'login-view' %}" id="login" style="width: 90%;" class="btn btn-primary">Login</a>
-        </form>
-    </div>
-    <script src='../../static/users/assets/js/register.js'></script>
-    {%endblock content%}
+      <script>
+          //check if checkbox is toggled on
+
+            function mentorToggled() {
+                    document.getElementById("cbx").checked = true;
+                    document.getElementById("member-cbx").checked = false;
+                    document.getElementById("mentor-cbx").checked = true;   
+            }
+
+            function memberToggled() {
+                document.getElementById("cbx").checked = false;
+
+                document.getElementById("mentor-cbx").checked = false;
+                document.getElementById("member-cbx").checked = true;   
+        }
+
+       
+      </script>
+
+        {%endblock content%}

@@ -36,8 +36,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 import random, string
 import phonetic_alphabet as alpha
-from stats.forms import pit_scout_form, game_scout_form
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404
+from itertools import chain
 
 
 
@@ -82,10 +82,12 @@ def register(request):
             user_obj = form.save()        
             username = form.cleaned_data["username"]
             is_team_admin = form.cleaned_data["is_team_admin"]
-            team_num = form.cleaned_data["team_num"]
+
             email = form.cleaned_data["email"]
+            
             user = CustomUser.objects.filter(username=username)
             user.is_active = False
+            
             current_site = get_current_site(request)
             email_subject = "Activate Your Account"
             message = render_to_string(
@@ -105,14 +107,17 @@ def register(request):
             # user.first().email_verify()
             if is_team_admin:
                 user.update(is_team_admin=True)
-            if not Team.objects.filter(team_num=team_num).exists():
+            else:
+                team_code = Team.objects.filter(form.cleaned_data["team_num"])
+
+            if not Team.objects.filter(team_num=team_code).exists():
 
                 VID = str(
-                    "".join(random.choices(string.ascii_uppercase + string.digits, k=7))
+                    "".join(random.choices(string.digits, k=7))
                 )
 
                 Team.objects.create(
-                    team_users=user_obj, team_num=team_num, team_code=VID
+                    team_users=user_obj, team_num=team_code, team_code=VID
                 )
             
             LOGIN(request, user_obj)
@@ -158,8 +163,6 @@ def welcome(request):
     return render(request, "users/welcome.html")
 
 
-
-
 def getAuthLevel():
     if CustomUser.is_team_admin:
         return "Team Mentor"
@@ -188,7 +191,6 @@ def ProfileSettings(request, username):
         "picture": request.user.profile.image,
         'viewPitResubmit': Profile.objects.get(user=request.user).viewPitResubmit,
         'relativeScoring': Profile.objects.get(user=request.user).relativeScoring,
-        'envokeKey': request.user.profile.search,
         'p_fn': p_first_name,
         'p_ln': p_last_name,
     }
@@ -215,12 +217,8 @@ def profile(request):
         "picture": request.user.profile.image,
         'stat': Match.objects.filter(scout=request.user),
         'game_num': Match.objects.filter(scout=request.user).count(),
-        'team_game_num': Match.objects.filter(team_num=request.user.team_num).count(),
-        'global_game_num': Match.objects.filter(scouted_team_num=request.user.team_num).count(),
         'pit_num': Pit_stats.objects.filter(scout=request.user.profile).count(),
-        'team_pit_num': Pit_stats.objects.filter(scouted_team_num=request.user.team_num).count(),
-        'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
-        
+        'result_list': list(chain(Match.objects.all(), Pit_stats.objects.all()))
     }
     return render(request, "users/profile.html", context)
 

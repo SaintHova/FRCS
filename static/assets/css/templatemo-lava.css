@@ -51,7 +51,7 @@ header, nav, section, article, aside, footer, hgroup {
 
 html, body {
   font-weight: 400;
-  background-color: #eee;
+  ;
   min-height: 100%;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
@@ -597,7 +597,7 @@ header
     color: #191a20 !important;
   }
   .header-area .main-nav .nav li a:hover {
-    background: #eee !important;
+     !important;
     color: lightblue!important;
   }
   .header-area .main-nav .nav li.submenu ul {
@@ -1195,7 +1195,7 @@ box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .contact-form {
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
@@ -1206,7 +1206,7 @@ box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 body{
-  background-color: #f1f3f6;
+  ;
 
 }
 
@@ -1226,12 +1226,12 @@ body{
   margin-left: auto;
   margin-right: auto;
   width: 75%;
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
 }
 
 .darkmode--activated .card{
-  background-color: #f1f3f6;
+  ;
   box-shadow: 0px -6px 10px rgb(0, 0, 0), 0px 4px 15px rgba(0, 0, 0, 0.15);    
   border: 0.004em solid rgba(0, 0, 0, 0.3);
   
@@ -1371,7 +1371,7 @@ body{
   margin-right: auto;
   margin-left: auto;
   display: block;
-  background-color: #f1f3f6;
+  ;
   box-shadow: 1px 1px 30px 0 rgba(50,56,66,.1);
   animation: wel3 1 2s;
   font-weight: bolder;

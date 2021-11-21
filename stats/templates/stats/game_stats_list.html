@@ -52,32 +52,54 @@
 </center>
 <br>
 <br>
-<div class="md-form mt-0">
-    <center><input id="search-bar" class="form-control" type="number" placeholder="Search" aria-label="Search"
-            style="width: 90%"></center>
+<div class='w-11/12 mx-auto'>
+  <input id="search-bar" class="form-single" placeholder="Search Team">
 </div>
 <br>
 {{form.pagination}}
-<center>
-    <div class="table-responsive-md">
-        <table id="data-table" class="table table-borderless">
-            <tr>
-                <th class="col-1" id="scout-team-col">Scouted Team Number</th>
-                <!--<th class="col-2" id="scout-team-col">Data Submissions</th>-->
-            </tr>
-
-            <div>
-                {% if user.is_authenticated %}
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="flex flex-col w-11/12 mx-auto">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200" id='data-table'>
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Team Number
+                </th>
+                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  View Data
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
                 {% for stat in stats %}
-                <tr>
-                    <td id="teamCount"></div><strong><a>{{stat.team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'gamedata-view' stat.team.id %}"><strong>View Data</strong></a></td>
-                    <!--<td id="dataCount"><strong>0</strong></td>-->
-                </tr>
-                {%endfor%}
-                {%endif%}
-        </table>
+              <tr>
+                  
+                <td class=" py-4 whitespace-nowrap">
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-black">
+                        <p class='text-black font-semibold'>{{stat.team.team_num}}</p>
+                      </div>
+                     
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="{% url 'gamedata-view' stat.team.id %}" class="text-black">View</a>
+                </td>
+              </tr>
+              {% endfor %}
+  
+              <!-- More people... -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</center>
+  </div>
+  
+
 <style>
     .darkmode--activated #scout-team-col {
         color: white;

@@ -22,8 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+SECRET_KEY = 'soyccfn)r&ad^9*k(v64%_it=0d7qqsv04$%0=!xc#yrek)8sp'
+
 try:
-    SECRET_KEY = os.environ['FRCS_SECRET']
+    None
+    #SECRET_KEY = os.environ['FRCS_SECRET']
 except KeyError:
     print("Put the secret key in your environment as 'FRCS_SECRET' then restart your computer")
     print("This is for security issues")
@@ -32,7 +36,7 @@ except KeyError:
 DEBUG = True
 
 if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.86.37"]
+    ALLOWED_HOSTS = ["localhost", "*", "192.168.86.37"]
 else:
     ALLOWED_HOSTS = [
         "*",
@@ -184,14 +188,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 LOGIN_URL = "login-view"
 
 
-# SMTP CONFIGURATION
-TEMPLATED_EMAIL_BACKEND = "templated_email.backends.vanilla_django.TemplateBackend"
-EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = 587
+# # SMTP CONFIGURATION
+# TEMPLATED_EMAIL_BACKEND = "templated_email.backends.vanilla_django.TemplateBackend"
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+# EMAIL_PORT = 587
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.google.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'frcsassistant@gmail.com'
+EMAIL_HOST_PASSWORD = 'Jacktyler03'
 # MEDIA FILE DIRS
 MEDIA_ROOT = os.path.join(BASE_DIR, "profile-pics")
 MEDIA_URL = "/profile-pics/"

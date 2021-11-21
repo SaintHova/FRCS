@@ -66,21 +66,23 @@
 
 <br>
 <br>
-<center><div style='width: 85%;'>
-    {% if messages %}
-    {% for message in messages %}
-    {% if message.tags == "error" %}
-    <div class='alert alert-danger' role='alert'>{{message}}</div>
-    {% endif %}
-    {% if message.tags == "success" %}
-    <div class='alert alert-success' role='alert'>{{message}}</div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-</div></center>
-<div class="form">
+<center>
+    <div style='width: 85%;'>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == "error" %}
+        <div class='alert alert-danger' role='alert'>{{message}}</div>
+        {% endif %}
+        {% if message.tags == "success" %}
+        <div class='alert alert-success' role='alert'>{{message}}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+</center>
+<div>
     <div class="header">
-        <h1 id="scoutfor">Pit Scouting</h1>
+        <p class='text-4xl font-bold text-black text-center'>Pit Scouting</p>
         <p id="teamNameHeader"></p>
     </div>
 
@@ -90,10 +92,11 @@
 
 
             <p id="label">Team Number</p>
-            {{ form.team_num|attr:"class:form-control"|attr:"placeholder:000"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
+            {{ form.team_num|attr:"class:form-single"|attr:"placeholder:00"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
             <br>
 
-            <select id='select-comp-dropdown' class='custom-select'>
+            <p id="label">Robot Frame Perimeter</p>
+            <select id='select-comp-dropdown' class='dd-single '>
                 <option>--SELECT COMPETITION--</option>
                 <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
                 <script>
@@ -103,117 +106,106 @@
                                 "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
                             }, function (data) {
                                 var jObject = (data);
-    
+
                                 for (i = 0; i < 5; i++) {
                                     console.log(jObject[i]['name'])
                                     $('#select-comp-dropdown').append('<option>' + jObject[i][
-                                        'name'] + '</option>')
+                                        'name'
+                                    ] + '</option>')
                                 }
-    
+
                             })
                         }
                     })
                 </script>
             </select>
 
-            <p id="label">Competition</p>
-            {{ form.competition|attr:"class:form-control"|attr:"placeholder:Competition"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
-            <br>
-
+            <p id="label">Robot Weight</p>
+            {{form.competition|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
 
             <p id="label">Robot Weight</p>
-            {{form.robot_weight|attr:"class:form-control"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
+            {{form.robot_weight|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
 
             <p id="label">Robot Frame Perimeter</p>
-            {{ form.robot_frame_length|attr:"class:form-control"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
-            </br>
-            {{ form.robot_frame_width|attr:"class:form-control"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
-            </br>
+            <div class='flex space-x-5'>
+
+                <div class='w-1/2'>
+                    {{ form.robot_frame_length|attr:"class:form-single"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
+                </div>
+
+                <div class='w-1/2'>
+                    {{ form.robot_frame_width|attr:"class:form-single"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
+                </div>
+            </div>
+
 
             <p id="label">DriveTrain Type</p>
-            {{form.robot_drivetrain_type|attr:"class:form-control"}}
+            {{form.robot_drivetrain_type|attr:"class:form-single"}}
             <div id="tank1"></div>
             <div id="tank2"></div>
             <br>
 
             <p id="label">Are they a high or low bot</p>
-            {{form.robot_highlow|attr:"class:form-control"}}
+            {{form.robot_highlow|attr:"class:form-single"}}
             <br>
 
             <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
-            {{form.robot_goal|attr:"class:form-control"}}
+            {{form.robot_goal|attr:"class:form-single"}}
             </br>
 
             <p id="label">Do they complete rotational control</p>
-            {{form.robot_control_panel_rot|attr:"class:form-control"}}
+            {{form.robot_control_panel_rot|attr:"class:form-single"}}
             <br>
 
             <p id="label">Do they complete positional control</p>
-            {{form.robot_control_panel_pos|attr:"class:form-control"}}
+            {{form.robot_control_panel_pos|attr:"class:form-single"}}
             <br>
 
             <p id="label">Do they perform in autonomous</p>
-            {{form.robot_autonomous|attr:"class:form-control"}}
+            {{form.robot_autonomous|attr:"class:form-single"}}
             <br>
 
             <p id="label">Vision Type</p>
-            {{form.robot_vision_type|attr:"class:form-control"}}
+            {{form.robot_vision_type|attr:"class:form-single"}}
             </br>
 
             <p id="label">Is Vision Implemented During The Match</p>
-            {{form.robot_vision_implement|attr:"class:form-control"}}
+            {{form.robot_vision_implement|attr:"class:form-single"}}
             </br>
 
 
             <p id="label">Do They Climb</p>
-            {{form.robot_climb|attr:"class:form-control"}}
+            {{form.robot_climb|attr:"class:form-single"}}
             <br>
 
             <p id="label">Do They Help Others Climb</p>
-            {{form.robot_buddy_climb|attr:"class:form-control"}}
+            {{form.robot_buddy_climb|attr:"class:form-single"}}
             <br>
 
             <div id="autoPoints"></div>
 
             <label id="label" for="notes">Notes</label>
-            <!--<textarea class="form-control" id="notes-text" rows="3"></textarea>-->
-            {{ form.notes|attr:"class:form-control"|attr:"rows:3"|attr:"id: notes-text" }}
+            <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
+            {{ form.notes|attr:"class:form-single"|attr:"rows:3"|attr:"id: notes-text" }}
+
+            <button type="submit" class="btn-default mt-3">
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                    <!-- Heroicon name: solid/lock-closed -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                    </svg>
+                </span>
+                <p class='font-semibold text-white'>Submit Data</p>
+            </button>
     </div>
-    <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" onchange="ShowButton()" />
-    <label class="cbx" for="cbx"><span>
-            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-            </svg></span><span id="checkbox-text">Check to Confirm Submission</span></label>
-    <br>
-    <input id="submit" class="form-control" type="submit" value="Submit Scouting Data" class="submit_form" />
-    </br>
+
+
+
     </form>
 </div>
 </div>
-<script>
-    function ShowButton() {
-        var checkBox = document.getElementById("cbx");
-        var text = document.getElementById("submit");
-
-        if (checkBox.checked == true) {
-            text.style.display = "block";
-        }
-        if (checkBox.checked == false) {
-            text.style.display = "none";
-        }
-    }
-
-    window.onload = function ShowButton() {
-        var checkBox = document.getElementById("cbx");
-        var text = document.getElementById("submit");
-        if (checkBox.checked == true) {
-            text.style.display = "block";
-        }
-        if (checkBox.checked == false) {
-            text.style.display = "none";
-        }
-    }
-</script>
 </form>
 </div>
 <br>

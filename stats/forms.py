@@ -41,8 +41,8 @@ GOAL_SHOT = [
 
 
 TRUE_FALSE = [
-    ('0', 'No'),
-    ('100', 'Yes'),
+    ('No', 'No'),
+    ('Yes', 'Yes'),
 ]
 
 PENALTIES = [
@@ -79,7 +79,7 @@ class pit_scout_form(ModelForm):
         exclude = ['scout', 'scouted_team_num', 'stat_id', 'date_entered', 'is_incorrect']
 
 class pit_correct_form(ModelForm):
-    is_incorrect = forms.BooleanField(required=False)
+    is_incorrect = forms.BooleanField()
 
     class Meta:
         model = Pit_stats

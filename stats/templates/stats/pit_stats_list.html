@@ -45,53 +45,7 @@
 </center>
 <br>
 <br>
-<!--<center><div class="table-responsive-md"><table class="table table-bordered">
-  <div class="md-form mt-0">
-    <input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search" style="width: 90%">
-  </div>
-  <br/>
-  <br/>  
-     
-            {% for team in teams%}
-            <div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne2">
-      <h2 class="mb-0">
-        <a id="cardbtn" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            {{team.team_num}}
-        </a>
-        <a id="cardbtn2" href="{% url 'pitdata-view' team.id %}" class="btn btn-link">
-            View More Data &#10140;
-        </a>
-      </h2>
-    </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body" id="teampitstats">
-      <div>
-        <p id="stats" style="font-weight: bold; ">Height:</p> 
-        <p id="stats">{{team.robot_highlow}}&nbsp</p>
-        </div>
-        <div style="text-overflow: ellipsis;">
-        <p id="stats" style="font-weight: bold;">Length:</p> 
-        <p id="stats">{{team.robot_frame_length}}"</p>
-        </div>
-        <div>
-        <p id="stats" style="font-weight: bold; ">Width:</p> 
-        <p id="stats">{{team.robot_frame_width}}"</p>
-        </div>
-        <div>
-        <p id="stats1" style="font-weight: bold; ">DriveTrain Type:</p> 
-        <p id="stats1">{{team.robot_drivetrain_type}}</p>
-        </div>
-        <div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br>
-            {%endfor%}
-            -->
 <script>
   $(document).ready(function () {
     $("#search-bar").on("keyup", function () {
@@ -103,33 +57,55 @@
   });
 </script>
 
+<div class='w-11/12 mx-auto'>
+    <input id="search-bar" class="form-single" placeholder="Search Team">
+</div>
 
-<center><input id="search-bar" class="form-control" type="text" placeholder="Search" aria-label="Search"
-    style="width: 90%"></center>
 <br>
-<center>
-  <div class="table-responsive-md">
-    <table id="pit-table" class="table table-borderless">
-      <tr>
-        <th class="col-1" id="scout-team-col">Scouted Team Number</th>
-        <!--<th class="col-2" id="scout-team-col">Quick Data</th>-->
-      </tr>
-      <div>
-        {% for team in teams %}
+<div class="flex flex-col w-11/12 mx-auto">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         
-        </script>
-        <tr>
-          <td id="teamCount"><strong> 
-            
-            {% if team.is_incorrect %}
-            <div class='pit-flagged'><center>&#33;</center></div>
-            {% endif %}
-            <a>{{team.team_num}}</a></strong><a style="float: right; color: black;" href="{% url 'pitdata-view' team.id %}"><strong>View Data</strong></a></td>
-        </tr>
-        {%endfor%}
-    </table>
+        <table class="min-w-full divide-y divide-gray-200" id='data-table'>
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Team Number
+              </th>
+              <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                View Data
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+              {% for team in teams %}
+            <tr>
+                
+              <td class=" py-4 whitespace-nowrap">
+                  <div class="ml-4">
+                    <div class="text-sm font-medium text-black">
+
+
+                      <p class='text-black font-semibold'>{{team.team_num}}</p>
+                    </div>
+                   
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="{% url 'pitdata-view' team.id %}" class="text-black">View</a>
+              </td>
+            </tr>
+            {% endfor %}
+
+            <!-- More people... -->
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</center>
+</div>
+
 <style>
   .darkmode--activated #scout-team-col {
     color: white;
