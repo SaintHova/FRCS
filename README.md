@@ -8,7 +8,7 @@
 ## How to use
 - Visit us at our [website](frcs.online)!
   - NOTICE: To save on hosting costs, our website is taken down during the pre-season :(
-- We also have an iOS and Android app!
+- We will also have an iOS and Android app! (currently in developement)
 
 # The Home Page
 ![image](https://user-images.githubusercontent.com/47124521/142778490-c000bbf5-78d8-4401-9c0c-85bfced23b88.png)
