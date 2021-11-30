@@ -32,7 +32,7 @@ urlpatterns = [
     path('', include('api.urls')),
     path('feedback/', include('feedback.urls')),
     path('scout/game/', scout_views.scout, name = 'scout-view'),
-    path('scout/pit/', scout_views.pit_scout, name = 'Pitscout-view'),
+    path('scout/pit/', scout_views.pit_scout, name = 'pitscout-view'),
     path('datahub/', scout_views.scouthub, name = 'scouthub-view'),
     path('pit-detail/<int:pk>/', scout_views.PitDetailView.as_view(), name = 'pitdata-view'),
     path('game-detail/<int:pk>/', scout_views.ScoutDetailView.as_view(), name = 'gamedata-view'),

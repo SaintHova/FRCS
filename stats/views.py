@@ -61,9 +61,9 @@ def scouthub(request):
     'pit_stats_height_short':  Pit_stats.objects.filter(robot_highlow='Low - below 28"').count(),
     'pit_stats_height_tall':  Pit_stats.objects.filter(robot_highlow='High - above 28"').count(),
     
-    'pit_stats_weight': str(Pit_stats.objects.all().aggregate(Avg('robot_weight'))).split('(')[1].split(')')[0].split("'")[1],
-    'pit_stats_width': str(Pit_stats.objects.all().aggregate(Avg('robot_frame_width'))).split('(')[1].split(')')[0].split("'")[1],
-    'pit_stats_length': str(Pit_stats.objects.all().aggregate(Avg('robot_frame_length'))).split('(')[1].split(')')[0].split("'")[1]
+    'pit_stats_weight': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_weight'))).split('(')[1].split(')')[0].split("'")[1]))),
+    'pit_stats_width': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_width'))).split('(')[1].split(')')[0].split("'")[1]))),
+    'pit_stats_length': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_length'))).split('(')[1].split(')')[0].split("'")[1])))
     
     
 
@@ -162,15 +162,15 @@ def pit_scout(request):
                     return redirect('pitdata-view', pk=pk)
                 else:
                     messages.error(request, "Team pit entry already exists")
-                    return redirect('Pitscout-view')
+                    return redirect('pitscout-view')
             form.save()
             messages.success(request, "Pit entry submitted, Thank You")
-            return redirect('Pitscout-view')
+            return redirect('pitscout-view')
 
         
         else:
             messages.error(request, "Form invalid, Try submitting data again properly")
-            return redirect('Pitscout-view')
+            return redirect('pitscout-view')
     return render(request, 'stats/pit-scout.html', {'form': form})
 
 
@@ -194,7 +194,7 @@ def scout(request):
             obj.scout = CustomUser.objects.get(username=request.user)
             #Gathering data
             scouted_team_num = form.cleaned_data['scouted_team_num']
-            competition = form.cleaned_data['competition']
+
             
             randomNumber = randomIDGenerator()
             obj.match_id = randomNumber
@@ -207,7 +207,7 @@ def scout(request):
             #Creating new team if necessary
    
             
-            Competition.objects.create(competition = competition)
+
             if not Team.objects.filter(team_num = scouted_team_num).exists():
                 Team.objects.create(team_num = scouted_team_num)
             #Finally, add Game_stats object to the team

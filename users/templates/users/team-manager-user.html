@@ -27,6 +27,12 @@
                 <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
             </svg></span><span id="checkbox-text">Allow Stats Edit</span></label><br>
 
+            {{form.is_team_admin}}
+            <label style='margin-left: 0%;' class="cbx" for="cbx1"><span>
+                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg></span><span id="checkbox-text">Team Admin</span></label><br>
+
         <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
     </form>
 </div>
@@ -37,6 +43,15 @@
     }
     else{
         document.getElementById("cbx").checked = false;
+    }
+
+    var isAdmin = "{{isAdmin}}"
+
+    if(isChecked == "True"){
+        document.getElementById("cbx1").checked = true;
+    }
+    else{
+        document.getElementById("cbx1").checked = false;
     }
 
 </script>

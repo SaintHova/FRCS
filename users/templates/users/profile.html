@@ -33,27 +33,16 @@
 
   }
 </script>
-
-
-<script type="text/javascript">
-  var team_num = '{{user.team_num}}';
-</script>
-
-
-
-
-
-
-<div class="flex h-screen bg-gray-50 dark:bg-gray-900">
+<div class="flex h-screen  dark:bg-gray-900 bg-gray-50">
     <div class="flex flex-col flex-1 w-full">   
-        <main class="h-full overflow-y-auto">
+        <main class="">
             <div class="container px-6 mx-auto grid">
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Profile
                 </h2>
                 <div class='flex'>
                   <div>
-                    <img src='../../../profile-pics/{{request.user.profile.image}}' class='h-28 w-28 rounded-xl mr-3'>
+                    <img src='../../../profile-pics/{{request.user.profile.image}}' class='h-44 w-44 rounded-xl mr-3'>
                   </div>
                   <div>
                 {% if user.profile.first_name %}
@@ -66,12 +55,19 @@
                   <p >Your team code is: <strong>{{code}}</strong></p>
                   <p><strong>{{phonetic}}</strong></p>
                   {%endif%}
+                  <div class='mt-3 flex space-x-2'>
+                    <a href='/{{user.username}}/username-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Account</a>
+                      <a href='/{{user.username}}/profile-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Profile</a>
                   </div>
                   </div>
-
-                  <h2 class="mb-3 mt-10 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  
+                  </div>
+                <div class='flex justify-between'>
+                <h2 class="mb-3 mt-10 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Personal Entries
                 </h2>
+                <input id="search-bar" class="transition w-56 h-10 mt-7 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out" placeholder="Search Team">
+                </div>
                 <div class="flex flex-col w-full mx-auto">
                     <div class="-my-2  sm:-mx-6 lg:-mx-8">
                       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -99,8 +95,8 @@
                                 <td class=" py-4 whitespace-nowrap">
                                     <div class="ml-4">
                                       <div class="text-sm font-medium text-black">
-                                        <p class='text-black font-semibold'>The Mechanical Bulls</p>
-                                        <p class='text-gray-500 font-semibold text-sm'>{{stat.team.team_num}}</p>
+
+                                        <p class='text-black font-semibold text-sm'>{{stat.team_num}}</p>
                                         
 
                                       </div>
@@ -108,10 +104,9 @@
                                   </div>
                                 </td>
                                 {% if stat.match_id %}
-                                <td class="px-4 py-3 text-xs float-right">
+                                <td class="px-4 py-3 mt-2 text-xs float-right">
                                   <span
-                                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                                  >
+                                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                     Match Data
                                   </span>
                                 </td>
@@ -119,8 +114,7 @@
                                 {% else %}
                                 <td class="px-4 py-3 text-xs float-right" style='margin-top: 13px;'>
                                   <span
-                                    class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                                  >
+                                    class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-green-700 dark:text-green-100">
                                     Pit Data
                                   </span>
                                 </td>
@@ -132,14 +126,13 @@
                                   <a href="{% url 'gamedata-view' stat.pk %}"  class="text-black font-bold">View Data</p>
                                 </td>
                                 {% else %}
+                                
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                   <a href="{% url 'pitdata-view' stat.pk %}"  class="text-black font-bold">View Data</p>
                                 </td>
           
                                 {% endif %}
-                                
-                               
-                                
+
                               </tr>
                               {% endfor %}
 
@@ -159,125 +152,7 @@
 
 
 
-<div style='margin-left: 12.5%;'>
-  {% if user.profile.first_name %}
-  <h1 id="loginStats" class="display-4">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
-  {% else %}
-  <h1 id="loginStats" class="display-4">{{user.username}}</h1>
-  {% endif %} <p id='nickname' style="font-weight: 700;"></p>
-  <p id='head-role' style="font-weight: 500;">{{role}}</p>
-  {%if user.is_admin%}
-  <p style='float: left; ' id='team-code'>Your team code is:</p>
-  <p id='team-code'><strong> &nbsp; {{code}}</strong></p>
-  <p id='team-code'>{{phonetic}}</p>
-  {%endif%}
-  <div style='padding-top: 10px; float: left; padding-right: 10px;'>
-    <div>
-      <button style='margin-right: 10px; border-radius: 5px;'
-        onclick="window.location.href='{% url 'profile-settings-view' user.username %}'" type="button"
-        class="btn btn-outline-light">Edit Profile</button>
-      <div class="btn-group">
-        <button style='border-radius: 5px;' type="button" id="profile-drop-btn"
-          class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown">
-          &bull; &bull; &bull; <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a class='dropdown-item' href="{% url 'account-settings-view' user.username %}">Edit Account</a></li>
-          <li><a class='dropdown-item' href="{% url 'image-upload-view' user.username %}">Edit Profile Picture</a></li>
-          <li><a class='dropdown-item' href="#">Edit Password</a></li>
-        </ul>
-      </div>
-    </div>
 
-  </div>
-  <div style='padding-top: 10px;'>
-    <div class="dropdown">
-    </div>
-  </div>
-  <br>
-  <div>
-    <div style='width: 95%;' class="table table-responsive">
-      <table style="text-align: center;" class="table table-borderless">
-        <thead>
-          <tr>
-            <th style="padding-left: 0px !important;" scope="col"><strong
-                style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a id='profile-game'
-                  style='font-weight: bold; color: black;' href="{% url 'profile-view' %}">Match Entries &nbsp;<a
-                    style='font-weight: 300;'>{{game_num}}</a></a></strong></th>
-            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
-                  href="{% url 'profile-pit-view'  %}" style='font-weight: bold; color: #616161;'>Pit Entries &nbsp;<a
-                    style='font-weight: 300;'>{{pit_num}}</a></a></strong></th>
-            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
-                  href="{% url 'team-match-view'  %}" style='font-weight: bold; color: #616161;'>Team Match Entries
-                  &nbsp;<a style='font-weight: 300;'>{{team_game_num}}</a></a></strong></th>
-            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
-                  href="{% url 'team-pit-view'  %}" style='font-weight: bold; color: #616161;'>Team Pit Entries &nbsp;<a
-                    style='font-weight: 300;'>{{team_pit_num}}</a></a></strong></th>
-            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
-                  href="{% url 'global-match-view'  %}" style='font-weight: bold; color: #616161;'>Global Match Entries
-                  &nbsp;<a style='font-weight: 300;'>{{global_game_num}}</a></a></strong></th>
-            <th scope="col"><strong style='float: left; overflow: hidden; white-space: -moz-pre-space;'><a
-                  href="{% url 'global-pit-view'  %}" style='font-weight: bold; color: #616161;'>Global Pit Entries
-                  &nbsp;<a style='font-weight: 300;'>{{global_pit_num}}</a></a></strong></th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-    <hr>
-    <h1 style="font-size: 20px;">View Scouted Entires</h1>
-    <label>View the Match data that people have scouted for your team</label>
-    
-
-          <div class="flex flex-col w-11/12 mx-auto">
-            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                  <table class="min-w-full divide-y divide-gray-200" id='data-table'>
-                    <thead class="bg-gray-50">
-                      <tr>
-                        <th scope="col"
-                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Team Number
-                        </th>
-                        <th scope="col"
-                          class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          View Data
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                      {% for stat in stats %}
-                      <tr>
-
-                        <td class=" py-4 whitespace-nowrap">
-                          <div class="ml-4">
-                            <div class="text-sm font-medium text-black">
-                              <p class='text-black font-semibold'>{{stat.team.team_num}}</p>
-                            </div>
-
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                          <a href="{% url 'gamedata-view' stat.id %}" class="text-black">View</a>
-                        </td>
-                      </tr>
-                      {% endfor %}
-
-                      <!-- More people... -->
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-  </div>
-  <div>
-  </div>
-  <style>
-    .darkmode--activated th#scout-team-col {
-      color: white;
-    }
-  </style>
 
 
   

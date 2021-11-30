@@ -1,11 +1,11 @@
 # FRCS: FIRST Robotics Competition Scouting
 
-## What is FRCS?
+## What Is FRCS?
 - Throughout a competition, FIRST Robotics teams often "scout" other teams by gathering data on different aspects of the game.
 - The data is then used to determie complementary teammates that would form a well rounded alliance for later stages of the compeition.
 - FRCS is a crowd-sourced data collection platform meant to collect scouting data by all teams to streamline the scouting process and help all FRC teams.
 
-## How to use
+## How To Use
 - Visit us at our [website](frcs.online)!
   - NOTICE: To save on hosting costs, our website is taken down during the pre-season :(
 - We will also have an iOS and Android app! (currently in developement)
@@ -30,7 +30,7 @@ The Pit Scouting page is meant for data collection on robot characteristics
 
 Along with entering data, FRCS allows you to visualize data using interactive and intuitive plots. Picking a teammate has never been easier!
 
-# New Features for the 2020 season
+# New Features for the 2020 Season
 - The new season brings many great things to FRCS. We have added:
   - Completely New UI
   - New Redesigned and Optimized Dark Mode
@@ -41,7 +41,7 @@ Along with entering data, FRCS allows you to visualize data using interactive an
   - Password Reset
   - Profile updating and removal
 
-# What we are adding
+# What We Are Adding
 - Ranking System
 - Improved documentation on how to use the site
 - REST API to enable compatibility with 3rd party software
@@ -49,10 +49,8 @@ Along with entering data, FRCS allows you to visualize data using interactive an
 # Tech Stack Used
 Django is a widely-used framework for creating web-applications, and was used to create FRCS.
 
-- Frontend
-  - HTML, CSS, TailwindCSS, JS
-- Backend 
-  - Python, PostgreSQL, DigitalOcean
+- **Frontend:** HTML, CSS, TailwindCSS, JS
+- **Backend:** Python, PostgreSQL, DigitalOcean
 
 # About FRCS
 The reason we made FRCS is because every year, teams build new scouting systems from
@@ -63,3 +61,11 @@ With onsite data analytics it's the easiest and most logical next step in FRC sc
 at all feedback submitted so if you think there's something missing we'll try our best to help
 out
 
+## The Nitty Gritty
+Sure, lots of data available at a quick glance is great! But FRCS also enables you to view independent and comprehensible data on almost every aspect of the team. Keep track of data submissions, notes, scores and more. The data collected is automatically graphed into box plots. All of this detailed data is accessible from the Game and Pit scouting pages.
+
+## Important Notices
+Team Admins: Please make sure your team members are using the input form appropriately, and are filling out team numbers and match numbers! Data Analysis will be useless without those two inputs!
+
+## Get The Word Out
+Make sure to share FRCS at competitions, the more users, the better the data.

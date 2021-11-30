@@ -1,5 +1,8 @@
 {%extends 'users/base.html'%}
 
+{% block styles %}
+{% endblock styles %}
+
 
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -34,16 +37,7 @@
                         </svg>
                         <span>Welcome to the new FRCS dashboard</span>
 
-                    </div>
-                    <a>
-                        <div class='transition hover:text-black cursor-pointer'>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </div>
-                    </a>
+                    </div>         
                 </div>
                 <!-- Cards -->
                 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
@@ -147,7 +141,7 @@
                                 Average robot weight
                             </p>
                             <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
-                                {{pit_stats_weight}}
+                                {{pit_stats_weight}} lbs
                             </p>
                         </div>
                     </div>
@@ -497,16 +491,17 @@
         datasets: [{
             fill: true,
             backgroundColor: [
-            '#c3c3c3',
+            'red',
             '#3af3bb',
             '#17a1cc',
             '#176079',
             '#3ab3bb',
             '#fff000',
-            '#3ab1bb',
+
+            'green',
             
             ],
-            data: ['{{pit_stats_dt_4skid}}', '{{pit_stats_dt_6skid}}', '{{pit_stats_dt_8skid}}', '{{pit_stats_dt_tread}}', '{{pit_stats_dt_tread}}', '{{pit_stats_dt_omni}}', '{{pit_stats_dt_swerve}}', '{{pit_stats_dt_other}}'],
+            data: ['{{pit_stats_dt_4skid}}', '{{pit_stats_dt_6skid}}', '{{pit_stats_dt_8skid}}', '{{pit_stats_dt_tread}}', '{{pit_stats_dt_omni}}', '{{pit_stats_dt_swerve}}', '{{pit_stats_dt_other}}'],
 
 
         }]

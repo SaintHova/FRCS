@@ -32,7 +32,7 @@ class UserCreationForm(forms.ModelForm):
     ))
     email = forms.EmailField(validators=[validate_email], label='Email', widget=forms.EmailInput(
         attrs={
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md  focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900   focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
             'placeholder': 'Email',
             'id': 'email-form',
         }
@@ -48,7 +48,8 @@ class UserCreationForm(forms.ModelForm):
         attrs={
             'class': 'inp-cbx',
             'style': 'display: none;',
-            'id': 'cbx'
+            'id': 'cbx',
+            'name': 'is_team_admin'
 
         }
     ))
@@ -186,6 +187,14 @@ class TeamSettingsForm(forms.ModelForm):
             'class': 'inp-cbx',
             'style': 'display: none;',
             'id': 'cbx',
+        }
+    ))
+    
+    is_team_admin = forms.BooleanField(label='canEditStats', required=False, widget=forms.CheckboxInput(
+        attrs={
+            'class': 'inp-cbx',
+            'style': 'display: none;',
+            'id': 'cbx1',
         }
     ))
     

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../../static/users/assets/css/owl-carousel.css">
     <link rel="stylesheet" href="../../static/users/assets/css/style.css">
     <link rel="stylesheet" href="../../static/users/assets/css/pin.css">
+    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.min.css" />
 
     <link rel="stylesheet" href="../../static/users/assets/css/gettingStarted.css">
     <link rel="stylesheet" href="../../static/users/assets/css/media.css">
@@ -35,7 +36,7 @@
     {%endblock styles%}
 </head>
 
-<body style='font-family: poppins !important'>
+<body style='font-family: poppins !important' class='bg-gray-50'>
     <div id="preloader">
         <div class="jumper">
             <div></div>
@@ -43,109 +44,98 @@
             <div></div>
         </div>
     </div>
-   
-    <div class="navigation-wrap start-header start-style">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="navbar navbar-expand-md navbar-light">
 
-                        <a href="{% url 'home-view' %}" class="navbar-brand">FRCS</a>
-
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-auto py-4 py-md-0">
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" href="{% url 'home-view' %}">Home</a>
-                                </li>
-                                {% if user.is_authenticated %}
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Scout</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{% url 'scout-view' %}">Game Scout</a>
-                                        <a class="dropdown-item" href="{% url 'Pitscout-view' %}">Pit Scout</a>
-                                    </div>
-                                </li>
-                                {%endif%}
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Data</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{% url 'scouthub-view' %}">DataHub</a>
-                                        {% if user.is_authenticated %}
-                                        <a class="dropdown-item" href="{% url 'gamedatahub-view' %}">Game Data</a>
-                                        <a class="dropdown-item" href="{% url 'pitdatahub-view' %}">Pit Data</a>
-                                        {%endif%}
-
-                                    </div>
-                                </li>
-
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Support</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{% url 'media-view' %}">Follow Us</a>
-                                        <a class="dropdown-item" href="{% url 'home-view' %}#feedback">Feedback</a>
-                                        <a class="dropdown-item" href="{% url 'changelog-view' %}">Changelog</a>
-                                    </div>
-                                </li>
-
-                                {% if not user.is_authenticated %}
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" href="{% url 'login-view' %}">Sign In</a></li>
-                                </li>
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" href="{% url 'register-view' %}">Register</a>
-                                </li>
-                                
-                                
-                                {%else%}
-                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <img data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                        aria-expanded="false" class="img-responsive img-rounded" height="30px"
-                                        width="30px" style="border-radius: 7px; cursor: pointer;"
-                                        src="../../../profile-pics/{{request.user.profile.image}}">
-                                    <div class="dropdown-menu">
-                                        <center><img data-toggle="dropdown" role="button" aria-haspopup="true"
-                                                aria-expanded="false" class="rounded-xl mb-4" height="50px"
-                                                width="50px" style="border-radius: 10px; cursor: pointer;"
-                                                src="../../../profile-pics/{{request.user.profile.image}}"
-                                                ></center>
-                                        <center><a style='color: black; padding: 3px 15px; border-radius: 2px;'><strong
-                                                    id='profile-user'>{{user.username}}</strong></a><br>
-                                        <hr>
-                                        <a class="dropdown-item" href="{% url 'profile-view' %}">Profile</a>
-                                        <a class="dropdown-item" href="{% url 'profile-settings-view' user.username %}">Edit Profile</a>
-                                        <a class="dropdown-item" href="{% url 'account-settings-view' user.username %}">Edit Account</a>
-                                        {%if user.is_admin%}
-                                        <hr>
-                                        <a class="dropdown-item" href="{% url 'management-view' %}">Team Management</a>
-                                        {%endif%}
-                                        <hr>
-                                        <a class="dropdown-item" onclick="logoutPrompt()"
-                                            href="{% url 'logout-view' %}"><strong>Log Out</strong></a>
-                                    </div>
-                                </li>
-                                {%endif%}
-                                </li>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </nav>
-                </div>
-
-            </div>
-        </div>
+    
+<section class="pt-8 px-4 lg:px-10 bg-gray-50">
+  <nav class="relative flex justify-between items-center">
+    <a class="text-2xl text-gray-900 font-bold flex space-x-2" href="#" data-config-id="brand">
+      <img class="h-10" src="../../static/users/assets/images/logo.png" alt="" width="auto">
+      <p class='font-bold text-2xl'>FRCS</p>
+    </a>
+    <div class="lg:hidden">
+      <button class="navbar-burger flex items-center p-3 hover:bg-transparent text-gray-900 rounded">
+        <svg class="w-10 h-3" width="39" height="13" viewbox="0 0 39 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="39" height="2" rx="1" fill="currentColor"></rect><rect x="19" y="11" width="20" height="2" rx="1" fill="currentColor"></rect>
+          <title>Mobile menu</title>
+        </svg>
+      </button>
     </div>
-    <div class="color-bar">
+    <div class="hidden lg:block ml-auto mr-10">
+      <ul class="flex items-center space-x-10 text-lg font-bold">
+        <li><a class="" href="{% url 'home-view' %}" data-config-id="link1">Home</a></li>
+        {% if user.is_authenticated %}
+        <li><a class="" href="{% url 'scouthub-view' %}" data-config-id="link2">Datahub</a></li>
+        <li><a class="" href="{% url 'gamedatahub-view' %}" data-config-id="link2">Game Scout</a></li>
+        <li><a class="" href="{% url 'pitdatahub-view' %}" data-config-id="link2">Pit Scout</a></li>
+        {% if user.is_admin %}
+        <li><a class="" href="{% url 'management-view' %}" data-config-id="link2">Team</a></li>
+        {% endif %}
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li><a class="" href="{% url 'profile-view' %}" data-config-id="link2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </a>
+      </li>
+
+      <li><a class="hover:text-red-600" href="{% url 'logout-view' %}" data-config-id="link2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </a>
+    </li>
+      
+        {% else %}
+        <li><a class="hover:underline" href="{% url 'login-view' %}" data-config-id="link2">Login</a></li>  
+        {% endif %}
+      </ul>
+      
     </div>
+    
+    {% if not user.is_authenticated %}
+    <div class="hidden lg:block"><button class="inline-block px-10 py-2 text-white font-bold bg-black rounded-full transition duration-200" onclick='window.location.href ="{% url 'register-view' %}"'>Register</button></div>
+    {% endif %}
+  </nav>
+  <div class="hidden navbar-menu relative z-50">
+    <div class="navbar-backdrop fixed inset-0 bg-blue-600 opacity-80"></div>
+    <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-8 bg-gray-800 overflow-y-auto">
+      <div class="flex items-center mb-16 pr-6">
+        <a class="ml-10 text-2xl text-white font-bold flex space-x-2" href="#" data-config-id="brand">
+          <img class="h-10" src="../../static/users/assets/images/logo.png" alt="" width="auto">
+          <p class='text-2xl font-bold text-white'>FRCS</p>
+        </a>
+      </div>
+      <div>
+        <ul>
+          <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'home-view' %}" data-config-id="link1">Home</a></li>
+          {% if user.is_authenticated %}
+          <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'scouthub-view' %}" data-config-id="link2">Datahub</a></li>
+          <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'gamedatahub-view' %}" data-config-id="link2">Game Scout</a></li>
+          <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'pitdatahub-view' %}" data-config-id="link2">Pit Scout</a></li>
+          <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'profile-view' %}" data-config-id="link2">Profile</a></li>
+          {% if user.is_admin %}
+          <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'profile-view' %}" data-config-id="link2">Team</a></li>
+          {% endif %}
+          <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'logout-view' %}" data-config-id="link2">Logout</a></li>
+
+
+          
+          {% else %}
+          <li class="mb-1 px-10"><a class="block pl-8 py-4 text-xl text-white hover:bg-gray-500 rounded-xl" href="#" data-config-id="link3">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="mt-auto px-10">
+        
+        <p class="mt-6 mb-4 text-lg text-center text-white">
+          <span data-config-id="copy">2021 &copy; FRCS. All rights reserved.</span>
+        </p>
+      </div>
+    </nav>
+  </div>
+</section>
+
 
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
     <script language="JavaScript">
@@ -162,19 +152,107 @@
 
     {% endblock content %}
 
+    <section>
+       
+        
+        <div class="py-20  radius-for-skewed">
+          <div class="container mx-auto px-4">
+            <div class="flex flex-wrap">
+              <div class="w-full lg:w-1/3 mb-16 lg:mb-0">
+                <a class="inline-block mb-3 text-3xl font-bold leading-none" href="#">
+                  <img class="h-16" src="../../static/users/assets/images/logo.png" alt="" width="auto">
+                  FRCS
+                </a>
+                <p class="mb-4 max-w-sm text-gray-400 leading-loose">Thank you for choosing FRCS. Follow us on social media, and continue to support us</p>
+                <div>
+                    <a class="transition text-gray-500 inline-block w-10 mr-2 p-2 bg-gray-50 hover:bg-gray-100 rounded">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                        </svg>
+                      </a>
+                      <a class="ml-4 transition text-gray-500 inline-block w-10 mr-2 p-2 bg-gray-50 hover:bg-gray-100 rounded">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                        </svg>
+                      </a>
+                      <a class="ml-4 transition text-gray-500 inline-block w-10 mr-2 p-2 bg-gray-50 hover:bg-gray-100 rounded">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                        </svg>
+                      </a>
+                      <a class="ml-4 transition text-gray-500 inline-block w-10 mr-2 p-2 bg-gray-50 hover:bg-gray-100 rounded">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                        </svg>
+                      </a>
+                 
+                </div>
+              </div>
+              <div class="w-full lg:w-2/3 lg:pl-16 flex flex-wrap justify-between">
+                <div class="w-full md:w-1/3 lg:w-auto mb-16 md:mb-0">
+                    <h3 class="mb-6 text-2xl font-bold">Important Links</h3>
+                    <ul>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Home</a></li>
+                      {% if user.is_authenticated %}
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Data Hub</a></li>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Pit Scout</a></li>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Pit Data</a></li>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Game Scout</a></li>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Game Data</a></li>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Profile</a></li>
+
+
+                      {% else %}
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Register</a></li>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Login</a></li>
+
+                      {% endif %}
+                    </ul>
+                  </div>
+               
+                
+                  <div class="w-full lg:w-2/3 lg:pl-16 flex flex-wrap justify-between">
+                    <div class="w-full md:w-1/3 lg:w-auto mb-16 md:mb-0">
+                        <h3 class="mb-6 text-2xl font-bold">Team 810</h3>
+                  <ul>
+                    <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">About Us</a></li>
+                    <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Website</a></li>
+                    <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Press</a></li>
+                    <li><a class="text-gray-800 hover:text-gray-600" href="#">Contact Us</a></li>
+                  </ul>
+                </div>
+                <div class="w-full lg:w-2/3 lg:pl-16 flex flex-wrap justify-between">
+                <div class="w-full md:w-1/3 lg:w-auto mb-16 md:mb-0">
+                    <h3 class="mb-6 text-2xl font-bold">More Info</h3>
+                    <ul>
+  
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">About Us</a></li>
+                      <li class="mb-4"><a class="text-gray-800 hover:text-gray-600" href="#">Learn More</a></li>
+  
+                    </ul>
+                  </div>
+              </div>
+              
+            </div>
+            <p class="lg:text-center text-sm text-gray-400 border-t border-gray-100 pt-12 mt-16">© 2021. All rights reserved.</p>
+          </div>
+        </div>
+       
+      </section>
+
 
     <script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
-    <script src="../../static/users/assets/js/popper.js"></script>
+
     <script src="../../static/users/assets/js/bootstrap.min.js"></script>
-    <script src="../../static/users/assets/js/owl-carousel.js"></script>
+
     <script src="../../static/users/assets/js/scrollreveal.min.js"></script>
-    <script src="../../static/users/assets/js/waypoints.min.js"></script>
+
     <script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
-    <script src="../../static/users/assets/js/imgfix.min.js"></script>
-    <script src="../../static/users/assets/js/custom.js"></script>
+
     <script src="../../static/users/assets/js/script.js"></script>
-    <script src="../../static/users/assets/js/pin.js"></script>
-    <script src="../../static/users/assets/js/pinTeam.js"></script>
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>

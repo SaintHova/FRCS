@@ -1,58 +1,29 @@
 {%extends 'users/base.html'%}
 {% load widget_tweaks %}
 {%block styles%}
-<link rel="stylesheet" href="../../static/users/assets/css/scout.css">
-<link rel="stylesheet" href="../../static/stats/assets/css/scout-button.css">
+
 
 {%endblock styles%}
 
 {%block content%}
+
+
+
+
+
+
 <script>
-    var options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff', // default: '#fff'
-        buttonColorDark: '#100f2c', // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: true, // default: true,
-        label: '', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
+    function changeName() {
 
-    function toggle() {
-        darkmode.toggle();
+        var teamNumber = document.getElementById("teamNumber").value;
 
-    }
-</script>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-9154118566190557",
-        enable_page_level_ads: true
-    });
-</script>
-<link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
+            "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+        }, function (data) {
+            var jObject = (data);
+            $("#nickname").html(jObject['nickname']);
 
-<title>FRCS Scouting</title>
-<script>
-    async function changeName() {
-        $(document).ready(function () {
-            $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
-                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-            }, function (data) {
-                console.log(data);
-                var jObject = (data);
-                var name = (jObject['nickname']);
-                console.log(name);
-                document.getElementById("teamNumberHeader").innerHTML = " " + name;
-
-            });
-        });
+        })
     }
 </script>
 
@@ -64,8 +35,6 @@
     }
 </style>
 
-<br>
-<br>
 <center>
     <div style='width: 85%;'>
         {% if messages %}
@@ -81,134 +50,158 @@
     </div>
 </center>
 <div>
-    <div class="header">
-        <p class='text-4xl font-bold text-black text-center'>Pit Scouting</p>
-        <p id="teamNameHeader"></p>
-    </div>
+    <div class=" bg-gray-50">
+        <!-- Desktop sidebar -->
 
-    <div class="formContents">
-        <form method="post">
-            {% csrf_token %}
+        <!-- Mobile sidebar -->
+        <!-- Backdrop -->
 
-
-            <p id="label">Team Number</p>
-            {{ form.team_num|attr:"class:form-single"|attr:"placeholder:00"|attr:"id: teamNumber" |attr:"name: teamNumber" }}
-            <br>
-
-            <p id="label">Robot Frame Perimeter</p>
-            <select id='select-comp-dropdown' class='dd-single '>
-                <option>--SELECT COMPETITION--</option>
-                <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
-                <script>
-                    $(document).ready(function () {
-                        window.onload = async function getComps() {
-                            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
-                                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-                            }, function (data) {
-                                var jObject = (data);
-
-                                for (i = 0; i < 5; i++) {
-                                    console.log(jObject[i]['name'])
-                                    $('#select-comp-dropdown').append('<option>' + jObject[i][
-                                        'name'
-                                    ] + '</option>')
-                                }
-
-                            })
-                        }
-                    })
-                </script>
-            </select>
-
-            <p id="label">Robot Weight</p>
-            {{form.competition|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
-
-            <p id="label">Robot Weight</p>
-            {{form.robot_weight|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
-
-            <p id="label">Robot Frame Perimeter</p>
-            <div class='flex space-x-5'>
-
-                <div class='w-1/2'>
-                    {{ form.robot_frame_length|attr:"class:form-single"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
-                </div>
-
-                <div class='w-1/2'>
-                    {{ form.robot_frame_width|attr:"class:form-single"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
-                </div>
+        <div class="">
+            <main class=" overflow-y-auto">
+              <div class="container px-6 mx-auto grid">
+                <div class=>
+                <h2 class="my-6 mb-0 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                  Pit Scouting
+                </h2>
+                <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
+                    </div>
+                    <div class="formContents">
+                        <form method="post">
+                            {% csrf_token %}
+                    
+                    
+                            <p id="label" class='mt-4 mb-2'>Team Number</p>
+                            {{ form.team_num|attr:"class:transition w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out "|attr:"placeholder:00"|attr:"id:teamNumber" |attr:"name: teamNumber"|attr:"onchange:changeName()"}}
+                            <br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Robot Frame Perimeter</p>
+                            <select id='select-comp-dropdown' class='dd-single'>
+                                <option>--SELECT COMPETITION--</option>
+                                <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
+                                <script>
+                                    $(document).ready(function () {
+                                        window.onload = async function getComps() {
+                                            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
+                                                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                                            }, function (data) {
+                                                var jObject = (data);
+                    
+                                                for (i = 0; i < 5; i++) {
+                                                    console.log(jObject[i]['name'])
+                                                    $('#select-comp-dropdown').append('<option>' + jObject[i][
+                                                        'name'
+                                                    ] + '</option>')
+                                                }
+                    
+                                            })
+                                        }
+                                    })
+                    
+                                    document.getElementById('select-comp-dropdown').addEventListener("change", function () {
+                                        var comp = document.getElementById("select-comp-dropdown").value;
+                                        console.log(comp);
+                                        document.getElementById("comp").value = comp;
+                                    });
+                                </script>
+                            </select>
+                    
+                            <div class='hidden'>
+                                {{form.competition|attr:"class:form-single"|attr:"placeholder:Competition"|attr:"id:comp" }}
+                            </div>
+                    
+                            <p id="label" class='mt-4 mb-2'>Robot Weight</p>
+                            {{form.robot_weight|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
+                    
+                            <p id="label" class='mt-4 mb-2'>Robot Frame Perimeter</p>
+                            <div class='flex space-x-5'>
+                    
+                                <div class='w-1/2'>
+                                    {{ form.robot_frame_length|attr:"class:form-single"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
+                                </div>
+                    
+                                <div class='w-1/2'>
+                                    {{ form.robot_frame_width|attr:"class:form-single"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
+                                </div>
+                            </div>
+                    
+                    
+                            <p id="label" class='mt-4 mb-2'>DriveTrain Type</p>
+                            {{form.robot_drivetrain_type|attr:"class:form-single"}}
+                            <div id="tank1"></div>
+                            <div id="tank2"></div>
+                            <br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Are they a high or low bot</p>
+                            {{form.robot_highlow|attr:"class:form-single"}}
+                            <br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Do They Shoot For Low Goal, High Goal, Or Both</p>
+                            {{form.robot_goal|attr:"class:form-single"}}
+                            </br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Do they complete rotational control</p>
+                            {{form.robot_control_panel_rot|attr:"class:form-single"}}
+                            <br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Do they complete positional control</p>
+                            {{form.robot_control_panel_pos|attr:"class:form-single"}}
+                            <br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Do they perform in autonomous</p>
+                            {{form.robot_autonomous|attr:"class:form-single"}}
+                            <br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Vision Type</p>
+                            {{form.robot_vision_type|attr:"class:form-single"}}
+                            </br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Is Vision Implemented During The Match</p>
+                            {{form.robot_vision_implement|attr:"class:form-single"}}
+                            </br>
+                    
+                    
+                            <p id="label" class='mt-4 mb-2'>Do They Climb</p>
+                            {{form.robot_climb|attr:"class:form-single"}}
+                            <br>
+                    
+                            <p id="label" class='mt-4 mb-2'>Do They Help Others Climb</p>
+                            {{form.robot_buddy_climb|attr:"class:form-single"}}
+                            <br>
+                    
+                            <div id="autoPoints"></div>
+                    
+                            <label id="label" class='mt-4 mb-2'>Notes</label>
+                            <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
+                            {{ form.notes|attr:"class:form-single"|attr:"rows:3"|attr:"id: notes-text" }}
+                    
+                            <button type="submit" class="btn-default mt-3">
+                                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                    <!-- Heroicon name: solid/lock-closed -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                                    </svg>
+                                </span>
+                                <p class='font-semibold text-white'>Submit Data</p>
+                            </button>
+                    </div>
+                    
+                    
+                    
+                    </form>
+    
+    
+    
             </div>
+                </div>
 
-
-            <p id="label">DriveTrain Type</p>
-            {{form.robot_drivetrain_type|attr:"class:form-single"}}
-            <div id="tank1"></div>
-            <div id="tank2"></div>
-            <br>
-
-            <p id="label">Are they a high or low bot</p>
-            {{form.robot_highlow|attr:"class:form-single"}}
-            <br>
-
-            <p id="label">Do They Shoot For Low Goal, High Goal, Or Both</p>
-            {{form.robot_goal|attr:"class:form-single"}}
-            </br>
-
-            <p id="label">Do they complete rotational control</p>
-            {{form.robot_control_panel_rot|attr:"class:form-single"}}
-            <br>
-
-            <p id="label">Do they complete positional control</p>
-            {{form.robot_control_panel_pos|attr:"class:form-single"}}
-            <br>
-
-            <p id="label">Do they perform in autonomous</p>
-            {{form.robot_autonomous|attr:"class:form-single"}}
-            <br>
-
-            <p id="label">Vision Type</p>
-            {{form.robot_vision_type|attr:"class:form-single"}}
-            </br>
-
-            <p id="label">Is Vision Implemented During The Match</p>
-            {{form.robot_vision_implement|attr:"class:form-single"}}
-            </br>
-
-
-            <p id="label">Do They Climb</p>
-            {{form.robot_climb|attr:"class:form-single"}}
-            <br>
-
-            <p id="label">Do They Help Others Climb</p>
-            {{form.robot_buddy_climb|attr:"class:form-single"}}
-            <br>
-
-            <div id="autoPoints"></div>
-
-            <label id="label" for="notes">Notes</label>
-            <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
-            {{ form.notes|attr:"class:form-single"|attr:"rows:3"|attr:"id: notes-text" }}
-
-            <button type="submit" class="btn-default mt-3">
-                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                    <!-- Heroicon name: solid/lock-closed -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 11l5-5m0 0l5 5m-5-5v12" />
-                    </svg>
-                </span>
-                <p class='font-semibold text-white'>Submit Data</p>
-            </button>
+               
     </div>
-
-
-
-    </form>
+    </main>
 </div>
 </div>
-</form>
-</div>
-<br>
-<script src="../../static/stats/assets/js/button.js"></script>
+
+
 
 {%endblock content%}

@@ -10,14 +10,6 @@ def create_game_stats(sender, instance, created, **kwargs):
         Game_stats.objects.create(team = instance)
 
 
-@receiver(post_save, sender=Match)
-def create_comp(sender, instance, created, **kwargs):
-    if created:
-        comp = Competition.objects.latest('competition')
-        Competition.objects.create(competition = comp, match_num = instance)
-        try:
-            Competition.objects.all()[Competition.objects.count()-2].delete()
-        except:
-            pass
+
 
 

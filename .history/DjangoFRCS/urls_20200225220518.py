@@ -23,7 +23,7 @@ urlpatterns = [
     path('feedback/', include('feedback.urls')),
 
     path('scout/', scout_views.scout, name = 'scout-view'),
-    path('pitscout/', scout_views.pit_scout, name = 'Pitscout-view'),
+    path('pitscout/', scout_views.pit_scout, name = 'pitscout-view'),
     path('scouthub/', scout_views.scouthub, name = 'scouthub-view'),
     path('pit-detail/<int:pk>/', scout_views.PitDetailView.as_view(), name = 'pitdata-view'),
     path('game-detail/<int:pk>/', scout_views.ExtendedView.as_view(), name = 'gamedata-view'),

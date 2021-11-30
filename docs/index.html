@@ -7,17 +7,55 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
+
 </head>
-<body>
-  <div id="app"></div>
+<body style='font-family: Poppins'>
+
+  <div id="app">Loading...</div>
+  
   <script>
     window.$docsify = {
+      loadSidebar: 'nav.md',
+      autoHeader: true,
       name: '',
       repo: '',
       coverpage: true,
+      subMaxLevel: 1,
+
+      
+
+    
+      
+      
     }
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+
+
+  <style>
+    #frcs{
+      font-size: 100px;
+    }
+
+    body, .sidebar, .sidebar-toggle{
+      background-color: #17191b;
+      
+    }
+
+    h1, h2, h3, h4, h5, h6, p, span, li, strong {
+      color: white !important;
+
+    }
+
+
+
+  </style>
 </body>
 </html>

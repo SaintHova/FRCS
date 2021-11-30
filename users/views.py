@@ -18,7 +18,7 @@ from users.forms import (
     TeamSettingsForm,
     PitEditForm
 )
-from users.models import CustomUser, Profile 
+from users.models import CustomUser, Profile
 from teams.models import Team
 from django.conf import settings
 from django.template import loader
@@ -86,27 +86,15 @@ def register(request):
             email = form.cleaned_data["email"]
             
             user = CustomUser.objects.filter(username=username)
-            user.is_active = False
+            #!set to false after registration is finished
+            user.is_active = True
             
-            current_site = get_current_site(request)
-            email_subject = "Activate Your Account"
-            message = render_to_string(
-                "users/email.html",
-                {
-                    "user": user,
-                    "domain": current_site.domain,
-                    "uid": urlsafe_base64_encode(force_bytes(user_obj.pk)),
-                    "token": account_activation_token.make_token(user_obj),
-                },
-            )
-            email = EmailMessage(
-                email_subject, message, to=["frcsassistant@gmail.com"]
-            )  #!change to form.cleaned_data['email'] in prod
-            email.send()
+            team_code = form.cleaned_data["team_num"]
+           
 
             # user.first().email_verify()
             if is_team_admin:
-                user.update(is_team_admin=True)
+                user.update(is_admin=True)
             else:
                 team_code = Team.objects.filter(form.cleaned_data["team_num"])
 
@@ -122,7 +110,7 @@ def register(request):
             
             LOGIN(request, user_obj)
             return redirect("welcome-view")
-            # TEMPLATE CODE
+
         else:
             # Registration error check
             messages.warning(request, "Registration invalid. Username/Email already exists")
@@ -154,8 +142,7 @@ def guest(request):
     return render(request, "users/guest.html")
 
 
-def media(request):
-    return render(request, "users/media.html")
+
 
 
 @login_required
@@ -349,10 +336,15 @@ class JSONResponseMixin:
 def teamManagement(request):
     context = {
         'users': CustomUser.objects.filter(team_num=request.user.team_num),
+        'usersCount': CustomUser.objects.filter(team_num=request.user.team_num).count(),
+        'data': Pit_stats.objects.get(team_num=request.user.team_num).pk,
+        
+        
         'team_game_num': Match.objects.filter(team_num=request.user.team_num).count(),
         'global_game_num': Match.objects.filter(scouted_team_num=request.user.team_num).count(),
         'team_pit_num': Pit_stats.objects.filter(scouted_team_num=request.user.team_num).count(),
-        'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count()
+        'global_pit_num': Pit_stats.objects.filter(team_num=request.user.team_num).count(),
+        'is_incorrect': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_incorrect
     }
     return render(request, "users/team-manager.html", context) 
 
@@ -374,6 +366,8 @@ def teamManagementUserEdit(request, username):
         "username": username,
         "email": email,
         "isChecked": CustomUser.objects.get(username=username).profile.canEditStats,
+        "isAdmin": CustomUser.objects.get(username=username).is_admin,
+        
     }
     if request.method == 'POST':
         if form.is_valid():
