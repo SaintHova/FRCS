@@ -31,7 +31,10 @@
 </script>
 
 
-
+<div class='w-full h-80 p-14 bg-blue-500 container mt-10 rounded-lg'>
+  <h1 class='text-center text-4xl text-white font-bold'>Kickoff is right around the corner</h1>
+  <h1 id='timer' class='text-center pt-5 text-8xl text-white font-bold'></h1>
+</div>
 <div class='bg-gray-50'>
 <div class="w-full px-6 pt-10">
     <div class="mt-8 relative rounded-lg bg-blue-500 container mx-auto flex flex-col items-center pt-12 sm:pt-24 pb-24 sm:pb-32 md:pb-48 lg:pb-56 xl:pb-64">
@@ -140,7 +143,7 @@
     </div>
 </div>
 
-<section id='about' class="text-gray-400 body-font mt-32">
+<section id='about' class="text-gray-400 body-font mt-32 xl:mt-72">
     <div class="container px-5 py-24 mx-auto pt-96">
       <div class="flex flex-col text-center w-full mb-20">
         
@@ -156,7 +159,7 @@
                   </svg>
             </div>
             <h2 class="text-lg text-black font-semibold title-font mb-2">Game Scouting</h2>
-            <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waist co, subway tile poke farm.</p>
+            <p class="leading-relaxed text-base">Game scouting, although it is not new, it has been redesigned with new features and more questions</p>
           </div>
         </div>
         <div class="md:w-1/2 p-4" > 
@@ -167,7 +170,7 @@
                       </svg>
                 </div>
                 <h2 class="text-lg text-black font-semibold title-font mb-2">Pit Scouting</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waist co, subway tile poke farm.</p>
+                <p class="leading-relaxed text-base">Pit scouting is the new way to capture data about a teams bot. Its just another way to gather more information for the benefit of everybody</p>
               </div>
         </div>
         
@@ -179,7 +182,6 @@
   <section id='why' class="text-gray-400 body-font">
     <div class="container px-5 pb-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-20">
-        
         <h1 class="sm:text-3xl md:text-5xl title-font mb-4 text-black font-bold">Why Use FRCS</h1>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base">The reason we made FRCS is because every year, teams build new scouting systems from
           the ground up. This wastes time, resources, and is overall inefficient. The way we see it, teams
@@ -267,21 +269,21 @@
         <div class="w-full lg:w-1/3 px-10 mb-20 lg:mb-0">
           <div data-aos="smooth" data-aos-easing="ease-in-out-cubic">
             <img class=" transition transform hover:scale-105 duration-500 mb-8 w-full h-112 lg:h-80 object-cover object-top rounded-2xl" src="../../static/users/assets/images/jack.png" alt="" data-config-id="image1">
-            <button class="text-left transition transform hover:scale-105 duration-500 inline-block w-full p-10 bg-blue-500 hover:bg-blue-600 rounded-2xl" href="https://jpdigital.info">
+            <a class="hover:no-underline text-left transition transform hover:scale-105 duration-500 inline-block w-full p-10 bg-blue-500 hover:bg-blue-600 rounded-2xl" href=https://jpdigital.info>
               <h3 class="mb-2 text-3xl text-white font-bold font-heading" data-config-id="name1">Jack Patterson</h3>
-              <p class="mb-4 text-lg text-white font-bold" data-config-id="job1">Frontend Developer</p>
+              <p class="mb-4 text-lg text-white font-bold" data-config-id="job1">Full stack Developer</p>
               <div class="flex justify-end">
                 <svg width="27" height="15" viewbox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M26.2042 7.78599L19.5171 14.4731L18.6812 13.6372L24.3611 7.95734L0.709572 7.96153L0.709572 6.78292L24.3611 6.77874L19.0992 1.51681L19.9351 0.680916L26.2042 6.9501C26.4351 7.18093 26.4351 7.55515 26.2042 7.78599Z" fill="white"></path>
                 </svg>
               </div>
-            </button>
+            </a>
           </div>
         </div>
         <div class="w-full lg:w-1/3 px-10 mb-20 lg:mb-0">
           <div data-aos="smooth" data-aos-easing="ease-in-out-cubic">
             <img class="transition transform hover:scale-105 duration-500 mb-8 w-full h-112 lg:h-80 object-cover object-top rounded-2xl" src="../../static/users/assets/images/aaquib.png" alt="" data-config-id="image2">
-            <button class="text-left transition transform hover:scale-105 duration-500 inline-block w-full p-10 bg-blue-500 hover:bg-blue-600 rounded-2xl" href="#">
+            <a class="hover:no-underline text-left transition transform hover:scale-105 duration-500 inline-block w-full p-10 bg-blue-500 hover:bg-blue-600 rounded-2xl" href="#">
               <h3 class="mb-2 text-3xl text-white font-bold font-heading" data-config-id="name2">Aaquib Syed</h3>
               <p class="mb-4 text-lg text-white font-bold" data-config-id="job2">Backend Developer</p>
               <div class="flex justify-end">
@@ -290,7 +292,7 @@
                   <path d="M26.2042 7.78599L19.5171 14.4731L18.6812 13.6372L24.3611 7.95734L0.709572 7.96153L0.709572 6.78292L24.3611 6.77874L19.0992 1.51681L19.9351 0.680916L26.2042 6.9501C26.4351 7.18093 26.4351 7.55515 26.2042 7.78599Z" fill="white"></path>
                 </svg>
               </div>
-            </button>
+            </a>
           </div>
         </div>
   </div>
@@ -406,8 +408,39 @@
   $('#learn-btn').click(function (){
 
     $('html, body').animate({
-      scrollTop: window.pageYOffset + document.getElementById('about').offsetTop + 400
+      scrollTop: window.pageYOffset + document.getElementById('about').offsetTop + 300
     },'fast')}
   );
   </script>
+
+  <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jan 8, 2022 12:00:00").getTime();
+    
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+    
+      // Get today's date and time
+      var now = new Date().getTime();
+    
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+    
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      // Display the result in the element with id="demo"
+      document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "Happy Kickoff";
+      }
+    }, 1000);
+    </script>
     {%endblock content%}

@@ -31,43 +31,53 @@ from django.db.models import Avg
 
 def scouthub(request):
    
-    context = {
-    'team_count': Team.objects.all().count(),
-    'sub_count': Game_stats.objects.all().count(),
-    'teams': Game_stats.objects.all(),
-    
-    'pit_stats_vision_none':  Pit_stats.objects.filter(robot_vision_type='None').count(),
-    'pit_stats_vision_limelight':  Pit_stats.objects.filter(robot_vision_type='Limelight').count(),
-    'pit_stats_vision_rpi':  Pit_stats.objects.filter(robot_vision_type='Raspberry Pi').count(),
-    'pit_stats_vision_other':  Pit_stats.objects.filter(robot_vision_type='Other').count(),
-    
-    'pit_stats_dt_4skid':  Pit_stats.objects.filter(robot_drivetrain_type='4 Wheel Skid').count(),
-    'pit_stats_dt_6skid':  Pit_stats.objects.filter(robot_drivetrain_type='6 Wheel Skid').count(),
-    'pit_stats_dt_8skid':  Pit_stats.objects.filter(robot_drivetrain_type='8 Wheel Skid').count(),
-    'pit_stats_dt_tread':  Pit_stats.objects.filter(robot_drivetrain_type='Treads').count(),
-    'pit_stats_dt_omni':  Pit_stats.objects.filter(robot_drivetrain_type='Omni').count(),
-    'pit_stats_dt_swerve':  Pit_stats.objects.filter(robot_drivetrain_type='Swerve').count(),
-    'pit_stats_dt_other':  Pit_stats.objects.filter(robot_drivetrain_type='Other').count(),
-    
-    'pit_stats_vision_yes':  Pit_stats.objects.filter(robot_vision_implement='Yes').count(),
-    'pit_stats_vision_no':  Pit_stats.objects.filter(robot_vision_implement='No').count(),
-    
-    'pit_stats_climb_yes':  Pit_stats.objects.filter(robot_climb='Yes').count(),
-    'pit_stats_climb_no':  Pit_stats.objects.filter(robot_climb='No').count(),
-    
-    'pit_stats_buddy_yes':  Pit_stats.objects.filter(robot_buddy_climb='Yes').count(),
-    'pit_stats_buddy_no':  Pit_stats.objects.filter(robot_buddy_climb='No').count(),
-    
-    'pit_stats_height_short':  Pit_stats.objects.filter(robot_highlow='Low - below 28"').count(),
-    'pit_stats_height_tall':  Pit_stats.objects.filter(robot_highlow='High - above 28"').count(),
-    
-    'pit_stats_weight': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_weight'))).split('(')[1].split(')')[0].split("'")[1]))),
-    'pit_stats_width': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_width'))).split('(')[1].split(')')[0].split("'")[1]))),
-    'pit_stats_length': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_length'))).split('(')[1].split(')')[0].split("'")[1])))
-    
-    
+    if(Pit_stats.objects.all().exists()):
+   
+        context = {
+        'team_count': Team.objects.all().count(),
+        'sub_count': Game_stats.objects.all().count(),
+        'teams': Game_stats.objects.all(),
+        
+        'pit_stats_vision_none':  Pit_stats.objects.filter(robot_vision_type='None').count(),
+        'pit_stats_vision_limelight':  Pit_stats.objects.filter(robot_vision_type='Limelight').count(),
+        'pit_stats_vision_rpi':  Pit_stats.objects.filter(robot_vision_type='Raspberry Pi').count(),
+        'pit_stats_vision_other':  Pit_stats.objects.filter(robot_vision_type='Other').count(),
+        
+        'pit_stats_dt_4skid':  Pit_stats.objects.filter(robot_drivetrain_type='4 Wheel Skid').count(),
+        'pit_stats_dt_6skid':  Pit_stats.objects.filter(robot_drivetrain_type='6 Wheel Skid').count(),
+        'pit_stats_dt_8skid':  Pit_stats.objects.filter(robot_drivetrain_type='8 Wheel Skid').count(),
+        'pit_stats_dt_tread':  Pit_stats.objects.filter(robot_drivetrain_type='Treads').count(),
+        'pit_stats_dt_omni':  Pit_stats.objects.filter(robot_drivetrain_type='Omni').count(),
+        'pit_stats_dt_swerve':  Pit_stats.objects.filter(robot_drivetrain_type='Swerve').count(),
+        'pit_stats_dt_other':  Pit_stats.objects.filter(robot_drivetrain_type='Other').count(),
+        
+        'pit_stats_vision_yes':  Pit_stats.objects.filter(robot_vision_implement='Yes').count(),
+        'pit_stats_vision_no':  Pit_stats.objects.filter(robot_vision_implement='No').count(),
+        
+        'pit_stats_climb_yes':  Pit_stats.objects.filter(robot_climb='Yes').count(),
+        'pit_stats_climb_no':  Pit_stats.objects.filter(robot_climb='No').count(),
+        
+        'pit_stats_buddy_yes':  Pit_stats.objects.filter(robot_buddy_climb='Yes').count(),
+        'pit_stats_buddy_no':  Pit_stats.objects.filter(robot_buddy_climb='No').count(),
+        
+        'pit_stats_height_short':  Pit_stats.objects.filter(robot_highlow='Low - below 28"').count(),
+        'pit_stats_height_tall':  Pit_stats.objects.filter(robot_highlow='High - above 28"').count(),
+        
+        'pit_stats_weight': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_weight'))).split('(')[1].split(')')[0].split("'")[1]))),
+        'pit_stats_width': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_width'))).split('(')[1].split(')')[0].split("'")[1]))),
+        'pit_stats_length': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_length'))).split('(')[1].split(')')[0].split("'")[1])))
+        
+        
 
-    }
+        }
+    else:
+        
+         context = {
+        'team_count': Team.objects.all().count(),
+        'sub_count': Game_stats.objects.all().count(),
+        'teams': Game_stats.objects.all(),
+        }
+        
     
 
     return render(request, 'stats/scout-hub.html', context)

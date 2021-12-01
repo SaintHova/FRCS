@@ -76,6 +76,9 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
+          {% if not request.user.profile.first_name %}
+          <span class="h-3 w-3 bg-red-500 absolute top-1 rounded-full"></span>
+          {% endif %}
         </a>
       </li>
 
@@ -118,9 +121,6 @@
           <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'profile-view' %}" data-config-id="link2">Team</a></li>
           {% endif %}
           <li class="mb-1 px-10"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'logout-view' %}" data-config-id="link2">Logout</a></li>
-
-
-          
           {% else %}
           <li class="mb-1 px-10"><a class="block pl-8 py-4 text-xl text-white hover:bg-gray-500 rounded-xl" href="#" data-config-id="link3">Login</a></li>
           {% endif %}

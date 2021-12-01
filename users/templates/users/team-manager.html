@@ -8,25 +8,12 @@
 {%block content%}
 
 <div class="flex bg-gray-50 dark:bg-gray-900">
-  <!-- Desktop sidebar -->
-
-  <!-- Mobile sidebar -->
-  <!-- Backdrop -->
-
-
   <div class="flex flex-col flex-1 w-full">
-
-
-
-
-
-    <main class="h-full overflow-y-auto">
-      <div class="container px-6 mx-auto grid">
+    <main>
+      <div class="container overflow-y-visible px-6 mx-auto grid">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
           Team Management
         </h2>
-
-
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
 
           <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -46,8 +33,7 @@
               </p>
             </div>
           </div>
-
-          {% if is_incorrect %}
+          {% if is_incorrect is True %}
     <div>
       <!-- Card -->
       <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 ">
@@ -72,9 +58,9 @@
       </div>
 
     </div>
-    {% else %}
+    {% elif is_incorrect is False %}
 
-    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2 w-11/12">
+ 
       <!-- Card -->
       <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
         <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
@@ -88,12 +74,27 @@
             Data Correct
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            The pit data that was scouted is correct
+            The pit data was scouted is correct
+          </p>
+        </div>
+      </div>
+      {% else %}
+      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="p-3 mr-4 text-yellow-500 bg-yellow-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-gray-400">
+            No Data
+          </p>
+          <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+            Pit data has not been scouted yet
           </p>
         </div>
       </div>
 
-    </div>
 
     {% endif %}
         </div>
@@ -153,7 +154,7 @@
                         </div>
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a class="text-black font-bold" href="{% url 'management-user-view' user.username %}">View More</a>
+                        <a class="text-black font-bold" href="{% url 'management-user-view' user.profile.userId %}">View More</a>
                       </td>
                     </tr>
                     {% endif %}

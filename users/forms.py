@@ -106,6 +106,23 @@ class UserLoginForm(forms.Form):
 
 
 class UserEditForm(UserChangeForm):
+    
+    email = forms.CharField(label='Email', widget=forms.TextInput(
+        attrs={
+            'id':"email-address",
+            'name': 'email-address',
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'placeholder':'Email'
+        }
+    ))
+    
+    username = forms.CharField(label='Username', widget=forms.TextInput(
+        attrs={
+            'id':"username",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'placeholder':'Username'
+        }
+    ))
     class Meta:
         model = User
         fields = (

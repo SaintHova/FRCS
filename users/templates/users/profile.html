@@ -40,9 +40,28 @@
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Profile
                 </h2>
+                {% if not request.user.profile.first_name %}
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                    href="https://github.com/estevanmaito/windmill-dashboard">
+                    <div class="flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                      </svg>
+                       
+                        <span>To finish your profile, add your first and last name</span>
+                        
+
+                    </div>  
+                           
+                </div>
+                {% endif %}
                 <div class='flex'>
                   <div>
-                    <img src='../../../profile-pics/{{request.user.profile.image}}' class='h-44 w-44 rounded-xl mr-3'>
+                    {% if not user.profile.image == 'http://127.0.0.1:8000/profile-pics/default.jpg' %}
+                    <a class='cursor-pointer' href='{% url "image-upload-view" request.user.profile.userId %}'><img src='../../../profile-pics/{{request.user.profile.image}}' class='h-36 w-36 rounded-xl mr-3'></a>
+                    {% else %}
+                    <img href='{% url "image-upload-view" request.user.profile.userId %}' src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' class='h-36 w-36 rounded-xl mr-3'>
+                    {% endif %}
                   </div>
                   <div>
                 {% if user.profile.first_name %}
@@ -52,12 +71,12 @@
                   {% endif %} <p id='nickname' style="font-weight: 700;"></p>
                   <p >{{role}}</p>
                   {%if user.is_admin%}
-                  <p >Your team code is: <strong>{{code}}</strong></p>
+                  <p >Your team code is: <strong>{{code}}</strong></p> 
                   <p><strong>{{phonetic}}</strong></p>
                   {%endif%}
                   <div class='mt-3 flex space-x-2'>
-                    <a href='/{{user.username}}/username-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Account</a>
-                      <a href='/{{user.username}}/profile-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Profile</a>
+                    <a href='/{{user.profile.userId}}/account-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Account</a>
+                      <a href='/{{user.profile.userId}}/profile-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Profile</a>
                   </div>
                   </div>
                   

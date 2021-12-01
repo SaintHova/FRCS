@@ -16,13 +16,19 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.utils import timezone
-from PIL import Image
+
+from random import randint
+
 
 #Custom user model
 class CustomUserManager(BaseUserManager):
-
     
+
+
     def create_user(self, username, email, team_num, password, **kwargs):
+        
+       
+        
         if not email:
             raise ValueError("Email must be present")
 
@@ -37,7 +43,7 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password=None):
+    def create_superuser(self, username, email ,password=None):
         user = self.create_user(username, email, 810, password=password)
         user.is_admin = True
         user.is_staff = True
@@ -59,7 +65,7 @@ class CustomUser(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_team_admin = models.BooleanField(default=False)
-    is_verified = models.BooleanField(default=False)
+    
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -101,6 +107,10 @@ class CustomUser(AbstractBaseUser):
 
 #Profile model
 class Profile(models.Model):
+    
+    range_start = 10**(7-1)
+    range_end = (10**7)-1
+    
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
@@ -109,6 +119,7 @@ class Profile(models.Model):
     viewPitResubmit = models.BooleanField(default=False)
     canEditStats = models.BooleanField(default=True)
     relativeScoring = models.BooleanField(default=False)
+    userId = models.IntegerField(default=randint(range_start, range_end))
     
     def __str__(self):
        return f'{self.user.username}'

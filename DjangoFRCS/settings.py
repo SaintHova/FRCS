@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from decouple import config
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -66,7 +66,6 @@ INSTALLED_APPS = [
     "api.apps.ApiConfig",
     "widget_tweaks",  # ngl i have no idea what this does ask aaquib
     "six",  # number parsing for phonetic team code
-    "online_users",  # displays use online status
     "crispy_forms",  # makes native forms look better
     "rest_framework",  # api backend
     "django_cleanup",  # removes old profile pics

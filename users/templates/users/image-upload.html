@@ -1,10 +1,16 @@
 {% extends 'users/base.html' %}
-{% load crispy_forms_tags %}
+
+{% load widget_tweaks %}
 
 {%block styles%}
 {%endblock styles%}
 
 {%block content%}
+
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet'
+    href='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css'>
 <script>
     var options = {
         bottom: '64px', // default: '32px'
@@ -12,31 +18,108 @@
         left: '32px', // default: 'unset'
         time: '0.5s', // default: '0.3s'
         mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
         buttonColorLight: '#fff', // default: '#fff'
         saveInCookies: true, // default: true,
         label: '', // default: ''
         autoMatchOsTheme: true // default: true
     }
     const darkmode = new Darkmode(options);
-    function toggle(){
+
+    function toggle() {
         darkmode.toggle();
 
     }
 </script>
-<br>
-<center>
-    <h1>Current Photo</h1>
-</center>
-<br>
-<center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
-        class="img-responsive img-rounded" height="200px" width="200px" style="border-radius: 10px; cursor: pointer;"
-        src="../../../profile-pics/{{image}}" alt="User picture"></center>
-<br>
-<form method="POST" enctype='multipart/form-data'>
-    {% csrf_token %}
-    <center style='padding-left: 90px;'>{{form}}</center>
-    <center><button class="form-control" style='width: 15%'>Submit</button></center>
-</form>
+<div class="flex bg-gray-50 dark:bg-gray-900">
+    <div class="flex flex-col flex-1 w-full">
+        <main>
+            <div class="container overflow-y-visible px-6 mx-auto grid">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Image Upload
+                </h2>
+                <center><img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                        class="img-responsive img-rounded" height="200px" width="200px"
+                        style="border-radius: 10px; cursor: pointer;" src="../../../profile-pics/{{image}}"
+                        alt="User picture"></center>
+                <br>
+                <form method="POST" enctype='multipart/form-data'>
+                    {% csrf_token %}
+
+                    {{form.image}}
+                    
+                    <center><button class="btn-default">Submit</button></center>
+                </form>
+            </div>
+            
+        </main>
+    </div>
+</div>
+
+
+
+<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+<script src='https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js'></script>
+<script src='https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js'>
+</script>
+<script
+    src='https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js'>
+</script>
+<script src='https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js'></script>
+<script src='https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js'></script>
+<script src='https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js'></script>
+
+<!-- <script>
+    FilePond.registerPlugin(
+        FilePondPluginFileValidateType,
+        FilePondPluginImageExifOrientation,
+        FilePondPluginImagePreview,
+ 
+        FilePondPluginImageResize,
+        FilePondPluginImageTransform,
+    );
+
+    // Select the file input and use 
+    // create() to turn it into a pond
+    FilePond.create(
+        document.querySelector('input'), {
+            labelIdle: `Drag & Drop your picture or <span class="filepond--label-action">Browse</span>`,
+            imagePreviewHeight: 170,
+            imageCropAspectRatio: '1:1',
+            imageResizeTargetWidth: 200,
+            imageResizeTargetHeight: 200,
+            stylePanelLayout: 'compact circle',
+            styleLoadIndicatorPosition: 'center bottom',
+            styleProgressIndicatorPosition: 'right bottom',
+            styleButtonRemoveItemPosition: 'left bottom',
+            styleButtonProcessItemPosition: 'right bottom',
+        }
+    );
+
+
+</script> -->
+
+<style>
+    .filepond--drop-label {
+        color: #4c4e53;
+    }
+
+    .filepond--label-action {
+        -webkit-text-decoration-color: #babdc0;
+        text-decoration-color: #babdc0;
+    }
+
+    .filepond--panel-root {
+        background-color: #edf0f4;
+    }
+
+
+    .filepond--root {
+        width: 170px;
+        margin: 0 auto;
+    }
+</style>
+
 {%endblock content%}

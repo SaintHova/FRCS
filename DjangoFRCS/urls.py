@@ -23,7 +23,6 @@ from rest_framework.authtoken import views
 from django.conf.urls import url
 from rest_framework.schemas import get_schema_view
 from rest_framework.renderers import CoreJSONRenderer
-from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPIRenderer
 
 
 

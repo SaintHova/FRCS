@@ -40,10 +40,32 @@
         {% if messages %}
         {% for message in messages %}
         {% if message.tags == "error" %}
-        <div class='alert alert-danger' role='alert'>{{message}}</div>
+        <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+            href="https://github.com/estevanmaito/windmill-dashboard">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                        clip-rule="evenodd" />
+                </svg>
+
+                <span>{{message}}</span>
+
+            </div>
+        </div>
         {% endif %}
         {% if message.tags == "success" %}
-        <div class='alert alert-success' role='alert'>{{message}}</div>
+        <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+            href="https://github.com/estevanmaito/windmill-dashboard">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+
+                <span>{{message}}</span>
+
+            </div>
+        </div>
         {% endif %}
         {% endfor %}
         {% endif %}
@@ -58,22 +80,22 @@
 
         <div class="">
             <main class=" overflow-y-auto">
-              <div class="container px-6 mx-auto grid">
-                <div class=>
-                <h2 class="my-6 mb-0 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                  Pit Scouting
-                </h2>
-                <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
+                <div class="container px-6 mx-auto grid">
+                    <div class=>
+                        <h2 class="my-6 mb-0 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                            Pit Scouting
+                        </h2>
+                        <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
                     </div>
                     <div class="formContents">
                         <form method="post">
                             {% csrf_token %}
-                    
-                    
+
+
                             <p id="label" class='mt-4 mb-2'>Team Number</p>
                             {{ form.team_num|attr:"class:transition w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out "|attr:"placeholder:00"|attr:"id:teamNumber" |attr:"name: teamNumber"|attr:"onchange:changeName()"}}
                             <br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Robot Frame Perimeter</p>
                             <select id='select-comp-dropdown' class='dd-single'>
                                 <option>--SELECT COMPETITION--</option>
@@ -85,100 +107,102 @@
                                                 "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
                                             }, function (data) {
                                                 var jObject = (data);
-                    
+
                                                 for (i = 0; i < 5; i++) {
                                                     console.log(jObject[i]['name'])
-                                                    $('#select-comp-dropdown').append('<option>' + jObject[i][
-                                                        'name'
-                                                    ] + '</option>')
+                                                    $('#select-comp-dropdown').append(
+                                                        '<option>' + jObject[i][
+                                                            'name'
+                                                        ] + '</option>')
                                                 }
-                    
+
                                             })
                                         }
                                     })
-                    
-                                    document.getElementById('select-comp-dropdown').addEventListener("change", function () {
-                                        var comp = document.getElementById("select-comp-dropdown").value;
-                                        console.log(comp);
-                                        document.getElementById("comp").value = comp;
-                                    });
+
+                                    document.getElementById('select-comp-dropdown').addEventListener("change",
+                                        function () {
+                                            var comp = document.getElementById("select-comp-dropdown").value;
+                                            console.log(comp);
+                                            document.getElementById("comp").value = comp;
+                                        });
                                 </script>
                             </select>
-                    
+
                             <div class='hidden'>
                                 {{form.competition|attr:"class:form-single"|attr:"placeholder:Competition"|attr:"id:comp" }}
                             </div>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Robot Weight</p>
                             {{form.robot_weight|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
-                    
+
                             <p id="label" class='mt-4 mb-2'>Robot Frame Perimeter</p>
                             <div class='flex space-x-5'>
-                    
+
                                 <div class='w-1/2'>
                                     {{ form.robot_frame_length|attr:"class:form-single"|attr:"placeholder:Robot Length"|attr:"id: dim" }}
                                 </div>
-                    
+
                                 <div class='w-1/2'>
                                     {{ form.robot_frame_width|attr:"class:form-single"|attr:"placeholder:Robot Width"|attr:"id: dim" }}
                                 </div>
                             </div>
-                    
-                    
+
+
                             <p id="label" class='mt-4 mb-2'>DriveTrain Type</p>
                             {{form.robot_drivetrain_type|attr:"class:form-single"}}
                             <div id="tank1"></div>
                             <div id="tank2"></div>
                             <br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Are they a high or low bot</p>
                             {{form.robot_highlow|attr:"class:form-single"}}
                             <br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Do They Shoot For Low Goal, High Goal, Or Both</p>
                             {{form.robot_goal|attr:"class:form-single"}}
                             </br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Do they complete rotational control</p>
                             {{form.robot_control_panel_rot|attr:"class:form-single"}}
                             <br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Do they complete positional control</p>
                             {{form.robot_control_panel_pos|attr:"class:form-single"}}
                             <br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Do they perform in autonomous</p>
                             {{form.robot_autonomous|attr:"class:form-single"}}
                             <br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Vision Type</p>
                             {{form.robot_vision_type|attr:"class:form-single"}}
                             </br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Is Vision Implemented During The Match</p>
                             {{form.robot_vision_implement|attr:"class:form-single"}}
                             </br>
-                    
-                    
+
+
                             <p id="label" class='mt-4 mb-2'>Do They Climb</p>
                             {{form.robot_climb|attr:"class:form-single"}}
                             <br>
-                    
+
                             <p id="label" class='mt-4 mb-2'>Do They Help Others Climb</p>
                             {{form.robot_buddy_climb|attr:"class:form-single"}}
                             <br>
-                    
+
                             <div id="autoPoints"></div>
-                    
+
                             <label id="label" class='mt-4 mb-2'>Notes</label>
                             <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
                             {{ form.notes|attr:"class:form-single"|attr:"rows:3"|attr:"id: notes-text" }}
-                    
+
                             <button type="submit" class="btn-default mt-3">
                                 <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <!-- Heroicon name: solid/lock-closed -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M7 11l5-5m0 0l5 5m-5-5v12" />
                                     </svg>
@@ -186,17 +210,17 @@
                                 <p class='font-semibold text-white'>Submit Data</p>
                             </button>
                     </div>
-                    
-                    
-                    
-                    </form>
-    
-    
-    
-            </div>
-                </div>
 
-               
+
+
+                    </form>
+
+
+
+                </div>
+        </div>
+
+
     </div>
     </main>
 </div>
