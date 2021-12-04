@@ -1,34 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.core.mail import send_mail
 from django.utils.http import urlquote
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from django.template.loader import get_template
-from .templates import users
-import random
-import string
-import smtplib
-import tbapy
-import requests
-import json
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django_random_id_model import RandomIDModel
 from random import randint
 
 
 #Custom user model
 class CustomUserManager(BaseUserManager):
-    
-
-
     def create_user(self, username, email, team_num, password, **kwargs):
-        
-       
-        
         if not email:
             raise ValueError("Email must be present")
 
@@ -47,12 +27,10 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(username, email, 810, password=password)
         user.is_admin = True
         user.is_staff = True
-        user.is_active = False
+
         user.is_active = True
         user.save(using=self._db)
         return user
-
-
 
 class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=254, unique=True)
@@ -66,7 +44,6 @@ class CustomUser(AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     is_team_admin = models.BooleanField(default=False)
     
-
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 
@@ -91,22 +68,8 @@ class CustomUser(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    def get_team_name(self): #? is this even used!!!
-        '''returns name of team'''
-        names = []
-        tba = tbapy.TBA('PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw')
-        response = requests.get('https://www.thebluealliance.com/api/v3/team/frc' + str(self.team_num) + '/simple', {"X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"})
-        print(response)
-        response = response.json()
-        for name in response:
-            n = name['name']
-            names.append(n)
-        return names
-
-        
-
 #Profile model
-class Profile(models.Model):
+class Profile(RandomIDModel):
     
     range_start = 10**(7-1)
     range_end = (10**7)-1
@@ -119,17 +82,7 @@ class Profile(models.Model):
     viewPitResubmit = models.BooleanField(default=False)
     canEditStats = models.BooleanField(default=True)
     relativeScoring = models.BooleanField(default=False)
-    userId = models.IntegerField(default=randint(range_start, range_end))
     
     def __str__(self):
        return f'{self.user.username}'
    
-
-
-
-#!PUT NEW SETTINGS INTO NEW MODEL
-#class UserSetting(models.Model):
-#    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-#
-#    def __str__(self):
-#       return f'{self.profile}'

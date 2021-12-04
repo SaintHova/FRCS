@@ -33,15 +33,15 @@
 
   }
 </script>
-<div class="flex h-screen  dark:bg-gray-900 bg-gray-50">
+<div class="flex h-screen  dark:bg-dark bg-gray-50 pt-3">
     <div class="flex flex-col flex-1 w-full">   
         <main class="">
             <div class="container px-6 mx-auto grid">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-white">
                     Profile
                 </h2>
                 {% if not request.user.profile.first_name %}
-                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
                     href="https://github.com/estevanmaito/windmill-dashboard">
                     <div class="flex items-center">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -58,9 +58,9 @@
                 <div class='flex'>
                   <div>
                     {% if not user.profile.image == 'http://127.0.0.1:8000/profile-pics/default.jpg' %}
-                    <a class='cursor-pointer' href='{% url "image-upload-view" request.user.profile.userId %}'><img src='../../../profile-pics/{{request.user.profile.image}}' class='h-36 w-36 rounded-xl mr-3'></a>
+                    <a class='cursor-pointer' href='{% url "image-upload-view" request.user.profile.id %}'><img src='../../../profile-pics/{{request.user.profile.image}}' class='h-36 w-36 rounded-xl mr-3'></a>
                     {% else %}
-                    <img href='{% url "image-upload-view" request.user.profile.userId %}' src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' class='h-36 w-36 rounded-xl mr-3'>
+                    <img href='{% url "image-upload-view" request.user.profile.id %}' src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' class='h-36 w-36 rounded-xl mr-3'>
                     {% endif %}
                   </div>
                   <div>
@@ -75,22 +75,22 @@
                   <p><strong>{{phonetic}}</strong></p>
                   {%endif%}
                   <div class='mt-3 flex space-x-2'>
-                    <a href='/{{user.profile.userId}}/account-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Account</a>
-                      <a href='/{{user.profile.userId}}/profile-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Profile</a>
+                    <a href='/{{user.profile.id}}/account-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Account</a>
+                      <a href='/{{user.profile.id}}/profile-edit' class='transition text-white border-black bg-black hover:bg-gray-700 text-sm font-bold py-2 px-4 rounded-lg'>Edit Profile</a>
                   </div>
                   </div>
                   
                   </div>
                 <div class='flex justify-between'>
-                <h2 class="mb-3 mt-10 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class="mb-3 mt-10 text-2xl font-semibold text-gray-700 dark:text-white">
                     Personal Entries
                 </h2>
                 <input id="search-bar" class="transition w-56 h-10 mt-7 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out" placeholder="Search Team">
                 </div>
-                <div class="flex flex-col w-full mx-auto">
+                <div class="flex flex-col w-full mx-auto ">
                     <div class="-my-2  sm:-mx-6 lg:-mx-8">
                       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class=" overflow-hidden border-b border-gray-200 sm:rounded-md">
+                        <div class=" overflow-hidden border-b border-gray-200 rounded-xl">
                           
                           <table class="min-w-full divide-y divide-gray-200" id='data-table'>
                             <thead class="bg-white">
@@ -133,7 +133,7 @@
                                 {% else %}
                                 <td class="px-4 py-3 text-xs float-right" style='margin-top: 13px;'>
                                   <span
-                                    class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-blue-700 dark:text-white">
                                     Pit Data
                                   </span>
                                 </td>

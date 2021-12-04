@@ -5,10 +5,30 @@
 {%endblock styles%}
 
 {%block content%}
+<div class=" bg-gray-50 dark:bg-dark">
+    <!-- Desktop sidebar -->
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
-    </form>
+    <!-- Mobile sidebar -->
+    <!-- Backdrop -->
+
+
+    <div class="">
+        <main class=" overflow-y-auto">
+            <div class="container px-6 mx-auto grid">
+                <div class='flex justify-between'>
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Flag Data
+                    </h2>
+                </div>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit" class='btn-default'>Submit</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+</div>
+
 {%endblock content%}

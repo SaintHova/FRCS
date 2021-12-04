@@ -1,7 +1,9 @@
 *FROM MOST IMPORTANT TO LEAST IMPORTANT*
 
--   make team number input the team code on game scout entry
+- Add unique IDS for EVERY SINGLE MODEL
 
+-   make team number input the team code on game scout entry
+-   Add links to footer
 
 -   Users can input negative numbers
 -   deleting teams delete entries

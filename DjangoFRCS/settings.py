@@ -200,7 +200,9 @@ EMAIL_HOST = 'smtp.google.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'frcsassistant@gmail.com'
-EMAIL_HOST_PASSWORD = 'Jacktyler03'
+EMAIL_HOST_PASSWORD = 'bbqdjfcccrjagkyu'
+
+
 # MEDIA FILE DIRS
 MEDIA_ROOT = os.path.join(BASE_DIR, "profile-pics")
 MEDIA_URL = "/profile-pics/"

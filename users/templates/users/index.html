@@ -30,17 +30,12 @@
     })
 </script>
 
-
-<div class='w-full h-80 p-14 bg-blue-500 container mt-10 rounded-lg'>
-  <h1 class='text-center text-4xl text-white font-bold'>Kickoff is right around the corner</h1>
-  <h1 id='timer' class='text-center pt-5 text-8xl text-white font-bold'></h1>
-</div>
-<div class='bg-gray-50'>
+<div class='bg-gray-50 dark:bg-dark'>
 <div class="w-full px-6 pt-10">
-    <div class="mt-8 relative rounded-lg bg-blue-500 container mx-auto flex flex-col items-center pt-12 sm:pt-24 pb-24 sm:pb-32 md:pb-48 lg:pb-56 xl:pb-64">
+    <div data-aos="smooth2" class="relative rounded-lg container mx-auto flex flex-col items-center pt-12 sm:pt-24 pb-24 sm:pb-32 md:pb-48 lg:pb-56 xl:pb-64">
         <svg class="mr-2 lg:mr-12 mt-2 lg:mt-12 absolute right-0 top-0" width="104px" height="95px" viewBox="0 0 104 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Work-in-Progress" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.122837612">
-                <g transform="translate(-1139.000000, -175.000000)" fill="#FFFFFF">
+                <g transform="translate(-1139.000000, -175.000000)" fill="#2563EB">
                     <g id="Group-5" transform="translate(1139.000000, 175.000000)">
                         <path d="M1.99948119,4 C0.897535668,4 0,3.10246433 0,1.99948119 C0,0.896498054 0.897535668,0 1.99948119,0 C3.10350195,0 4,0.896498054 4,1.99948119 C4,3.10246433 3.10350195,4 1.99948119,4" id="Fill-46"></path>
                         <path d="M22,4 C20.8973029,4 20,3.10246433 20,1.99948119 C20,0.896498054 20.8973029,0 22,0 C23.1037344,0 24,0.896498054 24,1.99948119 C24,3.10246433 23.1037344,4 22,4" id="Fill-47"></path>
@@ -83,9 +78,9 @@
                 </g>
             </g>
         </svg>
-        <svg class="ml-2 lg:ml-12 mb-2 lg:mb-12 absolute bottom-0 left-0" width="104px" height="95px" viewBox="0 0 104 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg data-aos="smooth3" class="ml-2 lg:ml-12 mb-2 lg:mb-12 absolute bottom-10 left-0" width="104px" height="95px" viewBox="0 0 104 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <g id="Work-in-Progress" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.122837612">
-                <g transform="translate(-206.000000, -596.000000)" fill="#FFFFFF">
+                <g transform="translate(-206.000000, -596.000000)" fill="#2563EB">
                     <g id="Group-5" transform="translate(258.000000, 643.500000) scale(-1, -1) translate(-258.000000, -643.500000) translate(206.000000, 596.000000)">
                         <path d="M1.99948119,4 C0.897535668,4 0,3.10246433 0,1.99948119 C0,0.896498054 0.897535668,0 1.99948119,0 C3.10350195,0 4,0.896498054 4,1.99948119 C4,3.10246433 3.10350195,4 1.99948119,4" id="Fill-46"></path>
                         <path d="M22,4 C20.8973029,4 20,3.10246433 20,1.99948119 C20,0.896498054 20.8973029,0 22,0 C23.1037344,0 24,0.896498054 24,1.99948119 C24,3.10246433 23.1037344,4 22,4" id="Fill-47"></path>
@@ -129,60 +124,122 @@
             </g>
         </svg>
         <div class="w-11/12 sm:w-2/3 mb-5 sm:mb-10">
-            <h1 data-aos="smooth" data-aos-easing="ease-in-out-cubic" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">Rethinking the Way Teams Scout Data</h1>
+          
+            <h1 data-aos="smooth" data-aos-easing="ease-in-out-cubic" class="text-4xl lg:text-5xl xl:text-6xl text-center text-black dark:text-white font-bold leading-tight z-50">Rethinking the Way Teams <span class='text-blue-600'>Scout Data</span></h1>
+            <p data-aos="smooth" class="lg:w-2/3 mx-auto text-center leading-relaxed text-base mt-4 dark:text-gray-400">FRCS is a new way to scout teams during competitions. You can scout anything from game data to pit data</p>
         </div>
         <div class="flex justify-center items-center mb-10 sm:mb-20">
-            <button data-aos="smooth2" data-aos-easing="ease-in-out-cubic" onclick='window.location.href="{% url 'register-view' %}"' class="font-semibold hover:bg-transparent bg-white border-2 border-white text-semibold transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg text-black px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Get Started</button>
-            <button data-aos="smooth2" data-aos-easing="ease-in-out-cubic" id='learn-btn' class="font-semibold hover:bg-transparent bg-transparent border-2 border-white text-semibold transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg text-white px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Learn More</button>
+            <button data-aos="smooth2" onclick='window.location.href="{% url 'register-view' %}"' class="font-semibold hover:bg-blue-600 bg-blue-500 text-semibold transition ease-in-out rounded-xl text-white px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Get Started</button>
+            <button data-aos="smooth2" id='learn-btn' class="font-semibold hover:bg-gray-200 bg-white text-semibold transition ease-in-out rounded-xl text-black px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Learn More</button>
         </div>
     </div>
-    <div data-aos="smooth3" data-aos-easing="ease-in-out-cubic" class="container mx-auto flex justify-center md:-mt-56 -mt-20 sm:-mt-40" id='main-img'>
+    <div data-aos="smooth3" data-aos-easing="ease-in-out-cubic" class="container mx-auto flex justify-center md:-mt-72 -mt-20 sm:-mt-40" id='main-img'>
         <div class="relative sm:w-2/3 w-11/12">
-            <img src="../../static/users/assets/images/ss.png"  role="img" class="absolute rounded-2xl shadow-xl" />
+            <img src="../../static/users/assets/images/ss2.png"  role="img" class="absolute rounded-2xl shadow-2xl" />
         </div>
     </div>
 </div>
 
-<section id='about' class="text-gray-400 body-font mt-32 xl:mt-72">
-    <div class="container px-5 py-24 mx-auto pt-96">
+<section id='about' class="text-gray-400 body-font mt-10 xl:mt-60">
+    <div class="container px-5 py-24 mx-auto pt-52">
       <div class="flex flex-col text-center w-full mb-20">
         
-        <h1 class="sm:text-3xl md:text-5xl title-font mb-4 text-black font-bold">What is FRCS</h1>
-        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">FRCS is an online scouting platform for the FIRST Robotics Competition. There are lots of new features in the new version of FRCS. From the user interface, to the data collection, everything was redesigned for efficiency and convenience</p>
+        <h1 class="md:text-5xl text-5xl title-font mb-4 text-black font-bold dark:text-white">What is <span class='text-blue-600'>FRCS</span></h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base dark:text-gray-400">FRCS is an online scouting platform for the FIRST Robotics Competition. There are lots of new features in the new version of FRCS. From the user interface, to the data collection, everything was redesigned for efficiency and convenience</p>
       </div>
-      <div class="flex flex-wrap" >
-        <div class="md:w-1/2 p-4 mx-auto">
-          <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+      <div class="flex flex-wrap">
+        <div class="md:w-1/2 p-4 mx-auto" data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+          <div class="transform border-2 hover:bg-gray-100 dark:hover:bg-secondary hover:scale-105 transition duration-500 p-6 rounded-2xl">
             <div class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-gray-200 text-black mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
             </div>
-            <h2 class="text-lg text-black font-semibold title-font mb-2">Game Scouting</h2>
-            <p class="leading-relaxed text-base">Game scouting, although it is not new, it has been redesigned with new features and more questions</p>
+            <h2 class="text-lg text-black font-semibold title-font mb-2 dark:text-white">Game Scouting</h2>
+            <p class="leading-relaxed text-base dark:text-gray-400">Game scouting, although it is not new, it has been redesigned with new features and more questions</p>
           </div>
         </div>
-        <div class="md:w-1/2 p-4" > 
-            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl" data-aos="smooth2" data-aos-easing="ease-in-out-cubic">
+        <div class="md:w-1/2 p-4" data-aos="smooth2" data-aos-easing="ease-in-out-cubic"> 
+            <div class="transform border-2 hover:bg-gray-100 dark:hover:bg-secondary hover:scale-105 transition duration-500 p-6 rounded-2xl">
                 <div class="w-10 h-10 inline-flex items-center justify-center rounded-xl bg-gray-200 text-black mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                       </svg>
                 </div>
-                <h2 class="text-lg text-black font-semibold title-font mb-2">Pit Scouting</h2>
-                <p class="leading-relaxed text-base">Pit scouting is the new way to capture data about a teams bot. Its just another way to gather more information for the benefit of everybody</p>
+                <h2 class="text-lg text-black font-semibold title-font mb-2 dark:text-white">Pit Scouting</h2>
+                <p class="leading-relaxed text-base dark:text-gray-400">Pit scouting is a new way to capture data about a teams bot. Its just another aspect of data to collect to benefit everybody</p>
               </div>
         </div>
         
       </div>
 
+      
+<section class="pt-16 pb-20 bg-blueGray-50">
+  <div class="container px-4 mx-auto">
+    <div class="flex flex-wrap items-center mb-12">
+      <div class="w-full lg:w-1/2 mb-6 lg:mb-0">
+        <h2 class="text-4xl font-bold font-heading text-black dark:text-white">
+          <span data-config-id="03_header1">Here are some</span>
+          <span class="text-blue-600" data-config-id="03_header2">new features</span>
+          <span data-config-id="03_header3">coming to the new version of FRCS</span>
+        </h2>
+      </div>
+      <div class="w-full lg:w-1/2">
+        <p class="lg:pl-16 leading-relaxed text-base" data-config-id="desc">The new FRCS is jam packed with new features. Not only did the user interface improve, the entire backend has been rebuilt from the ground up. We are very excited to share this new version with you</p>
+      </div>
     </div>
+    <div class="flex flex-wrap -mx-3 -mb-6">
+      <div class="w-full md:w-1/2 lg:w-1/4 px-3 my-6 " data-aos="smooth">
+        <div class="pt-8 px-6 pb-6 dark:hover:bg-secondary text-center rounded-2xl border-2 transform hover:scale-105 transition duration-500 hover:bg-gray-100">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mx-auto mb-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+          <h2 class="text-lg text-black font-bold title-font mb-2 dark:text-white">Pit Scouting</h2>
+          <p class="text-sm text-blueGray-400" data-config-id="cat-desc1">Now teams are able to scout data based on data they capture in the pits</p>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 lg:w-1/4 px-3 my-6" data-aos="smooth2">
+        <div class="pt-8 px-6 pb-6 dark:hover:bg-secondary text-center rounded-2xl border-2 transform hover:scale-105 transition duration-500 hover:bg-gray-100 ">
+          <svg class="w-10 h-10 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-config-id="auto-svg-3-7">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          <h3 class="text-lg text-black font-bold title-font mb-2 dark:text-white" data-config-id="cat-header2">Redesigned UI</h3>
+          <p class="text-sm text-blueGray-400" data-config-id="cat-desc2">The user interface was completely revamped for convenience and efficiency</p>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 lg:w-1/4 px-3 my-6" data-aos="smooth3">
+        <div class="pt-8 px-6 pb-6 dark:hover:bg-secondary text-center rounded-2xl border-2 transform hover:scale-105 transition duration-500 hover:bg-gray-100 ">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mx-auto mb-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+          </svg>
+          <h3 class="text-lg text-black font-bold title-font mb-2 dark:text-white" data-config-id="cat-header2">Data Flagging</h3>
+          <p class="text-sm text-blueGray-400" data-config-id="cat-desc2">Data flagging allows teams to report pit data for being incorrect</p>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 lg:w-1/4 px-3 my-6" data-aos="smooth4">
+        <div class="pt-8 px-6 pb-6 dark:hover:bg-secondary text-center rounded-2xl border-2 transform hover:scale-105 transition duration-500 hover:bg-gray-100">
+   
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 mx-auto mb-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
+          <h3 class="text-lg text-black font-bold title-font mb-2 dark:text-white" data-config-id="cat-header4">Data Editing</h3>
+          <p class="text-sm text-blueGray-400" data-config-id="cat-desc4">Data editing allows teams to edit pit data to improve accuracy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </div>
+    
   </section>
 
   <section id='why' class="text-gray-400 body-font">
     <div class="container px-5 pb-24 mx-auto">
       <div class="flex flex-col text-center w-full mb-20">
-        <h1 class="sm:text-3xl md:text-5xl title-font mb-4 text-black font-bold">Why Use FRCS</h1>
+        <h1 class="md:text-5xl text-5xl title-font mb-4 text-black font-bold dark:text-white">Why Use <span class='text-blue-600'>FRCS</span></h1>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base">The reason we made FRCS is because every year, teams build new scouting systems from
           the ground up. This wastes time, resources, and is overall inefficient. The way we see it, teams
           are all collecting data in a similar fashion to one another, why keep our data separate? This
@@ -190,69 +247,32 @@
           With onsite data analytics it's the easiest and most logical next step in FRC scouting. We look
           at all feedback submitted so if you think there's something missing we'll try our best to help
           out</p>
-      </div>
-      <h1 class="sm:text-3xl md:text-3xl text-center title-font mb-4 text-black font-bold">New Features</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-center text-base">Here are some new features we added</p>
-      <div class="flex flex-wrap mt-5">
-
-        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
-          <div class="pt-4 mx-auto">
-            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
-              
-              <h2 class="text-lg text-center text-black font-semibold title-font">Data Editing</h2>
-              
-            </div>
-          </div>
+      </div>      
+      <div class='relative' >
+        <div class='absolute md:-top-6 md:right-20 right-4' style='z-index: 1;' id='megaphone'>
+          <svg xmlns="http://www.w3.org/2000/svg"  class="md:h-52 md:w-52 w-20 h-20  text-blue-300 transform -rotate-12 z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+          </svg>
         </div>
-      
-        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
-          <div class="pt-4 mx-auto">
-            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
-              
-              <h2 class="text-lg text-center text-black font-semibold title-font">Pit Scouting</h2>
-              
-            </div>
-          </div>
+        <div class='absolute md:-top-16 md:left-20 left-4 top-4' style='z-index: 1;' id='megaphone2'>
+          <svg xmlns="http://www.w3.org/2000/svg" class="md:h-52 md:w-52 w-20 h-20 text-blue-300 transform -rotate-12 z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+          </svg>
         </div>
-      
-        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
-          <div class="pt-4 mx-auto">
-            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
-              
-              <h2 class="text-lg text-center text-black font-semibold title-font">Redesigned UI</h2>
-              
-            </div>
-          </div>
-        </div>
-      
-        <div class="sm:mt-4 px-2 w-full sm:my-2 sm:w-1/2 xl:w-1/4">
-          <div class="pt-4 mx-auto">
-            <div class="transform border border-black hover:bg-gray-100 hover:scale-105 transition duration-500 p-6 rounded-2xl"  data-aos="smooth" data-aos-easing="ease-in-out-cubic">
-              
-              <h2 class="text-lg text-center text-black font-semibold title-font">Data Flagging</h2>
-              
-            </div>
-          </div>
-        </div>
-      
-      </div>
-
-      <h1 class="sm:text-3xl md:text-3xl text-center title-font mb-4 text-black font-bold mt-20">Get The Word Out</h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-center text-base">Laboris occaecat quis in voluptate id culpa sint ut labore. Officia amet ad incididunt ipsum culpa non fugiat voluptate culpa sint excepteur eu nisi ad. Cupidatat proident nulla cillum ex nulla ullamco incididunt tempor quis ex excepteur enim.</p>
-        
+      <h1 style='z-index: 10;' class="text-3xl text-center title-font mb-4 text-black font-bold mt-20 z-50 relative dark:text-white">Get The Word Out</h1>
+      <p style='z-index: 10;' class="lg:w-2/3 mx-auto leading-relaxed text-center text-base z-50 relative">Since our platform is based on user participation, it is vital to the success of FRCS and its users that everybody shares it. Remember, the more users, the better the data</p>
+    </div>
 
           <div class='flex mx-auto justify-content-center mt-5'>
-            <div class='h-20 w-20 rounded-full'>
+            <div class='h-20 w-20 rounded-full' data-aos='smooth2'>
               <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/prodify/avatar(1).png"
                     alt="avatar image" data-aos="grow2" data-aos-easing="ease-in-out-cubic" data-aos-delay="100ms" />
-
             </div>
-            <div class='h-20 w-20 rounded-full'>
+            <div class='h-20 w-20 rounded-full' data-aos='smooth'>
               <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/prodify/avatar(2).png"
                     alt="avatar image" data-aos="grow2" data-aos-easing="ease-in-out-cubic" data-aos-delay="100ms" />
-
             </div>
-            <div class='h-20 w-20 rounded-full'>
+            <div class='h-20 w-20 rounded-full' data-aos='smooth2'>
             <img class="w-full h-full" src="https://cdn.tuk.dev/assets/templates/prodify/avatar(3).png"
                     alt="avatar image" data-aos="grow2" data-aos-easing="ease-in-out-cubic" data-aos-delay="100ms" />
               </div>
@@ -264,7 +284,7 @@
   <img class="hidden lg:block absolute inset-x-0 bottom-0 mb-96 rounded-2xl" src="zospace-assets/lines/line-two-montain.svg" alt="">
   <div class="relative container px-4 mx-auto">
     <div class="max-w-4xl mx-auto">
-      <h2 class="mb-24 text-center text-5xl font-bold font-heading text-black" data-config-id="header">Our Team</h2>
+      <h2 class="mb-24 text-center text-5xl font-bold font-heading text-black dark:text-white" data-config-id="header">Our <span class='text-blue-600'>Team</span></h2>
       <div class="flex flex-wrap justify-center -mx-10 mb-20">
         <div class="w-full lg:w-1/3 px-10 mb-20 lg:mb-0">
           <div data-aos="smooth" data-aos-easing="ease-in-out-cubic">
@@ -281,7 +301,7 @@
           </div>
         </div>
         <div class="w-full lg:w-1/3 px-10 mb-20 lg:mb-0">
-          <div data-aos="smooth" data-aos-easing="ease-in-out-cubic">
+          <div data-aos="smooth2" data-aos-easing="ease-in-out-cubic">
             <img class="transition transform hover:scale-105 duration-500 mb-8 w-full h-112 lg:h-80 object-cover object-top rounded-2xl" src="../../static/users/assets/images/aaquib.png" alt="" data-config-id="image2">
             <a class="hover:no-underline text-left transition transform hover:scale-105 duration-500 inline-block w-full p-10 bg-blue-500 hover:bg-blue-600 rounded-2xl" href="#">
               <h3 class="mb-2 text-3xl text-white font-bold font-heading" data-config-id="name2">Aaquib Syed</h3>
@@ -302,7 +322,7 @@
 <section class="text-gray-600 body-font relative">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-12">
-        <h1 class="sm:text-3xl md:text-5xl title-font mb-4 text-black font-bold">Contact</h1>
+        <h1 class="text-5xl title-font mb-4 text-black font-bold">Contact</h1>
       <p class="lg:w-2/3 mx-auto leading-relaxed text-base">If you have any questions or suggestions, feel free to leave us a message</p>
     </div>
     <div class="lg:w-1/2 md:w-2/3 mx-auto">
@@ -367,12 +387,22 @@
 </section>
 </div>
 
+
 <script src="../../static/users/assets/js/parallax.min.js"></script>
 
 <script>
   new vanillaJsuParallax({
     items: document.getElementById('main-img'),
 });
+
+new vanillaJsuParallax({
+  items: document.getElementById('megaphone'),
+});
+
+new vanillaJsuParallax({
+  items: document.getElementById('megaphone2'),
+});
+
 </script>
 
 
@@ -408,39 +438,9 @@
   $('#learn-btn').click(function (){
 
     $('html, body').animate({
-      scrollTop: window.pageYOffset + document.getElementById('about').offsetTop + 300
-    },'fast')}
+      scrollTop: window.pageYOffset + document.getElementById('about').offsetTop + 150
+    },'medium')}
   );
   </script>
 
-  <script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Jan 8, 2022 12:00:00").getTime();
-    
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-    
-      // Get today's date and time
-      var now = new Date().getTime();
-    
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
-    
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-      // Display the result in the element with id="demo"
-      document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-      + minutes + "m " + seconds + "s ";
-    
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("timer").innerHTML = "Happy Kickoff";
-      }
-    }, 1000);
-    </script>
     {%endblock content%}

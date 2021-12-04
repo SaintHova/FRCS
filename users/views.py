@@ -16,7 +16,8 @@ from users.forms import (
     GameEditForm,
     ProfileSettingsForm,
     TeamSettingsForm,
-    PitEditForm
+    PitEditForm,
+    TeamEditForm
 )
 from users.models import CustomUser, Profile
 from teams.models import Team
@@ -160,7 +161,7 @@ def getAuthLevel():
     
 
 @login_required
-def ProfileSettings(request, userId):
+def ProfileSettings(request, id):
     
 
     
@@ -231,23 +232,40 @@ class JSONResponseMixin:
 
 @login_required
 def teamManagement(request):
-    try:
+    if Pit_stats.objects.filter(team_num=request.user.team_num).exists():
         context = {
             'users': CustomUser.objects.filter(team_num=request.user.team_num),
             'usersCount': CustomUser.objects.filter(team_num=request.user.team_num).count(),
+            'is_incorrect': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_incorrect,
+            'is_hidden': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_hidden,
+            'link': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).pk
         }
-    except:
+    else:
         context = {
             'users': CustomUser.objects.filter(team_num=request.user.team_num),
             'usersCount': CustomUser.objects.filter(team_num=request.user.team_num).count(),
-            'is_incorrect': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_incorrect
+            
         }
     return render(request, "users/team-manager.html", context) 
 
 @login_required
-def teamManagementUserEdit(request, userId):
+def teamInfo(request):
+    #!THIS DOESNT WORK
+    instance = Team.objects.get(team_num=request.user.team_num)
+    form = TeamEditForm(request.POST or None, instance=instance)
+    context = {"instance": instance, "form": form}
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return render(request, "users/team-manager.html", context)
     
-    username = Profile.objects.get(userID=userId).user.username
+    return render(request, "users/team-info.html", context) 
+
+@login_required
+def teamManagementUserEdit(request, id):
+    
+    username = Profile.objects.get(id=id).user.username
 
     f_name = CustomUser.objects.get(username=username).profile.first_name
     l_name = CustomUser.objects.get(username=username).profile.last_name
@@ -312,10 +330,7 @@ def gameUpdate(request, match_id):
     return render(request, "users/data/game-edit.html", context)
 
 @login_required
-def imageUpload(request, userId):
-    
-  
-    
+def imageUpload(request, id):
     if request.method == 'POST':
         form = ProfileEditForm(request.POST, request.FILES,  instance=request.user.profile)
         if form.is_valid():
@@ -330,7 +345,7 @@ def imageUpload(request, userId):
     return render(request, "users/image-upload.html", context)
 
 @login_required
-def accountEdit(request, userId):
+def accountEdit(request, id):
     
 
     
@@ -347,9 +362,9 @@ def accountEdit(request, userId):
             return redirect("profile-view")
     return render(request, 'users/account-edit.html', context)
 
-def del_user(request, userId):    
+def del_user(request, id):    
     
-    username = CustomUser.objects.get(userId=userId).username
+    username = CustomUser.objects.get(id=id).username
 
     u = User.objects.get(username = username)
     u.delete()

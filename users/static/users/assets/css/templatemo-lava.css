@@ -12,7 +12,7 @@ transition: all 0.2s ease;
 }
 .cbx span:first-child svg {position: absolute;top: 3px;left: 2px;fill: none;stroke: #FFFFFF;stroke-width: 2;stroke-linecap: round;stroke-linejoin: round;stroke-dasharray: 16px;stroke-dashoffset: 16px;transition: all 0.3s ease;transition-delay: 0.1s;transform: translate3d(0, 0, 0);}
 .cbx span:first-child:before {content: "";width: 100%;height: 100%;
-  background-image: linear-gradient(45deg,#8A2387, #e94057,#F27121);
+  background-color: #2563EB;
   display: block;
   transform: scale(0);
   opacity: 1;
@@ -23,7 +23,7 @@ border-color: lightblue;
 }
 
 .inp-cbx:checked + .cbx span:first-child {
-  background-image: linear-gradient(45deg,#ee0979, #ff6a00);
+  background-color: #2563EB;
   border-color: transparent;
   /* border-color: white; */
   animation: wave 0.4s ease;
@@ -42,3 +42,71 @@ transition: all 0.6s ease;
   transform: scale(0.9);
 }
 }
+
+[data-aos="smooth"] {
+	opacity: 0;
+	transition-property: transform;
+  }
+  
+  
+  
+  [data-aos="smooth"].aos-animate {
+	opacity: 1;
+	-webkit-animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+
+[data-aos="smooth2"] {
+	opacity: 0;
+	transition-property: transform;
+  }
+  
+  
+  
+  [data-aos="smooth2"].aos-animate {
+	opacity: 1;
+;
+	-webkit-animation: slide-top 0.7s .1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-top 0.7s .1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  [data-aos="smooth3"] {
+    opacity: 0;
+    transition-property: transform;
+    }
+    
+    
+    
+    [data-aos="smooth3"].aos-animate {
+    opacity: 1;
+  ;
+    -webkit-animation: slide-top 0.7s .2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-top 0.7s .2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    [data-aos="smooth4"] {
+      opacity: 0;
+      transition-property: transform;
+      }
+      
+      
+      
+      [data-aos="smooth4"].aos-animate {
+      opacity: 1;
+    ;
+      -webkit-animation: slide-top 0.7s .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      animation: slide-top 0.7s .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+
+  @keyframes slide-top {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    
+    100% {
+      transform: translateY(-30px);
+      opacity: 1;
+    }
+    }

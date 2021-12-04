@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.contrib.auth.forms import UserChangeForm
 from .models import Profile
 from stats.models import Match, Pit_stats
+from teams.models import Team
 from django.http import request
 
 def getProfileFirstName(request):
@@ -146,6 +147,27 @@ class PitEditForm(forms.ModelForm):
     class Meta:
         model = Pit_stats
         exclude = ['competition', 'stat_id', 'scout', 'date_entered']
+        
+class TeamEditForm(forms.ModelForm):
+    
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(
+        attrs={
+            'class':"form-single",
+            'placeholder': 'Email',
+            'id': 'email-form',
+        }
+    ))
+    
+    pit_stats_hide = forms.BooleanField(label='Hide Pit Stat', required=False, widget=forms.CheckboxInput(
+        attrs={
+            'class': 'inp-cbx',
+            'style': 'display: none;',
+            'id': 'cbx',
+        }
+    ))
+    class Meta:
+        model = Team
+        fields = ['email', 'pit_stats_hide']
 
 
 class NameEditForm(forms.ModelForm):

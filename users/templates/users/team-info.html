@@ -1,0 +1,58 @@
+{%extends 'users/base.html'%}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../../static/users/assets/css/profile.css">
+
+{%block styles%}
+{%endblock styles%}
+{%block content%}
+<script>
+    var options = {
+        bottom: '64px', // default: '32px'
+        right: 'unset', // default: '32px'
+        left: '32px', // default: 'unset'
+        time: '0.5s', // default: '0.3s'
+        mixColor: '#dedede', // default: '#fff'
+        backgroundColor: '#fff', // default: '#fff'
+        buttonColorDark: '#100f2c', // default: '#100f2c'
+        buttonColorLight: '#fff', // default: '#fff'
+        saveInCookies: true, // default: true,
+        label: '', // default: ''
+        autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+
+    function toggle() {
+        darkmode.toggle();
+
+    }
+</script>
+<div class="flex h-screen  dark:bg-dark bg-gray-50">
+    <div class="flex flex-col flex-1 w-full">
+        <main class="">
+            <div class="container px-6 mx-auto grid">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Team Info
+                </h2>
+                <form method='post'>
+                    {% csrf_token %}
+                    <label id='label'>Change team email</label>
+                    <div class='mb-4'>
+                    {{form.email}}
+                    </div>
+                    {{form.pit_stats_hide}}
+                    <label style='margin-left: 0%;' class="cbx" for="cbx"><span>
+                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg></span><span id="checkbox-text">Hide pit data</span></label>
+                    <button class='btn-default' id='submit-form' type='submit'>Submit</button>
+                </form>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+{%endblock content%}

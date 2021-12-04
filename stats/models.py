@@ -1,12 +1,13 @@
 from django.db import models
-import tbapy
 from teams.models import Team 
 from users.models import CustomUser, Profile
 from django.utils import timezone
+from django_random_id_model import RandomIDModel
+
 
 # Create your models here.
 
-class Pit_stats(models.Model):
+class Pit_stats(RandomIDModel):
     date_entered = models.DateTimeField(default=timezone.now())
     team_num = models.IntegerField(null = True)
     competition = models.CharField(max_length = 100, null = True)
@@ -28,6 +29,7 @@ class Pit_stats(models.Model):
     stat_id = models.CharField(max_length=15, null = True)
     notes = models.TextField(max_length=100, null = True)
     is_incorrect = models.BooleanField()
+    is_hidden = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.team_num} Pit Stats'
@@ -42,7 +44,7 @@ class Game_stats(models.Model):
     def __str__(self):
        return f'{self.team} Game Stat List'
 
-class Match(models.Model):
+class Match(RandomIDModel):
     stat = models.ForeignKey(Game_stats, on_delete = models.CASCADE, null = True)
     team_num = models.IntegerField(null = True)
     scout = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null = True, related_name='scouter')
@@ -75,9 +77,4 @@ class Match(models.Model):
     def __str__(self):
         return f'{self.team_num} scouting {self.scouted_team_num} at {self.competition} match number {self.match_number}'
 
-class Competition(models.Model):
-    match_num = models.ForeignKey(Match ,on_delete = models.CASCADE, related_name = "+", null = True)
-    competition = models.CharField(max_length = 100)
 
-    def __str__(self):
-        return f'{self.competition}'

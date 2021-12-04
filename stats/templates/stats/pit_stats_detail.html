@@ -66,13 +66,9 @@
 </script>
 
 
+<div class='bg-gray-50 dark:bg-dark'>
 
-
-
-
-
-
-    <div class="flex bg-gray-50 dark:bg-gray-900">
+    <div class="flex  container">
         <!-- Desktop sidebar -->
 
         <!-- Mobile sidebar -->
@@ -80,8 +76,8 @@
         <div class="flex flex-col flex-1 w-full">
             <main class="h-full overflow-y-auto">
 
-                <div class="container px-6 mx-auto grid">
-                    <div class='md:flex md:justify-between'>
+                <div class="mx-auto grid">
+                    <div class='md:flex md:justify-between '>
                         <div>
 
                             <h2 class="mt-6 text-left text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -90,7 +86,7 @@
                             <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Loading...</h2>
                         </div>
                         {% if not object.is_incorrect %}
-                        <button onclick='location.href="{% url 'pit-flag-view' pk=object.pk %}"'
+                        <button onclick='location.href="{% url 'pit-flag-view' id=object.id %}"'
                             class='inline-flex mt-6 w-14 h-14 items-center text-lg justify-center font-semibold tracking-wide text-white transition duration-200 bg-red-500 rounded-lg hover:bg-red-600'>
                             
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none"
@@ -100,31 +96,34 @@
                             </svg>
 
                         </button>
-                        {% else %}
-                        <div class='flex space-x-2 mt-6 text-red-500 '>
-                        <h2 class=" text-left text-2xl font-semibold dark:text-gray-200">
-                            Data has been flagged as incorrect
-                        </h2>
-                        <a class='modal-open cursor-pointer'><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mt-1" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                          </svg>
-                          </a>
-                        
                         {% endif %}
                         </div>
                     </div>
+                    {% if  object.is_incorrect %}
+        <div
+          class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+          href="https://github.com/estevanmaito/windmill-dashboard">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clip-rule="evenodd" />
+            </svg>
+
+            <span>The pit data that was submitted was hidden</span>
 
 
-                    <!-- CTA -->
+          </div>
 
+        </div>
+        {% endif %}
 
-                    <!-- Cards -->
-                    <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2">
+                    <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2 ">
                         <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex bg-white items-center p-4  rounded-xl shadow-xs">
 
                             <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400 ">
                                     Robot weight
                                 </p>
                                 <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
@@ -133,7 +132,7 @@
                             </div>
                         </div>
                         <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -145,7 +144,7 @@
                             </div>
                         </div>
                         <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -157,7 +156,7 @@
                             </div>
                         </div>
                         <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -169,7 +168,7 @@
                             </div>
                         </div>
                         <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -180,7 +179,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -192,7 +191,7 @@
                             </div>
                         </div>
                         <!-- Card -->
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -203,7 +202,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
 
                             <div>
@@ -215,7 +214,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -226,7 +225,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                        <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                             <div>
                                 <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -239,7 +238,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                    <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -292,6 +291,7 @@
           </div>
         </div>
       </div>
+      
 
       <style>
         .modal {
