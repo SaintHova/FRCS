@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserChangeForm
 from .models import Profile
 from stats.models import Match, Pit_stats
 from teams.models import Team
-from django.http import request
+
 
 def getProfileFirstName(request):
     f_placeholder = Profile.objects.get(request.user).first_name
@@ -19,7 +19,7 @@ User = get_user_model()
 class UserCreationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white",
             'placeholder': 'Password'
 
 
@@ -27,20 +27,20 @@ class UserCreationForm(forms.ModelForm):
     ))
     username = forms.CharField(label='Username', widget=forms.TextInput(
         attrs={
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white",
             'placeholder': 'Username'
         }
     ))
     email = forms.EmailField(validators=[validate_email], label='Email', widget=forms.EmailInput(
         attrs={
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900   focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900   focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white",
             'placeholder': 'Email',
             'id': 'email-form',
         }
     ))
     team_num = forms.IntegerField(label='Username', widget=forms.NumberInput(
         attrs={
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white",
             'placeholder': 'Team Number',
             'id': 'team_num_reg',
         }
@@ -75,13 +75,13 @@ class UserLoginForm(forms.Form):
     query = forms.CharField(label='Username / Email', widget=forms.TextInput(
         attrs={
             'id':"email-address",
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white",
             'placeholder':'Username'
         }
     ))
     password = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-b-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white",
             'placeholder': 'Password'
         }
     ))
@@ -240,3 +240,5 @@ class TeamSettingsForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('canEditStats', )
+        
+        

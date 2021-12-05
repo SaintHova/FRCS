@@ -222,11 +222,11 @@ def pitFlag(request, id):
     instance = get_object_or_404(Pit_stats, id=id)
     form = pit_correct_form(instance=instance)
     
-    subject = 'Thank you for registering to our site'
-    message = 'it means a world to us '
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['jtyler03@optonline.net',]
-    send_mail( subject, message, email_from, recipient_list )
+    # subject = 'Thank you for registering to our site'
+    # message = 'it means a world to us '
+    # email_from = settings.EMAIL_HOST_USER
+    # recipient_list = ['jtyler03@optonline.net',]
+    # send_mail( subject, message, email_from, recipient_list )
     
     if request.method == 'POST':
         form = pit_correct_form(request.POST, instance=instance)

@@ -1,9 +1,7 @@
 {%extends 'users/base.html'%}
 
 {%block styles%}
-<link rel="stylesheet" href="../../static/users/assets/css/register.css">
-<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
-<script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+
 
 {%endblock styles%}
 {%block content%}
@@ -28,16 +26,16 @@
 
 <body>
 
-  <div class=" flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-50">
+  <div class=" flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-dark">
         
     <div class="max-w-md w-full space-y-8">
       <div>
-        <h2 style='color: black;' class="mt-6 text-center text-4xl font-extrabold">
+        <h2 class="mt-6 text-center text-4xl font-extrabold text-black dark:text-white"">
           Login
         </h2>
-            <p style='color: black;' class="mt-2 text-center text-sm">
+            <p class="mt-2 text-center text-sm text-black dark:text-white">
                 Or
-                <a href="{% url 'register-view' %}"  class="font-medium text-black">
+                <a href="{% url 'register-view' %}"  class="font-medium text-black dark:text-white"">
                   register
                 </a>
               </p>
@@ -60,13 +58,13 @@
       
             <div class="flex items-center justify-between">
               <div class="flex items-center">
-                <label for="remember-me" class="ml-2 block text-sm invisible">
+                <label for="remember-me" class="ml-2 block text-sm invisible text-black dark:text-white"">
                   Remember me
                 </label>
               </div>
       
               <div class="text-sm">
-                <a href="#" class="font-medium text-black">
+                <a href="{% url 'password_reset' %}" class="font-medium text-black dark:text-white">
                   Forgot your password?
                 </a>
               </div>
@@ -74,12 +72,7 @@
       
             <div>
                 <button type="submit" class="btn-default">
-                  <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                    <!-- Heroicon name: solid/lock-closed -->
-                    <svg class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
+                  
                   <p class='font-semibold text-white' >Sign In</p>
                 </button>
               </div>

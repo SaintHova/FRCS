@@ -187,20 +187,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 LOGIN_URL = "login-view"
 
 
-# # SMTP CONFIGURATION
-# TEMPLATED_EMAIL_BACKEND = "templated_email.backends.vanilla_django.TemplateBackend"
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
-# EMAIL_PORT = 587
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.google.com'
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.google.com'
 EMAIL_HOST_USER = 'frcsassistant@gmail.com'
 EMAIL_HOST_PASSWORD = 'bbqdjfcccrjagkyu'
+EMAIL_PORT = 587
 
 
 # MEDIA FILE DIRS

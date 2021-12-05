@@ -82,6 +82,10 @@ class Profile(RandomIDModel):
     viewPitResubmit = models.BooleanField(default=False)
     canEditStats = models.BooleanField(default=True)
     relativeScoring = models.BooleanField(default=False)
+    dm = models.BooleanField(default=False)
+    
+    
+    
     
     def __str__(self):
        return f'{self.user.username}'

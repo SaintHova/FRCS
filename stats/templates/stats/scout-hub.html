@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-<div class="flex bg-gray-50 dark:bg-gray-darkest">
+<div class="flex bg-gray-50 dark:bg-dark dark:bg-gray-darkest">
     <!-- Desktop sidebar -->
 
     <!-- Mobile sidebar -->
@@ -23,7 +23,7 @@
 
         <main class="h-full overflow-y-auto">
             <div class="container px-6 mx-auto grid">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-white">
                     Dashboard
                 </h2>
                 <!-- CTA -->
@@ -37,12 +37,12 @@
                         </svg>
                         <span>Welcome to the new FRCS dashboard</span>
 
-                    </div>         
+                    </div>
                 </div>
                 <!-- Cards -->
                 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+                    <div class="flex items-center p-4 bg-cream dark:bg-secondary rounded-xl shadow-xs">
                         <div
                             class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -55,13 +55,13 @@
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                 Teams Registered
                             </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-gray-700 dark:text-white">
                                 {{team_count}}
                             </p>
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+                    <div class="flex items-center p-4 bg-cream dark:bg-secondary rounded-xl shadow-xs ">
                         <div
                             class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -74,7 +74,7 @@
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                 Data Submissions
                             </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-gray-700 dark:text-white">
                                 {{sub_count}}
                             </p>
                         </div>
@@ -84,37 +84,39 @@
                 <div class="flex flex-col w-full mx-auto">
                     <div class="-my-2  sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                            <div class=" overflow-hidden border-b border-gray-200 sm:rounded-md">
+                            <div class=" overflow-hidden border-b border-gray-200 dark:border-black  rounded-xl">
 
-                                <table class="min-w-full divide-y divide-gray-200" id='data-table'>
-                                    <thead class="bg-white">
+                                <table class="min-w-full divide-y divide-gray-200 bg-cream dark:bg-secondary"
+                                    id='data-table'>
+                                    <thead class="">
                                         <tr>
                                             <th scope="col"
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Team Number
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                                Team
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
                                                 Rank
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200">
+                                    <tbody class=" divide-y divide-gray-200">
 
                                         <tr>
 
                                             <td class=" py-4 whitespace-nowrap">
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-black">
-                                                        <p class='text-black font-semibold'>The Mechanical Bulls</p>
-                                                        <p class='text-gray-500 font-semibold text-sm'>Team 810</p>
+                                                        <p class='text-black dark:text-white font-semibold'>The
+                                                            Mechanical Bulls</p>
+                                                        <p class='text-gray-400 font-semibold text-sm'>Team 810</p>
 
                                                     </div>
 
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <p class="text-black font-bold">1</p>
+                                                <p class="text-black dark:text-white font-bold">1</p>
                                             </td>
                                         </tr>
 
@@ -128,31 +130,31 @@
                 </div>
 
 
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-white">
                     Global Data
                 </h2>
                 <!-- Cards -->
                 <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2">
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                 Average robot weight
                             </p>
-                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
                                 {{pit_stats_weight}} lbs
                             </p>
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
 
                             </p>
-                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
 
                             </p>
                         </div>
@@ -160,32 +162,32 @@
 
 
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                 Average robot width
                             </p>
-                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
                                 {{pit_stats_width}} in
                             </p>
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
                                 Average robot length
                             </p>
-                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-gray-200">
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
                                 {{pit_stats_length}} in
                             </p>
                         </div>
                     </div>
-                
 
-                   
+
+
                 </div>
 
 
@@ -193,35 +195,35 @@
         </main>
 
         <div class="grid gap-6 mb-8 md:grid-cols-2 container px-6 mx-auto">
-            <div class="min-w-0 p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Vision Types
                 </h4>
                 <canvas id="pie2"></canvas>
 
             </div>
-            <div class="min-w-0 p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Vision Usage
                 </h4>
                 <canvas id="pie"></canvas>
 
             </div>
-            <div class="min-w-0 p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Climb
                 </h4>
                 <canvas id="pie3"></canvas>
 
             </div>
-            <div class="min-w-0 p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Buddy Climb
                 </h4>
                 <canvas id="pie4"></canvas>
 
             </div>
-            <div class="min-w-0 p-4 bg-white rounded-xl shadow-xs dark:bg-gray-800">
+            <div class="min-w-0 p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Drivetrain Type
                 </h4>
@@ -292,9 +294,6 @@
 </script>
 
 <script>
-
-
-
     var visionUsedCanvas = document.getElementById("pie");
     var visionUsedctx = visionUsedCanvas.getContext('2d');
 
@@ -349,9 +348,6 @@
 
 
 <script>
-
-
-
     var climbCanvas = document.getElementById("pie3");
     var climbctx = climbCanvas.getContext('2d');
 
@@ -402,8 +398,6 @@
         data: climbData,
         options: climbOptions
     });
-
-
 </script>
 
 
@@ -491,17 +485,20 @@
         datasets: [{
             fill: true,
             backgroundColor: [
-            'red',
-            '#3af3bb',
-            '#17a1cc',
-            '#176079',
-            '#3ab3bb',
-            '#fff000',
+                'red',
+                '#3af3bb',
+                '#17a1cc',
+                '#176079',
+                '#3ab3bb',
+                '#fff000',
 
-            'green',
-            
+                'green',
+
             ],
-            data: ['{{pit_stats_dt_4skid}}', '{{pit_stats_dt_6skid}}', '{{pit_stats_dt_8skid}}', '{{pit_stats_dt_tread}}', '{{pit_stats_dt_omni}}', '{{pit_stats_dt_swerve}}', '{{pit_stats_dt_other}}'],
+            data: ['{{pit_stats_dt_4skid}}', '{{pit_stats_dt_6skid}}', '{{pit_stats_dt_8skid}}',
+                '{{pit_stats_dt_tread}}', '{{pit_stats_dt_omni}}', '{{pit_stats_dt_swerve}}',
+                '{{pit_stats_dt_other}}'
+            ],
 
 
         }]

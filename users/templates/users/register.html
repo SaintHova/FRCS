@@ -1,44 +1,21 @@
 {%extends 'users/base.html'%}
 
 {%block styles%}
-<link rel="stylesheet" href="../../static/users/assets/css/register.css">
-<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
 <script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
 
 {%endblock styles%}
 {%block content%}
-<script>
-    var options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#dedede', // default: '#fff'
-        backgroundColor: '#fff', // default: '#fff'
-        buttonColorDark: '#100f2c', // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: true, // default: true,
-        label: '', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
-
-  
-  </script>
-
-
-
-    <div class="flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-dark">
       
         <div class="max-w-md w-full space-y-8">
           <div>
-            <h2 style='color: black;' class="mt-6 text-center text-4xl font-extrabold">
+            <h2 class="mt-6 text-black dark:text-white text-center text-4xl font-extrabold">
               Register an account
             </h2>
             
-            <p style='color: black;' class="mt-2 text-center text-sm">
+            <p class="mt-2 text-center text-sm text-black dark:text-white">
                 Or
-                <a href="{% url 'login-view' %}"  class="font-medium text-black">
+                <a href="{% url 'login-view' %}"  class="font-medium  text-black dark:text-white">
                   Login
                 </a>
               </p>
@@ -65,7 +42,7 @@
               </div>
               <div>
                 <label for="password" class="sr-only">Password</label>
-                <input id="confirm" name="confirm" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 focus:outline-none rounded-b-md focus:ring-black focus:border-black focus:z-10 sm:text-sm" placeholder="Verify Password">
+                <input id="confirm" name="confirm" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white" placeholder="Verify Password">
               </div>
               <div>
                 <div class=''>{{form.team_num}}</div>
@@ -78,7 +55,7 @@
 
 
             <fieldset class="checkbox-group">
-                <legend class="checkbox-group-legend" style='color: black;'>Choose your position</legend>
+                <legend class="checkbox-group-legend text-black dark:text-white">Choose your position</legend>
                 <div class="checkbox">
                     <label class="checkbox-wrapper">
                         <input type="checkbox" id='mentor-cbx' class="checkbox-input" onclick='mentorToggled()' />
