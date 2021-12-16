@@ -133,6 +133,14 @@ class UserEditForm(UserChangeForm):
 
 
 class ProfileEditForm(forms.ModelForm):
+    
+    image = forms.FileField(widget=forms.ClearableFileInput(
+        attrs={
+            'class': 'file:bg-blue-500'
+            }
+        ))
+
+    
     class Meta:
         model = Profile
         fields = ('image',)

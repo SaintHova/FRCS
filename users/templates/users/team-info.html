@@ -9,16 +9,16 @@
 {%endblock styles%}
 {%block content%}
 
-<div class="flex h-screen  dark:bg-dark bg-gray-50">
+<div class="flex h-screen dark:bg-dark bg-gray-50">
     <div class="flex flex-col flex-1 w-full">
         <main class="">
             <div class="container px-6 mx-auto grid">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-white">
                     Team Info
                 </h2>
                 <form method='post'>
                     {% csrf_token %}
-                    <label id='label'>Change team email</label>
+                    <label id='label' class='dark:text-white'>Change team email</label>
                     <div class='mb-4'>
                     {{form.email}}
                     </div>
@@ -26,7 +26,7 @@
                     <label style='margin-left: 0%;' class="cbx" for="cbx"><span>
                             <svg width="12px" height="10px" viewbox="0 0 12 10">
                                 <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                            </svg></span><span id="checkbox-text">Hide pit data</span></label>
+                            </svg></span><span id="checkbox-text" class='dark:text-white'>Hide pit data</span></label>
                     <button class='btn-default' id='submit-form' type='submit'>Submit</button>
                 </form>
 

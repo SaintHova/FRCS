@@ -159,7 +159,8 @@
                             {{form.robot_highlow|attr:"class:form-single"}}
                             <br>
 
-                            <p id="label" class='mt-4 mb-2'>Do They Shoot For Low Goal, High Goal, Or Both</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do They Shoot For Low Goal, High Goal, Or
+                                Both</p>
                             {{form.robot_goal|attr:"class:form-single"}}
                             </br>
 
@@ -192,7 +193,37 @@
                             {{form.robot_buddy_climb|attr:"class:form-single"}}
                             <br>
 
-                            <div id="autoPoints"></div>
+                            <!-- Custom Questions -->
+                            <div id='customOne'>
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question One: </p>
+                                {{form.customOne|attr:"class:form-single"}}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer One: </p>
+                                {{form.answerOne|attr:"class:form-single"}}
+                                <br>
+                            </div>
+
+                            <div id='customTwo'>
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question Two: </p>
+                                {{form.customTwo|attr:"class:form-single"}}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer Two: </p>
+                                {{form.answerTwo|attr:"class:form-single"}}
+                                <br>
+                            </div>
+
+                            <div id='customThree'>
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question Three: </p>
+                                {{form.customThree|attr:"class:form-single"}}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer Three: </p>
+                                {{form.answerThree|attr:"class:form-single"}}
+                                <br>
+                            </div>
+
+
+
+                            <br>
+                            <button  type="button" id='add-question'
+                                class='transition border-2 border-blue-500 border-dotted rounded-xl w-full h-14 text-black dark:text-white hover:bg-blue-600'>Add
+                                Question</button>
 
                             <label id="label" class='mt-4 mb-2'>Notes</label>
                             <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
@@ -225,7 +256,59 @@
     </main>
 </div>
 </div>
+<script>
+    $(document).ready(function () {
+        window.onload = async function getComps() {
+            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
+                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+            }, function (data) {
+                var jObject = (data);
 
+                for (i = 0; i < 5; i++) {
+                    console.log(jObject[i]['name'])
+                    $('#select-comp-dropdown').append(
+                        '<option>' + jObject[i][
+                            'name'
+                        ] + '</option>')
+                }
+
+            })
+        }
+    })
+
+    document.getElementById('select-comp-dropdown').addEventListener("change",
+        function () {
+            var comp = document.getElementById("select-comp-dropdown").value;
+            console.log(comp);
+            document.getElementById("comp").value = comp;
+        });
+
+
+
+    $(document).ready(function () {
+        document.getElementById('customOne').style.display = 'none';
+        document.getElementById('customTwo').style.display = 'none';
+        document.getElementById('customThree').style.display = 'none';
+    });
+
+
+
+    document.getElementById('add-question').addEventListener("click", function () {
+        if (document.getElementById('customOne').style.display == 'none') {
+            document.getElementById('customOne').style.display = 'block';
+        } else if (document.getElementById('customTwo').style.display == 'none') {
+            document.getElementById('customTwo').style.display = 'block';
+        } else if (document.getElementById('customThree').style.display == 'none') {
+
+            document.getElementById('customThree').style.display = 'block';
+            document.getElementById('add-question').style.display = 'none';
+        } else {
+            document.getElementById('customThree').style.display = 'none';
+        }
+
+
+    });
+</script>
 
 
 {%endblock content%}
