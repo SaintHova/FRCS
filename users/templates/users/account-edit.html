@@ -17,10 +17,10 @@
        
           <form method='post'>
             {% csrf_token %}
-            <p id="label" class='mt-4 mb-2'>Email</p>
+            <p id="label" class='mt-4 mb-2 dark:text-white'>Email</p>
             {{form.email}}
             
-            <p id="label" class='mt-4 mb-2'>Username</p>
+            <p id="label" class='mt-4 mb-2 dark:text-white'>Username</p>
             {{form.username}}
 
             <button class='btn-default mt-4' id='submit-form' type='submit'>Submit</button>

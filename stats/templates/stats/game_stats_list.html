@@ -23,17 +23,17 @@
           <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Match Stats List
           </h2>
-          <button onclick='window.location.href="{% url "pitscout-view" %}"'
-            class="inline-flex items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600 mt-3">
-
-            <p class='font-semibold text-white'>New Data</p>
-          </button>
         </div>
 
 
 
-        <div class=' mx-auto mb-3 w-full'>
-          <input id="search-bar" class="form-search" placeholder="Search Team">
+        <div class=' mx-auto mb-3 w-full flex justify-between'>
+          <input id="search-bar" class="form-search h-10" placeholder="Search Team">
+          <button onclick='window.location.href="{% url "scout-view" %}"'
+            class="inline-flex items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600 ">
+
+            <p class='font-semibold text-white'>New Data</p>
+          </button>
         </div>
 
         <div class="flex flex-col w-full mx-auto">

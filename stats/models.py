@@ -89,7 +89,6 @@ class Match(models.Model):
     match_id = models.CharField(max_length=10, null = True)
     score = models.IntegerField(null = True)
 
-
     def __str__(self):
         return f'{self.team_num} scouting {self.scouted_team_num} at {self.competition} match number {self.match_number}'
 

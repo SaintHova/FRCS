@@ -68,19 +68,52 @@
 
 
 <div class="">
+
     <main class=" overflow-y-auto">
       <div class="container px-6 mx-auto grid">
         <div class=>
         <h2 class="my-6 mb-0 text-2xl font-semibold text-gray-700 dark:text-gray-200">
           Match Scouting
         </h2>
+        
         <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Test team name</h2>
-
-
-                
-                
+        </div>
+        <center>
+            <div style='width: 85%;'>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == "error" %}
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                    href="https://github.com/estevanmaito/windmill-dashboard">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+        
+                        <span>{{message}}</span>
+        
+                    </div>
+                </div>
+                {% endif %}
+                {% if message.tags == "success" %}
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                    href="https://github.com/estevanmaito/windmill-dashboard">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                          </svg>
+        
+                        <span>{{message}}</span>
+        
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
             </div>
-
+        </center>
 <div class='lg:w-2/5 sm:w-3/5 w-11/12 mx-auto'>
         <p class='text-2xl font-semibold text-center mt-10 text-black mb-3'>General Info</p>
         <p class='text-2xl font-semibold text-center mt-10 text-black mb-3'>Pregame</p>

@@ -35,44 +35,9 @@
     }
 </style>
 
-<center>
-    <div style='width: 85%;'>
-        {% if messages %}
-        {% for message in messages %}
-        {% if message.tags == "error" %}
-        <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
-            href="https://github.com/estevanmaito/windmill-dashboard">
-            <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                        clip-rule="evenodd" />
-                </svg>
-
-                <span>{{message}}</span>
-
-            </div>
-        </div>
-        {% endif %}
-        {% if message.tags == "success" %}
-        <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
-            href="https://github.com/estevanmaito/windmill-dashboard">
-            <div class="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-
-                <span>{{message}}</span>
-
-            </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-    </div>
-</center>
 <div>
-    <div class=" bg-gray-50">
+    <div class=" bg-gray-50 dark:bg-dark">
+
         <!-- Desktop sidebar -->
 
         <!-- Mobile sidebar -->
@@ -87,16 +52,52 @@
                         </h2>
                         <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
                     </div>
+                    <center>
+                        <div style='width: 85%;'>
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.tags == "error" %}
+                            <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                                href="https://github.com/estevanmaito/windmill-dashboard">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                    
+                                    <span>{{message}}</span>
+                    
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if message.tags == "success" %}
+                            <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                                href="https://github.com/estevanmaito/windmill-dashboard">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                      </svg>
+                    
+                                    <span>{{message}}</span>
+                    
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </center>
                     <div class="formContents">
                         <form method="post">
                             {% csrf_token %}
 
 
-                            <p id="label" class='mt-4 mb-2'>Team Number</p>
-                            {{ form.team_num|attr:"class:transition w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out"|attr:"placeholder:00"|attr:"id:teamNumber" |attr:"name: teamNumber"|attr:"onchange:changeName()"}}
+                            <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Team Number</p>
+                            {{ form.team_num|attr:"class:dark:bg-secondary transition w-full dark:border-transparent bg-gray-100 bg-opacity-50 rounded border-2 border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out"|attr:"placeholder:00"|attr:"id:teamNumber" |attr:"name: teamNumber"|attr:"onchange:changeName()"}}
                             <br>
 
-                            <p id="label" class='mt-4 mb-2'>Robot Frame Perimeter</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Robot Frame Perimeter</p>
                             <select id='select-comp-dropdown' class='dd-single'>
                                 <option>--SELECT COMPETITION--</option>
                                 <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
@@ -133,10 +134,10 @@
                                 {{form.competition|attr:"class:form-single"|attr:"placeholder:Competition"|attr:"id:comp" }}
                             </div>
 
-                            <p id="label" class='mt-4 mb-2'>Robot Weight</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Robot Weight</p>
                             {{form.robot_weight|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
 
-                            <p id="label" class='mt-4 mb-2'>Robot Frame Perimeter</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Robot Frame Perimeter</p>
                             <div class='flex space-x-5'>
 
                                 <div class='w-1/2'>
@@ -149,71 +150,71 @@
                             </div>
 
 
-                            <p id="label" class='mt-4 mb-2'>DriveTrain Type</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>DriveTrain Type</p>
                             {{form.robot_drivetrain_type|attr:"class:form-single"}}
                             <div id="tank1"></div>
                             <div id="tank2"></div>
                             <br>
 
-                            <p id="label" class='mt-4 mb-2'>Are they a high or low bot</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Are they a high or low bot</p>
                             {{form.robot_highlow|attr:"class:form-single"}}
                             <br>
 
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do They Shoot For Low Goal, High Goal, Or
+                            <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Do They Shoot For Low Goal, High Goal, Or
                                 Both</p>
                             {{form.robot_goal|attr:"class:form-single"}}
                             </br>
 
-                            <p id="label" class='mt-4 mb-2'>Do they complete rotational control</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do they complete rotational control</p>
                             {{form.robot_control_panel_rot|attr:"class:form-single"}}
                             <br>
 
-                            <p id="label" class='mt-4 mb-2'>Do they complete positional control</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do they complete positional control</p>
                             {{form.robot_control_panel_pos|attr:"class:form-single"}}
                             <br>
 
-                            <p id="label" class='mt-4 mb-2'>Do they perform in autonomous</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do they perform in autonomous</p>
                             {{form.robot_autonomous|attr:"class:form-single"}}
                             <br>
 
-                            <p id="label" class='mt-4 mb-2'>Vision Type</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Vision Type</p>
                             {{form.robot_vision_type|attr:"class:form-single"}}
                             </br>
 
-                            <p id="label" class='mt-4 mb-2'>Is Vision Implemented During The Match</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Is Vision Implemented During The Match</p>
                             {{form.robot_vision_implement|attr:"class:form-single"}}
                             </br>
 
 
-                            <p id="label" class='mt-4 mb-2'>Do They Climb</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do They Climb</p>
                             {{form.robot_climb|attr:"class:form-single"}}
                             <br>
 
-                            <p id="label" class='mt-4 mb-2'>Do They Help Others Climb</p>
+                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do They Help Others Climb</p>
                             {{form.robot_buddy_climb|attr:"class:form-single"}}
                             <br>
 
                             <!-- Custom Questions -->
                             <div id='customOne'>
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question One: </p>
+                                <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Question One: </p>
                                 {{form.customOne|attr:"class:form-single"}}
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer One: </p>
+                                <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Answer One: </p>
                                 {{form.answerOne|attr:"class:form-single"}}
                                 <br>
                             </div>
 
                             <div id='customTwo'>
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question Two: </p>
+                                <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Question Two: </p>
                                 {{form.customTwo|attr:"class:form-single"}}
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer Two: </p>
+                                <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Answer Two: </p>
                                 {{form.answerTwo|attr:"class:form-single"}}
                                 <br>
                             </div>
 
                             <div id='customThree'>
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question Three: </p>
+                                <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Question Three: </p>
                                 {{form.customThree|attr:"class:form-single"}}
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer Three: </p>
+                                <p id="label" class='mt-4 mb-2 dark:text-white dark:text-white'>Answer Three: </p>
                                 {{form.answerThree|attr:"class:form-single"}}
                                 <br>
                             </div>
@@ -225,19 +226,12 @@
                                 class='transition border-2 border-blue-500 border-dotted rounded-xl w-full h-14 text-black dark:text-white hover:bg-blue-600'>Add
                                 Question</button>
 
-                            <label id="label" class='mt-4 mb-2'>Notes</label>
+                            <label id="label" class='mt-4 mb-2 dark:text-white'>Notes</label>
                             <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
                             {{ form.notes|attr:"class:form-single"|attr:"rows:3"|attr:"id: notes-text" }}
 
                             <button type="submit" class="btn-default mt-3">
-                                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                                    <!-- Heroicon name: solid/lock-closed -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 11l5-5m0 0l5 5m-5-5v12" />
-                                    </svg>
-                                </span>
+                                
                                 <p class='font-semibold text-white'>Submit Data</p>
                             </button>
                     </div>
