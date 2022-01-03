@@ -112,7 +112,7 @@ class UserEditForm(UserChangeForm):
         attrs={
             'id':"email-address",
             'name': 'email-address',
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"form-single",
             'placeholder':'Email'
         }
     ))
@@ -120,7 +120,7 @@ class UserEditForm(UserChangeForm):
     username = forms.CharField(label='Username', widget=forms.TextInput(
         attrs={
             'id':"username",
-            'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 rounded-t-md focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm",
+            'class':"form-single",
             'placeholder':'Username'
         }
     ))
@@ -151,10 +151,78 @@ class GameEditForm(forms.ModelForm):
         model = Match
         exclude = ['competition', 'stat', 'scout']
 
+BOT_HEIGHT = [
+ ('Low - below 28"', 'Low - below 28"'),
+ ('High - above 28"', 'High - above 28"'),
+]
+
+
+DRIVETRAIN_TYPE = [
+    ('4 Wheel Skid', '4 Wheel Skid'),
+    ('6 Wheel Skid', '6 Wheel Skid'),
+    ('8 Wheel Skid', '8 Wheel Skid'),
+    ('Treads', 'Treads'),
+    ('Omni', 'Omni'),
+    ('Swerve','Swerve'),
+    ('Other','Other'),	
+]
+
+VISION_TYPE = [
+    
+ ('None', 'None'),
+ ('Limelight', 'Limelight'),
+ ('Raspberry Pi', 'Raspberry Pi'),
+ ('Other', 'Other'),
+]
+
+GOAL_SHOT = [
+ 
+ ('Lower', 'Lower'),
+ ('Inner', 'Inner'),
+ ('Outer', 'Outer'),
+ ('Both Low and High', 'Both Low and High'),
+]
+
+
+
+TRUE_FALSE = [
+    ('No', 'No'),
+    ('Yes', 'Yes'),
+]
+
+PENALTIES = [
+    ('None', 'None'),
+    ('Disbaled', 'Disabled'),
+    ('Foul', 'Foul'),
+    ('Tech Foul', 'Tech Foul'),
+    ('Yellow Card', 'Yellow Card'),
+    ('Red Card', 'Red Card')
+]
+
+CP = [
+    ('No', 'No'),
+    ('Positional', 'Positional'),
+    ('Rotational', 'Rotational'),
+    ('Both Position and Rotation', 'Both Position and Rotation')
+    
+]
+
 class PitEditForm(forms.ModelForm):
+    
+    robot_drivetrain_type = forms.CharField(widget=forms.Select(choices=DRIVETRAIN_TYPE))
+    robot_highlow = forms.CharField(widget=forms.Select(choices=BOT_HEIGHT))
+    robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
+    robot_goal = forms.CharField(widget=forms.Select(choices=GOAL_SHOT))
+    robot_vision_implement = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+
     class Meta:
         model = Pit_stats
-        exclude = ['competition', 'stat_id', 'scout', 'date_entered']
+        exclude = ['scout', 'scouted_team_num', 'stat_id', 'date_entered', 'is_incorrect', 'is_hidden']
         
 class TeamEditForm(forms.ModelForm):
     

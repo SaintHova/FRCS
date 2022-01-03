@@ -25,7 +25,6 @@
         $("#nickname").html(jObject['nickname']);
         console.log(jObject);
     })
-    
 </script>
 
 
@@ -83,12 +82,13 @@
                             <h2 class="mt-6 text-left text-2xl font-semibold text-gray-700 dark:text-gray-200">
                                 Pit Data for Team {{object.team_num}}
                             </h2>
-                            <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Loading...</h2>
+                            <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Loading...
+                            </h2>
                         </div>
                         {% if not object.is_incorrect %}
                         <button onclick='location.href="{% url 'pit-flag-view' id=object.id %}"'
                             class='inline-flex mt-6 w-14 h-14 items-center text-lg justify-center font-semibold tracking-wide text-white transition duration-200 bg-red-500 rounded-lg hover:bg-red-600'>
-                            
+
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -97,255 +97,275 @@
 
                         </button>
                         {% endif %}
-                        </div>
                     </div>
-                    {% if  object.is_incorrect %}
-        <div
-          class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
-          href="https://github.com/estevanmaito/windmill-dashboard">
-          <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                clip-rule="evenodd" />
-            </svg>
+                </div>
+                {% if  object.is_incorrect %}
+                <div class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
+                    href="https://github.com/estevanmaito/windmill-dashboard">
+                    <div class="flex justify-between items-center">
+                        <div class='flex'>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                clip-rule="evenodd" />
+                        </svg>
 
-            <span>This pit data was flagged as incorrect</span>
-
-
-          </div>
-
-        </div>
-        {% endif %}
-
-                    <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2 ">
-                        <!-- Card -->
-                        <div class="flex bg-cream dark:bg-secondary items-center p-4  rounded-xl shadow-xs">
-
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400 ">
-                                    Robot weight
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_weight}}
-                                </p>
-                            </div>
+                        <span class='mt-1'>This pit data was flagged as incorrect</span>
                         </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-
-                            <div>
-                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Robot height
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_highlow}}
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Robot width
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_frame_width}} in
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-
-                            <div>
-                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Robot length
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_frame_length}} in
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Robot drivetrain
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_drivetrain_type}}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-
-                            <div>
-                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Card -->
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-
-                            <div>
-                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Robot vision type
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_vision_type}}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
 
 
-                            <div>
-                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Is vision implemented
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_vision_implement}}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
 
-                            <div>
-                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Does the robot climb
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_climb}}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-
-                            <div>
-                                <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Does the robot help others climb
-                                </p>
-                                <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_climb}}
-                                </p>
-                            </div>
-                        </div>
+                        <a href='{% url "pit-update-view" object.id %}' class=' transition duration-300 ease-in-out rounded p-0.5 hover:bg-white hover:text-red-500'>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </a>
                     </div>
 
+                </div>
+                {% endif %}
+
+                <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2 ">
+                    <!-- Card -->
+                    <div class="flex bg-cream dark:bg-secondary items-center p-4  rounded-xl shadow-xs">
+
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400 ">
+                                Robot weight
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_weight}}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Robot height
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_highlow}}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
                     <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                Notes
+                                Robot width
                             </p>
                             <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                {{object.notes}}
+                                {{object.robot_frame_width}} in
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Robot length
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_frame_length}} in
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Robot drivetrain
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_drivetrain_type}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Robot vision type
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_vision_type}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Is vision implemented
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_vision_implement}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Does the robot climb
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_climb}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Does the robot help others climb
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.robot_climb}}
                             </p>
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
-    </div>
 
-    <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-        
-        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
-          
-          <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-            <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+
+                    <div>
+                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                            Notes
+                        </p>
+                        <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                            {{object.notes}}
+                        </p>
+                    </div>
+                </div>
+        </div>
+        </main>
+    </div>
+</div>
+
+<div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+
+        <div
+            class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+            <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                viewBox="0 0 18 18">
+                <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                </path>
             </svg>
             <span class="text-sm">(Esc)</span>
-          </div>
-    
-          <!-- Add margin if you want to see some of the overlay behind the modal-->
-          <div class="modal-content py-4 text-left px-6">
+        </div>
+
+        <!-- Add margin if you want to see some of the overlay behind the modal-->
+        <div class="modal-content py-4 text-left px-6">
             <!--Title-->
             <div class="flex justify-between items-center pb-3">
-              <p class="text-2xl font-bold">Data Flagged</p>
-              <div class="modal-close cursor-pointer z-50">
-                <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-                </svg>
-              </div>
+                <p class="text-2xl font-bold">Data Flagged</p>
+                <div class="modal-close cursor-pointer z-50">
+                    <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                        viewBox="0 0 18 18">
+                        <path
+                            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                        </path>
+                    </svg>
+                </div>
             </div>
-    
+
             <!--Body-->
-            <p>The data that has been scouted for your team has been flagged as incorrect. Please either hide or fix data as soon as possible. Thank you</p>
-            
-    
+            <p>The data that has been scouted for your team has been flagged as incorrect. Please either hide or fix
+                data as soon as possible. Thank you</p>
+
+
             <!--Footer-->
             <div class="flex justify-end pt-4">
-              <button class="bg-transparent px-4 h-12 rounded-lg text-blue-500 hover:bg-blue-600 hover:text-indigo-400 mr-2">Hide Data</button>
-              <button class="modal-close inline-flex w-36 items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600">Close</button>
+                <button
+                    class="bg-transparent px-4 h-12 rounded-lg text-blue-500 hover:bg-blue-600 hover:text-indigo-400 mr-2">Hide
+                    Data</button>
+                <button
+                    class="modal-close inline-flex w-36 items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600">Close</button>
             </div>
-            
-          </div>
+
         </div>
-      </div>
-      
+    </div>
+</div>
 
-      <style>
-        .modal {
-          transition: opacity 0.25s ease;
-        }
-        body.modal-active {
-          overflow-x: hidden;
-          overflow-y: visible !important;
-        }
-      </style>
 
-      <script>
-        var openmodal = document.querySelectorAll('.modal-open')
-        for (var i = 0; i < openmodal.length; i++) {
-          openmodal[i].addEventListener('click', function(event){
+<style>
+    .modal {
+        transition: opacity 0.25s ease;
+    }
+
+    body.modal-active {
+        overflow-x: hidden;
+        overflow-y: visible !important;
+    }
+</style>
+
+<script>
+    var openmodal = document.querySelectorAll('.modal-open')
+    for (var i = 0; i < openmodal.length; i++) {
+        openmodal[i].addEventListener('click', function (event) {
             event.preventDefault()
             toggleModal()
-          })
-        }
-        
-        const overlay = document.querySelector('.modal-overlay')
-        overlay.addEventListener('click', toggleModal)
-        
-        var closemodal = document.querySelectorAll('.modal-close')
-        for (var i = 0; i < closemodal.length; i++) {
-          closemodal[i].addEventListener('click', toggleModal)
-        }
-        
-        document.onkeydown = function(evt) {
-          evt = evt || window.event
-          var isEscape = false
-          if ("key" in evt) {
+        })
+    }
+
+    const overlay = document.querySelector('.modal-overlay')
+    overlay.addEventListener('click', toggleModal)
+
+    var closemodal = document.querySelectorAll('.modal-close')
+    for (var i = 0; i < closemodal.length; i++) {
+        closemodal[i].addEventListener('click', toggleModal)
+    }
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event
+        var isEscape = false
+        if ("key" in evt) {
             isEscape = (evt.key === "Escape" || evt.key === "Esc")
-          } else {
+        } else {
             isEscape = (evt.keyCode === 27)
-          }
-          if (isEscape && document.body.classList.contains('modal-active')) {
-            toggleModal()
-          }
-        };
-        
-        
-        function toggleModal () {
-          const body = document.querySelector('body')
-          const modal = document.querySelector('.modal')
-          modal.classList.toggle('opacity-0')
-          modal.classList.toggle('pointer-events-none')
-          body.classList.toggle('modal-active')
         }
-        
-         
-      </script>
-    
+        if (isEscape && document.body.classList.contains('modal-active')) {
+            toggleModal()
+        }
+    };
 
 
-    {%endblock content%}
-    <!--This is really bad formatting but it looks really cool so im keeing it-->
+    function toggleModal() {
+        const body = document.querySelector('body')
+        const modal = document.querySelector('.modal')
+        modal.classList.toggle('opacity-0')
+        modal.classList.toggle('pointer-events-none')
+        body.classList.toggle('modal-active')
+    }
+</script>
+
+
+
+{%endblock content%}
+<!--This is really bad formatting but it looks really cool so im keeing it-->

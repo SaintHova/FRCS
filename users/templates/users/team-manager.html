@@ -18,7 +18,7 @@
           </h2>
           <div>
             <button onclick='window.location.href="{% url "team-info-view" %}"'
-              class="inline-flex items-center text-lg justify-center h-10 w-full sm:w-56 px-6 font-semibold tracking-wide text-white transition duration-200 bg-black rounded-lg">
+              class="inline-flex items-center text-lg justify-center h-10 w-full sm:w-56 px-6 font-semibold tracking-wide text-white transition duration-200 bg-black rounded-lg hover:bg-secondary">
 
               <p class='font-semibold text-white'>Edit team info</p>
             </button>
@@ -27,7 +27,7 @@
         </div>
         {% if is_hidden %}
         <div
-          class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue "
+          class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue "
           href="https://github.com/estevanmaito/windmill-dashboard">
           <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -37,16 +37,13 @@
             </svg>
 
             <span>The pit data that was submitted was hidden</span>
-
-
           </div>
-
         </div>
         {% endif %}
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
 
-          <div class="flex items-center p-4 bg-white  rounded-xl shadow-xs dark:bg-gray-800">
-            <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+          <div class="flex items-center p-4 bg-cream dark:bg-secondary rounded-xl shadow-xs">
+            <div class="p-3 mr-4 text-blue-100 bg-blue-500 rounded-full ">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
@@ -54,10 +51,10 @@
               </svg>
             </div>
             <div>
-              <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-black">
+              <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-gray-400">
                 Users Registered
               </p>
-              <p class="text-lg font-semibold text-gray-700 dark:text-black">
+              <p class="text-lg font-semibold text-gray-700 dark:text-white">
                 {{usersCount}}
               </p>
             </div>
@@ -66,7 +63,7 @@
           <div>
             <!-- Card -->
             <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary ">
-              <div class="p-3 mr-4 text-red-500 bg-red-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+              <div class="p-3 mr-4 text-red-100 bg-red-500 rounded-full ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -78,11 +75,10 @@
                   <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-gray-400">
                     Data Incorrect
                   </p>
-                  <!--! Fix now button does not work -->
-                  <a class='mt-2'>View Data</a>
+                  <a href='{% url "pitdata-view" link %}' class='inline-flex items-center text-lg justify-center text-white'>View Data</a>
                 </div>
-                <p class="text-lg font-semibold text-gray-700 dark:text-cream">
-                  The pit data submitted for your team is hidden
+                <p class="text-lg font-semibold text-gray-700 dark:text-white">
+                  The pit data submitted for your team is incorrect
                 </p>
               </div>
             </div>
@@ -91,7 +87,7 @@
           {% elif is_incorrect is False %}
           <!-- Card -->
           <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-            <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+            <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full ">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -99,17 +95,17 @@
               </svg>
             </div>
             <div>
-              <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-black">
+              <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-gray-400">
                 Data Correct
               </p>
-              <p class="text-lg font-semibold text-gray-700 dark:text-black">
+              <p class="text-lg font-semibold text-gray-700 dark:text-white">
                 The pit data scouted is correct
               </p>
             </div>
           </div>
           {% else %}
           <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
-            <div class="p-3 mr-4 text-yellow-500 bg-yellow-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+            <div class="p-3 mr-4 text-yellow-500 bg-yellow-100 rounded-full ">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -117,10 +113,10 @@
               </svg>
             </div>
             <div>
-              <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-black">
+              <p class="mb-2 mt-2 text-lg font-medium text-gray-600 dark:text-gray-400">
                 No Data
               </p>
-              <p class="text-lg font-semibold text-gray-700 dark:text-black">
+              <p class="text-lg font-semibold text-gray-700 dark:text-white">
                 Pit data has not been scouted yet
               </p>
             </div>
@@ -140,11 +136,11 @@
 
                     <tr>
                       <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-400 dark:text-white uppercase tracking-wider">
                         User
                       </th>
                       <th scope="col"
-                        class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">
+                        class="px-6 py-3 text-right text-xs font-medium text-gray-400 dark:text-white uppercase tracking-wider">
                         View More
                       </th>
                     </tr>

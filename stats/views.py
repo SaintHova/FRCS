@@ -27,7 +27,7 @@ def scouthub(request):
             #*checks to see if there is data scouted for team
             'team_count': Team.objects.filter(team_users__isnull='').count(),
 
-            'sub_count': Match.objects.filter(match_number__isnull='').count(),
+            'sub_count': Match.objects.filter(match_number__isnull='').count() + Pit_stats.objects.all().count(),
             'teams': Game_stats.objects.all(),
             
             'pit_stats_vision_none':  Pit_stats.objects.filter(robot_vision_type='None').count(),

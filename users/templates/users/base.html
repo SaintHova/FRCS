@@ -65,20 +65,20 @@
       </div>
       <div class="hidden lg:block ml-auto mr-10">
         <ul class="flex items-center space-x-10 text-lg font-bold dark:text-white">
-          <li><a class="hover:no-underline" href="{% url 'home-view' %}" data-config-id="link1">Home</a></li>
+          <li><a class="hover:no-underline transition duration-300" href="{% url 'home-view' %}" data-config-id="link1">Home</a></li>
 
           
           {% if user.is_authenticated %}
-          <li><a class="hover:no-underline" href="{% url 'scouthub-view' %}" data-config-id="link2">Data Hub</a></li>
-          <li><a class="hover:no-underline" href="{% url 'gamedatahub-view' %}" data-config-id="link2">Game Scout</a>
+          <li><a class="hover:no-underline transition duration-300" href="{% url 'scouthub-view' %}" data-config-id="link2">Data Hub</a></li>
+          <li><a class="hover:no-underline transition duration-300" href="{% url 'gamedatahub-view' %}" data-config-id="link2">Game Scout</a>
           </li>
-          <li><a class="hover:no-underline" href="{% url 'pitdatahub-view' %}" data-config-id="link2">Pit Scout</a></li>
+          <li><a class="hover:no-underline transition duration-300" href="{% url 'pitdatahub-view' %}" data-config-id="link2">Pit Scout</a></li>
           {% if user.is_admin %}
-          <li><a class="hover:no-underline" href="{% url 'management-view' %}" data-config-id="link2">Team</a></li>
+          <li><a class="hover:no-underline transition duration-300" href="{% url 'management-view' %}" data-config-id="link2">Team</a></li>
           {% endif %}
           {% endif %}
           {% if user.is_authenticated %}
-          <li><a class="" href="{% url 'profile-view' %}" data-config-id="link2">
+          <li><a class="transition duration-300" href="{% url 'profile-view' %}" data-config-id="link2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
@@ -90,7 +90,7 @@
             </a>
           </li>
 
-          <li><a class="hover:text-red-600" href="{% url 'logout-view' %}" data-config-id="link2">
+          <li><a class="hover:text-red-600 duration-300" href="{% url 'logout-view' %}" data-config-id="link2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"

@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .form-single {
-    @apply dark:bg-secondary transition w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
+    @apply dark:bg-secondary dark:text-white dark:focus:bg-dark focus:border-0 border-2 transition w-full dark:border-transparent bg-gray-100 bg-opacity-50 rounded border-gray-300 focus:border-black focus:bg-white focus:ring-2 focus:ring-black dark:focus:ring-white text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
 }
 
 .dd-single {
-    @apply transition w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
+    @apply dark:bg-secondary dark:text-white dark:focus:bg-dark focus:border-0 border-2 transition w-full dark:border-transparent bg-gray-100 bg-opacity-50 rounded border-gray-300 focus:border-black focus:bg-white focus:ring-2 focus:ring-black dark:focus:ring-white text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
 }
 
 
@@ -16,5 +16,5 @@
 }
 
 .form-search{
-    @apply transition w-56 h-10 bg-gray-100 dark:border-transparent dark:placeholder-gray-400 dark:text-white dark:bg-secondary bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
+    @apply transition w-56 h-10 dark:bg-secondary dark:text-white dark:focus:bg-dark focus:border-0 border-2 dark:border-transparent bg-gray-100 bg-opacity-50 rounded border-gray-300 focus:border-black focus:bg-white focus:ring-2 focus:ring-black dark:focus:ring-white text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
 }

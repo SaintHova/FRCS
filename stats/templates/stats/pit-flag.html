@@ -1,16 +1,13 @@
 {% extends 'users/base.html' %}
-
+{% load widget_tweaks %}
 
 {%block styles%}
 {%endblock styles%}
 
 {%block content%}
+
+
 <div class=" bg-gray-50 dark:bg-dark">
-    <!-- Desktop sidebar -->
-
-    <!-- Mobile sidebar -->
-    <!-- Backdrop -->
-
 
     <div class="">
         <main class=" overflow-y-auto">
@@ -22,7 +19,10 @@
                 </div>
                 <form method="POST" action="">
                     {% csrf_token %}
-                    {{form}}
+                    <p id="label" class='mt-4 mb-2 dark:text-white'>Incorrect?</p>
+                    
+                    {{form.is_incorrect}}
+
                     <button type="submit" class='btn-default'>Submit</button>
                 </form>
             </div>

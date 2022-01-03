@@ -40,6 +40,7 @@ class Pit_stats(RandomIDModel):
     
     notes = models.TextField(max_length=100, null = True)
     is_incorrect = models.BooleanField()
+    incorrect_selection = models.CharField(max_length=100, null = True)
     is_hidden = models.BooleanField(default=False)
     
     # custom_questions = models.ForeignKey(CustomPitQuestions, on_delete = models.CASCADE, null = True)

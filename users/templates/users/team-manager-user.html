@@ -1,4 +1,3 @@
-
 {% extends 'users/base.html' %}
 
 
@@ -8,61 +7,48 @@
 {%endblock styles%}
 
 {%block content%}
+
 {% if user.is_admin %}
-<div style='padding-left: 12.5%; width: 85%;' id='form-container'>
-    <br>
-    <label>Name: &nbsp;</label>{{f_name}} {{l_name}}
-    <br>
-    <label>Username: &nbsp;</label>{{username}}
-    <br>
-    <label>Email: &nbsp;</label>{{Email}}
+<div class="flex h-screen dark:bg-dark bg-gray-50 pt-3">
+    <div class="flex flex-col flex-1 w-full">
+        <main class="">
+            <div class="container px-6 mx-auto grid">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-white">
+                    User Info
+                </h2>
+                <div >
+                    <br>
+                    <label class='text-black dark:text-gray-400'>Name: &nbsp;</label><span class='text-black dark:text-white'>{{f_name}} {{l_name}}</span>
+                    <br>
+                    <label class='text-black dark:text-gray-400'>Username: &nbsp;</label><span class='text-black dark:text-white'> {{username}} </span>
+                    <br>
+                    <label class='text-black dark:text-gray-400'>Email: &nbsp;</label><span  class='text-black dark:text-white'> {{Email}} </span>
 
-    <hr>
-    <label>Settings: </label>
-    <form method='post'>
-        {% csrf_token %} 
-        {{form.canEditStats}}
-        <label style='margin-left: 0%;' class="cbx" for="cbx"><span>
-            <svg width="12px" height="10px" viewbox="0 0 12 10">
-                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-            </svg></span><span id="checkbox-text">Allow Stats Edit</span></label><br>
+                    <hr>
+                    <label class='text-black dark:text-gray-400'>Settings: </label>
+                    <form method='post'>
+                        {% csrf_token %}
+                        {{form.canEditStats}}
+                        <label style='margin-left: 0%;' class="cbx" for="cbx"><span>
+                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                </svg></span><span id="checkbox-text" class='text-black dark:text-gray-400'>Allow Stats Edit</span></label><br>
 
-            {{form.is_team_admin}}
-            <label style='margin-left: 0%;' class="cbx" for="cbx1"><span>
-                <svg width="12px" height="10px" viewbox="0 0 12 10">
-                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                </svg></span><span id="checkbox-text">Team Admin</span></label><br>
+                        {{form.is_team_admin}}
+                        <label style='margin-left: 0%;' class="cbx" for="cbx1"><span>
+                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                </svg></span><span id="checkbox-text" class='text-black dark:text-gray-400'>Team Admin</span></label><br>
 
-        <button style='width: 100%;' class='btn btn-primary' id='submit-form' type='submit'>Submit</button>
-    </form>
+                        <button class='btn-default'
+                            type='submit'>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
-<script>
-    var isChecked = "{{isChecked}}"
-    if(isChecked == "True"){
-        document.getElementById("cbx").checked = true;
-    }
-    else{
-        document.getElementById("cbx").checked = false;
-    }
 
-    var isAdmin = "{{isAdmin}}"
-
-    if(isChecked == "True"){
-        document.getElementById("cbx1").checked = true;
-    }
-    else{
-        document.getElementById("cbx1").checked = false;
-    }
-
-</script>
-{% else %}
-<center>
-<h1>
-    YOU ARE NOT A TEAM LEADER - LEAVE THIS PAGE
-</h1>
-<p>Please :)</p>
-<a  href='{% url "profile-view" %}'>Click to leave</a>
-</center>
 {% endif %}
-    
+
 {%endblock content%}

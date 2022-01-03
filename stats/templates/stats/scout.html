@@ -9,6 +9,7 @@
 
 {%block content%}
 
+
 <script>
     $(document).ready(function () {
         $("#teamNumber").on("input", function () {
@@ -55,19 +56,9 @@
 
 <title>FRCS Scouting</title>
 </body>
-<style>
-    .darkmode--activated i {
-        color: black;
-    }
-
-    #getCompDrop{
-        display:none;
-        visibility:hidden;
-    }
-</style>
 
 
-<div class="">
+<div class="dark:bg-dark">
 
     <main class=" overflow-y-auto">
       <div class="container px-6 mx-auto grid">
@@ -83,7 +74,7 @@
                 {% if messages %}
                 {% for message in messages %}
                 {% if message.tags == "error" %}
-                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
                     href="https://github.com/estevanmaito/windmill-dashboard">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -98,7 +89,7 @@
                 </div>
                 {% endif %}
                 {% if message.tags == "success" %}
-                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-blue"
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-green-100 bg-green-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
                     href="https://github.com/estevanmaito/windmill-dashboard">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -129,11 +120,6 @@
 
 
 </div>
-
-
-
-
-<br>
 <script src="../../static/users/assets/js/GetScoutData.js"></script>
 
 <script>

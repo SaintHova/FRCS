@@ -238,7 +238,7 @@ def teamManagement(request):
             'usersCount': CustomUser.objects.filter(team_num=request.user.team_num).count(),
             'is_incorrect': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_incorrect,
             'is_hidden': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_hidden,
-            'link': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).pk
+            'link': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).id
         }
     else:
         context = {
@@ -346,20 +346,19 @@ def imageUpload(request, id):
 
 @login_required
 def accountEdit(request, id):
-    
-
-    
     instance = get_object_or_404(CustomUser, username=request.user.username) #!DOESNT WORL - NEEDS TO OCCUPY FIELDS WITH COORESPONDING ACCOUNT DATA
     form = UserEditForm(request.POST, instance=instance)
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
         "picture": request.user.profile.image,
+        
     }
     if request.method == "POST":
         if form.is_valid:
             form.save()
             return redirect("profile-view")
+    
     return render(request, 'users/account-edit.html', context)
 
 def del_user(request, id):    

@@ -73,13 +73,21 @@ class pit_scout_form(ModelForm):
     robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    incorrect_selection = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-single'}))
 
     class Meta:
         model = Pit_stats
         exclude = ['scout', 'scouted_team_num', 'stat_id', 'date_entered', 'is_incorrect', 'is_hidden']
 
 class pit_correct_form(ModelForm):
-    is_incorrect = forms.BooleanField()
+    is_incorrect = forms.BooleanField(widget=forms.CheckboxInput(
+         attrs={
+            'class': 'inp-cbx',
+            'style': 'display: none;',
+            'id': 'cbx',
+        }
+    ))
+    incorrect_selection = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-single'}))
 
     class Meta:
         model = Pit_stats
