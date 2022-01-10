@@ -183,34 +183,27 @@ def scout(request):
         if form.is_valid():
             #Saving team number of user to Game_stats object
             obj = form.save(commit=False)
-            obj.team_num = request.user.team_num
+
             
-            #!SCOUTING TEAM NUMBER
+
             obj.scout = CustomUser.objects.get(username=request.user)
             #Gathering data
-            scouted_team_num = form.cleaned_data['scouted_team_num']
+            team_num = form.cleaned_data['team_num']
 
-            
-            randomNumber = randomIDGenerator()
-            obj.match_id = randomNumber
-            obj.score = returnChoiceData(form.cleaned_data.get('robot_climb')) + returnChoiceData(form.cleaned_data.get('robot_generator')) + returnChoiceData(form.cleaned_data.get('initiation_line')) + returnChoiceData(form.cleaned_data.get('control_panel_rot')) + returnChoiceData(form.cleaned_data.get('control_panel_pos')) + form.cleaned_data['auto_low_goal_scored'] + form.cleaned_data['auto_outer_goal_scored'] + form.cleaned_data['auto_inner_goal_scored'] + form.cleaned_data['inner_goal_scored'] + form.cleaned_data['outer_goal_scored'] + form.cleaned_data['inner_goal_scored']
-            
-            team_code = Team.objects.get(team_num=request.user.team_num).team_code
-            obj.scouted_team_code = team_code
+            obj.score = 0
             #Creating new team if necessary
-   
-            
 
-            if not Team.objects.filter(team_num = scouted_team_num).exists():
-                Team.objects.create(team_num = scouted_team_num)
+            if not Team.objects.filter(team_num = team_num).exists():
+                Team.objects.create(team_num = team_num)
+                
+            # if not Game_stats.objects.filter(team = team_num).exists():
+            #     Game_stats.objects.create(team = Team.objects.get(team_num = team_num), rank=0)
             #Finally, add Game_stats object to the team
-            obj.stat = Team.objects.get(team_num = scouted_team_num).game_stats
+            obj.stat = Team.objects.get(team_num = team_num).game_stats
             form.save()
             return redirect('home-view')
         else:
             return redirect('scout-view')
-    low_goal_scored = Match.objects.filter(team_num=810)
-    print(low_goal_scored)
     return render(request, 'stats/scout.html', {'form': form})
 
 
@@ -221,7 +214,6 @@ def scout(request):
 def pitFlag(request, id):
     instance = get_object_or_404(Pit_stats, id=id)
     form = pit_correct_form(instance=instance)
-    
     # subject = 'Thank you for registering to our site'
     # message = 'it means a world to us '
     # email_from = settings.EMAIL_HOST_USER
@@ -232,8 +224,9 @@ def pitFlag(request, id):
         form = pit_correct_form(request.POST, instance=instance)
         if form.is_valid():
             instance = form.save(commit=False)
+            instance.is_incorrect = True
             instance.save()
-            return redirect('/test')
+            return redirect('/profile')
         
     context = {
         'form': form
@@ -241,3 +234,5 @@ def pitFlag(request, id):
     return render(request, 'stats/pit-flag.html', context)
         
          
+def uploadData(request):
+    return render(request, 'stats/upload-data.html')

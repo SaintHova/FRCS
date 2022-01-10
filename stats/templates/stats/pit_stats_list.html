@@ -18,20 +18,18 @@
 
   <div class="">
     <main class=" overflow-y-auto">
-      <div class="container px-6 mx-auto grid">
+      <div class="container mx-auto grid">
         <div class='flex justify-between'>
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
           Pit Stats List
         </h2>
         
           </div>
-          
-
-
+        
           <div class=' mx-auto mb-3 w-full flex justify-between'>
             <input id="search-bar" class="form-search h-10" placeholder="Search Team">
             <button onclick='window.location.href="{% url "pitscout-view" %}"'
-              class="inline-flex items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600 ">
+              class="inline-flex items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-xl hover:bg-blue-600 ">
   
               <p class='font-semibold text-white'>New Data</p>
             </button>
@@ -40,7 +38,7 @@
       <div class="flex flex-col w-full mx-auto">
         <div class="-my-2  sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class=" overflow-hidden border-b border-gray-200 dark:border-black rounded-xl">
+                <div class=" overflow-hidden border-b border-gray-200 dark:border-black border-2 dark:border-0 rounded-xl">
 
                     <table class="min-w-full table-auto divide-y divide-gray-200 bg-cream dark:bg-secondary"
                         id='data-table'>
@@ -60,6 +58,18 @@
                         </thead>
                         <tbody class=" divide-y divide-gray-200">
                           {% for team in teams %}
+
+                          <script>
+                            $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{team.team_num}}' + "/simple", {
+                                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                            }, function (data) {
+                                var jObject = (data);
+                                $("#team-nickname_{{team.team_num}}").html(jObject['nickname']);
+                                console.log('{{team.team_num}} ' + jObject['nickname']);
+                            })
+                          </script>
+
+
                         <tr>
                             
                           <td class=" py-4 whitespace-nowrap">
@@ -67,7 +77,12 @@
                                 <div class="text-sm font-medium text-black dark:text-white">
             
             
-                                  <p class='font-semibold'>{{team.team_num}}</p>
+                                  <div class="text-sm font-medium">
+                              <p id='team-nickname_{{team.team_num}}' class='text-black dark:text-white font-bold'>
+                              </p>
+                              <p class='text-gray-400 font-semibold text-sm'>{{team.team_num}}</p>
+
+                            </div>
                                 </div>
                                
                             </div>
@@ -76,14 +91,12 @@
                             <div class='flex justify-end space-x-3'>
                             <a href="{% url 'pitdata-view' team.id %}" class="text-black dark:text-white">View</a>
                             {% if team.is_incorrect %}
-                            <a data-tooltip-target="tooltip-default">
+                           
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
                               <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                             </svg>
                             </a>
-                            <div id="tooltip-default" role="tooltip" class="tooltip absolute z-10 inline-block bg-gray-900 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 duration-300 transition-opacity invisible">
-                              Data Flagged
-                              <div class="tooltip-arrow" data-popper-arrow></div>
+                            
                           </div>
                             {% endif %}
                             </div>

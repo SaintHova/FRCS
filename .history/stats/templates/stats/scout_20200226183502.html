@@ -98,10 +98,10 @@ async function changeName(){
             {%csrf_token%}
 
             <p id="label">Scouting Team Number</p>
-            {{ form.scouting_team_number|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id: teamNumber"|attr:"min: '0'" }}
+            {{ form.scouting_teamber|attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id: teamNumber"|attr:"min: '0'" }}
 
 
-            <p id="label">Competition</p>scouting_team_num
+            <p id="label">Competition</p>scouting_team
             <!--<select id="getCompDrop" name="Comp" class="custom-select" onclick="getCompData()">
                 <option>Select Competition</option>
             </select>-->
@@ -129,7 +129,7 @@ async function changeName(){
             <!--<select id="teamNumber" class="custom-select" name="teamNumber" onchange="changeName(); changeTeams()">
             <option>Select Team</option>
             </select>-->
-            {{ form.scouted_team_num |attr:"onchange:'changeName()'" |attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id:teamNumber"|attr:"min: '0'" }}
+            {{ form.scouting_team |attr:"onchange:'changeName()'" |attr:"class:custom-select"|attr:"placeholder:00"|attr:"name: teamNumber"|attr:"id:teamNumber"|attr:"min: '0'" }}
             <p id="teamName" class="teamName"><i class="teamNameChange">Unknown Team</i></p>
             <br>
             <div id="failsafe"></div>

@@ -34,6 +34,10 @@
     // Get the button that opens the modal
     var btn = document.getElementById("incoreect-btn");
 
+    $('#incorrect-btn').click(function () {
+        $('#myModal').faceIn();
+    });
+
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
@@ -43,13 +47,10 @@
 
     // When the user clicks on the button, open the modal
     btn.onclick = function () {
-        modal.style.display = "block";
+        modal.style.opacity = "1";
     }
-
-    confirmBtn.onclick = function () {
-        document.getElementById("flag-cbx").checked = true;
-    }
-
+    
+    
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
@@ -86,7 +87,7 @@
                             </h2>
                         </div>
                         {% if not object.is_incorrect %}
-                        <button onclick='location.href="{% url 'pit-flag-view' id=object.id %}"'
+                        <button id='incorrect-btn' onclick='location.href="{% url 'pit-flag-view' id=object.id %}"'
                             class='inline-flex mt-6 w-14 h-14 items-center text-lg justify-center font-semibold tracking-wide text-white transition duration-200 bg-red-500 rounded-lg hover:bg-red-600'>
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none"
@@ -99,11 +100,10 @@
                         {% endif %}
                     </div>
                 </div>
-                {% if  object.is_incorrect %}
-                <div class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
-                    href="https://github.com/estevanmaito/windmill-dashboard">
-                    <div class="flex justify-between items-center">
-                        <div class='flex'>
+                {% if object.is_incorrect %}
+                <div
+                    class="flex justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue">
+                    <div class='flex space-x-2 mt-1'>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -111,23 +111,29 @@
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class='mt-1'>This pit data was flagged as incorrect</span>
-                        </div>
-
-
-
-                        <a href='{% url "pit-update-view" object.id %}' class=' transition duration-300 ease-in-out rounded p-0.5 hover:bg-white hover:text-red-500'>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                        </a>
+                        <p class=''>This pit data has been flagged as incorrect</p>
                     </div>
+                    <a href='{% url "pit-update-view" object.id %}' class=' transition duration-300 ease-in-out rounded p-0.5 hover:bg-white hover:text-red-500'>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                    </a>
 
                 </div>
                 {% endif %}
+                <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
+                    <div>
+                        <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                            Data submitted on 
+                        </p>
+                        <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                            {{object.date_entered}}
+                        </p>
+                    </div>
+                </div>
                 <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2 ">
                     <!-- Card -->
                     <div class="flex bg-cream dark:bg-secondary items-center p-4  rounded-xl shadow-xs">
@@ -142,7 +148,7 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -154,7 +160,7 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -166,7 +172,7 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -178,7 +184,7 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -189,7 +195,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -201,7 +207,7 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -212,7 +218,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
 
                         <div>
@@ -224,7 +230,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -235,7 +241,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -248,7 +254,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+                <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                     <div>
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -264,7 +270,7 @@
     </div>
 </div>
 
-<div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+<div class="myModal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
     <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
@@ -297,7 +303,7 @@
 
             <!--Body-->
             <p>The data that has been scouted for your team has been flagged as incorrect. Please either hide or fix
-                data as soon as possible. Thank you</p>
+                the data as soon as possible. Thank you</p>
 
 
             <!--Footer-->

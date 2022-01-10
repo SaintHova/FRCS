@@ -8,11 +8,11 @@
 
 {%block content%}
 
-<div class="flex bg-gray-50 dark:bg-dark pt-3">
-  <div class="flex flex-col flex-1 w-full">
+<div class="flex bg-gray-50 dark:bg-dark">
+  <div class="flex flex-col flex-1 w-full mt-6">
     <main>
-      <div class="container overflow-y-visible px-6 mx-auto grid">
-        <div class='sm:flex justify-between my-6 '>
+      <div class="container overflow-y-visible mx-auto grid">
+        <div class='sm:flex justify-between mb-3'>
           <h2 class="text-2xl font-semibold text-gray-700 dark:text-white">
             Team Management
           </h2>
@@ -42,7 +42,7 @@
         {% endif %}
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-2">
 
-          <div class="flex items-center p-4 bg-cream dark:bg-secondary rounded-xl shadow-xs">
+          <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs">
             <div class="p-3 mr-4 text-blue-100 bg-blue-500 rounded-full ">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -62,7 +62,7 @@
           {% if is_incorrect %}
           <div>
             <!-- Card -->
-            <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary ">
+            <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary ">
               <div class="p-3 mr-4 text-red-100 bg-red-500 rounded-full ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor">
@@ -86,7 +86,7 @@
           </div>
           {% elif is_incorrect is False %}
           <!-- Card -->
-          <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+          <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
             <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full ">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -104,7 +104,7 @@
             </div>
           </div>
           {% else %}
-          <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs dark:bg-secondary">
+          <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
             <div class="p-3 mr-4 text-yellow-500 bg-yellow-100 rounded-full ">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -129,10 +129,11 @@
         <div class="flex flex-col w-full mx-auto">
           <div class="-my-2  sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div class="overflow-hidden border-b border-gray-200 dark:border-secondary rounded-xl">
+              <div class=" overflow-hidden border-b border-gray-200 dark:border-black border-2 dark:border-0 rounded-xl">
 
-                <table class="min-w-full divide-y divide-gray-200 " id='data-table'>
-                  <thead class="bg-cream dark:bg-secondary">
+                <table class="min-w-full table-auto divide-y divide-gray-200 bg-cream dark:bg-secondary"
+                    id='data-table'>
+                    <thead class="bg-cream dark:bg-secondary">
 
                     <tr>
                       <th scope="col"

@@ -49,7 +49,7 @@ class PitListView(ListView):
 
 def pitlistview(request):
   context = {
-    'teams': Game_stats.objects.values('scouted_team_num').distinct()
+    'teams': Game_stats.objects.values('scouting_team').distinct()
   ]
   return render(request, 'stats/pit_stats_list', context)
 
@@ -105,7 +105,7 @@ def scout(request):
       obj = form.save(commit=False)
       obj.team_num = request.user.team_num
       #Gathering data
-      team_num = form.cleaned_data['scouted_team_num']
+      team_num = form.cleaned_data['scouting_team']
       #Creating new team if necessary
       if not Team.objects.filter(team_num = team_num).exists():
         Team.objects.create(team_num = team_num)

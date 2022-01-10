@@ -222,7 +222,7 @@ class PitEditForm(forms.ModelForm):
 
     class Meta:
         model = Pit_stats
-        exclude = ['scout', 'scouted_team_num', 'stat_id', 'date_entered', 'is_incorrect', 'is_hidden']
+        exclude = ['scout', 'scouting_team', 'date_entered', 'is_incorrect', 'is_hidden']
         
 class TeamEditForm(forms.ModelForm):
     

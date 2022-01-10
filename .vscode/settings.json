@@ -7,4 +7,5 @@
     "python.linting.flake8Enabled": false,
     "python.linting.pylintPath": "C:\\Users\\Saquib\\cfehome\\Scripts\\pylint.exe",
     "python.linting.pylamaEnabled": false,
+    "python.formatting.provider": "yapf",
 }

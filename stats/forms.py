@@ -2,14 +2,9 @@ from django import forms
 from django.forms import ModelForm
 from .models import Pit_stats, Game_stats, Match
 from users.models import CustomUser
-import json, requests
 
 
 
-BOT_HEIGHT = [
- ('Low - below 28"', 'Low - below 28"'),
- ('High - above 28"', 'High - above 28"'),
-]
 
 
 DRIVETRAIN_TYPE = [
@@ -31,53 +26,53 @@ VISION_TYPE = [
 ]
 
 GOAL_SHOT = [
- 
- ('Lower', 'Lower'),
- ('Inner', 'Inner'),
- ('Outer', 'Outer'),
- ('Both Low and High', 'Both Low and High'),
+ ('Lower Hub', 'Lower Hub'),
+ ('Upper Hub', 'Inner Hub'),
+ ('Both Lower and Upper Hub', 'Both Low and Upper Hub'),
 ]
 
 
+INCORRECT_CHOICES = [
+    ('DriveTrain Type', 'DriveTrain Type'),
+    ('Height', 'Height'),
+    ('Frame Perimeter', 'Frame Perimeter'),
+    ('Auto', 'Auto'),
+    ('Goal Shot', 'Goal Shot'),
+    ('Vision Implemented', 'Vision Implemented'),
+    ('Vision Type', 'Vision Type'),
+    ('Climb', 'Climb'),
+    ('Custom 1', 'Custom 1'),
+    ('Custom 2', 'Custom 2'),
+    ('Custom 3', 'Custom 3'),
+]
 
 TRUE_FALSE = [
     ('No', 'No'),
     ('Yes', 'Yes'),
 ]
 
-PENALTIES = [
-    ('None', 'None'),
-    ('Disbaled', 'Disabled'),
-    ('Foul', 'Foul'),
-    ('Tech Foul', 'Tech Foul'),
-    ('Yellow Card', 'Yellow Card'),
-    ('Red Card', 'Red Card')
-]
 
-CP = [
-    ('No', 'No'),
-    ('Positional', 'Positional'),
-    ('Rotational', 'Rotational'),
-    ('Both Position and Rotation', 'Both Position and Rotation')
+CLIMB = [
+    ('None', 'None'),
+    ('Lower Rung', 'Lower Rung'),
+    ('Upper Rung', 'Upper Rung'),
+    ('Traversal Rung', 'Traversal Ring')
     
 ]
 
 class pit_scout_form(ModelForm):
     robot_drivetrain_type = forms.CharField(widget=forms.Select(choices=DRIVETRAIN_TYPE))
-    robot_highlow = forms.CharField(widget=forms.Select(choices=BOT_HEIGHT))
-    robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
-    robot_goal = forms.CharField(widget=forms.Select(choices=GOAL_SHOT))
+    robot_goal_height = forms.CharField(widget=forms.Select(choices=GOAL_SHOT))
+    
     robot_vision_implement = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
     robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    robot_control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    robot_control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    incorrect_selection = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-single'}))
+    robot_climb = forms.CharField(widget=forms.Select(choices=CLIMB))
+    incorrect_selection = forms.CharField(widget=forms.Select(choices=INCORRECT_CHOICES))
 
     class Meta:
         model = Pit_stats
-        exclude = ['scout', 'scouted_team_num', 'stat_id', 'date_entered', 'is_incorrect', 'is_hidden']
+        exclude = ['scout', 'date_entered', 'is_incorrect', 'is_hidden']
 
 class pit_correct_form(ModelForm):
     is_incorrect = forms.BooleanField(widget=forms.CheckboxInput(
@@ -87,7 +82,7 @@ class pit_correct_form(ModelForm):
             'id': 'cbx',
         }
     ))
-    incorrect_selection = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-single'}))
+    incorrect_selection = forms.CharField(widget=forms.Select(choices=INCORRECT_CHOICES))
 
     class Meta:
         model = Pit_stats
@@ -103,17 +98,11 @@ MATCH_TYPE = [
 
 class game_scout_form(ModelForm):
     #match_number
-    match_type = forms.CharField(widget=forms.Select(choices=MATCH_TYPE))
-    initiation_line = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    robot_generator = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    defense_played = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    robot_climb_help = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    penalties = forms.CharField(widget=forms.Select(choices=PENALTIES))
-    control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
-    control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
- 
+    
+    left_tarmac = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_climb = forms.CharField(widget=forms.Select(choices=CLIMB))
+    # robot_climb_help = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     class Meta:
         model = Match
-        exclude = ['team_num' , 'stat', 'scout', 'match_id', 'scouted_team_code', 'score']
+        exclude = ['scouting_teamber', 'stat', 'scout', 'score']
         

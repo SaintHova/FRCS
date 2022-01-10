@@ -78,12 +78,12 @@ class TeamSerializer(serializers.ModelSerializer):
         return match_num
     
     def get_pit_count(self, request):
-        pit_num = Pit_stats.objects.filter(scouted_team_num=request.team_num).count(),
+        pit_num = Pit_stats.objects.filter(scouting_team=request.team_num).count(),
         pit_num = int(''.join(map(str, pit_num))) 
         return pit_num
     
     def get_global_match_count(self, request):
-        global_match_num = Match.objects.filter(scouted_team_num=request.team_num).count(),
+        global_match_num = Match.objects.filter(scouting_team=request.team_num).count(),
         global_match_num = int(''.join(map(str, global_match_num))) 
         return global_match_num
     
@@ -128,5 +128,5 @@ class GameStatsSerializer(serializers.ModelSerializer):
 class MatchStatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Match
-        exclude = ['id', 'stat_id', 'scout']
+        exclude = ['id', 'scout']
 

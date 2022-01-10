@@ -91,7 +91,7 @@ def scout(request):
       obj = form.save(commit=False)
       obj.team_num = request.user.team_num
       #Gathering data
-      team_num = form.cleaned_data['scouted_team_num']
+      team_num = form.cleaned_data['scouting_team']
       #Creating new team if necessary
       if not Team.objects.filter(team_num = team_num).exists():
         Team.objects.create(team_num = team_num)

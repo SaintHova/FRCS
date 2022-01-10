@@ -18,7 +18,7 @@
 
   <div class="">
     <main class=" overflow-y-auto">
-      <div class="container px-6 mx-auto grid">
+      <div class="container mx-auto grid">
         <div class='flex justify-between'>
           <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Match Stats List
@@ -30,7 +30,7 @@
         <div class=' mx-auto mb-3 w-full flex justify-between'>
           <input id="search-bar" class="form-search h-10" placeholder="Search Team">
           <button onclick='window.location.href="{% url "scout-view" %}"'
-            class="inline-flex items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600 ">
+            class="inline-flex items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-xl hover:bg-blue-600 ">
 
             <p class='font-semibold text-white'>New Data</p>
           </button>
@@ -39,7 +39,7 @@
         <div class="flex flex-col w-full mx-auto">
           <div class="-my-2  sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div class=" overflow-hidden border-b border-gray-200 dark:border-black rounded-xl">
+              <div class=" overflow-hidden border-b border-gray-200 dark:border-black border-2 dark:border-0 rounded-xl">
 
                 <table class="min-w-full table-auto divide-y divide-gray-200 bg-cream dark:bg-secondary"
                   id='data-table'>
@@ -59,22 +59,42 @@
                   </thead>
                   <tbody class=" divide-y divide-gray-200">
                     {% for stat in stats %}
-                    {% if stat.match_id %}
+                    <script>
+                      console.log('{{stat.team.team_num}}')
+                    </script>
+                    {% if stat.team.team_num %}
+
+                    <script>
+                      $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{stat.team.team_num}}' + "/simple", {
+                        "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                      }, function (data) {
+                        var jObject = (data);
+                        $("#team-nickname_{{stat.team.team_num}}").html(jObject['nickname']);
+                        console.log('{{stat.team.team_num}} ' + jObject['nickname']);
+                      })
+                    </script>
+
+
                     <tr>
 
                       <td class=" py-4 whitespace-nowrap">
                         <div class="ml-4">
                           <div class="text-sm font-medium text-black dark:text-white">
 
+                            <div class="text-sm font-medium">
+                              <p id='team-nickname_{{stat.team.team_num}}' class='text-black dark:text-white font-bold'>
+                              </p>
+                              <p class='text-gray-400 font-semibold text-sm'>{{stat.team.team_num}}</p>
 
-                            <p class='font-semibold'>{{stat.team_num}}</p>
+                            </div>
                           </div>
 
                         </div>
                       </td>
                       <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div class='flex justify-end space-x-3'>
-                          <a href='{% url "gamedata-view" stat.pk %}' class="text-black font-bold">View Data</a>
+                          <a href='{% url "gamedata-view" stat.id %}' class="text-black dark:text-white font-bold">View
+                            Data</a>
                         </div>
                       </td>
                     </tr>
@@ -89,7 +109,7 @@
           </div>
         </div>
 
-        
+
 
 
 
@@ -100,4 +120,7 @@
   </main>
 </div>
 </div>
+
+
+
 {%endblock content%}

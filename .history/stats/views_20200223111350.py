@@ -96,7 +96,7 @@ def scout(request):
     if form.is_valid():
       obj = form.save(commit=False)
       obj.team_num = request.user.team_num
-      team_num = form.cleaned_data['scouted_team_num']
+      team_num = form.cleaned_data['scouting_team']
       match_num = form.cleaned_data['match_number']
       new_match = Match.objects.create(game_stats = obj, match_number = match_num)
       if not Team.objects.filter(team_num = team_num).exists():
