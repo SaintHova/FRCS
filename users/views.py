@@ -39,6 +39,8 @@ import random, string
 import phonetic_alphabet as alpha
 from django.shortcuts import get_object_or_404
 from itertools import chain
+from django.core.mail import send_mail
+
 
 
 
@@ -102,12 +104,8 @@ def register(request):
 
             if not Team.objects.filter(team_num=team_code).exists():
 
-                VID = str(
-                    "".join(random.choices(string.digits, k=7))
-                )
-
                 Team.objects.create(
-                    team_users=user_obj, team_num=team_code, team_code=VID
+                    team_users=user_obj, team_num=team_code
                 )
             
             LOGIN(request, user_obj)
@@ -141,6 +139,13 @@ def gettingStarted(request):
 
 
 def guest(request):
+    send_mail(
+    'Subject here',
+    'Here is the message.',
+    'jtyler03@optonline.net',
+    ['jtyler03@optonline.net'],
+    fail_silently=False,
+)
     return render(request, "users/guest.html")
 
 

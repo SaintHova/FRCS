@@ -103,7 +103,7 @@
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="overflow-hidden border-b border-gray-200 dark:border-black border-2 dark:border-0 rounded-xl">
 
-                                <table class="min-w-full divide-y divide-gray-200 bg-cream dark:bg-secondary"
+                                <table class="min-w-full divide-y divide-gray-200  dark:bg-secondary"
                                     id='data-table'>
                                     <thead class="">
                                         <tr>
@@ -153,7 +153,7 @@
                 <!-- Cards -->
                 <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2">
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div class="flex items-center p-4  rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -165,21 +165,22 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div class="flex items-center p-4  rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-
+                                Average Vision Usage
                             </p>
                             <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-
+                                {{pit_stats_vision_usage}} %
                             </p>
+                          
                         </div>
                     </div>
 
 
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div class="flex items-center p-4  rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -191,7 +192,7 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div class="flex items-center p-4  rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -211,43 +212,41 @@
             </div>
         </main>
 
-        <div class="grid gap-6 mb-8 md:grid-cols-2 container px-6 mx-auto">
-            <div class="min-w-0 p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Vision Types
-                </h4>
-                <canvas id="pie2"></canvas>
-
-            </div>
-            <div class="min-w-0 p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Vision Usage
-                </h4>
-                <canvas id="pie"></canvas>
-
-            </div>
-            <div class="min-w-0 p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Climb
-                </h4>
-                <canvas id="pie3"></canvas>
-
-            </div>
-            <div class="min-w-0 p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
-                <!-- <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Buddy Climb
-                </h4> -->
-                <canvas id="pie4"></canvas>
-
-            </div>
-            <div class="min-w-0 p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
+        <div class="grid gap-6 mb-8 md:grid-cols-2 container mx-auto">
+            <div class=" p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
                     Drivetrain Type
                 </h4>
                 <canvas id="pie5"></canvas>
 
             </div>
+            
+            <div class=" p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Vision Types
+                </h4>
+                <canvas id="pie2"></canvas>
+
+            </div>
+            <div class=" p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Goal Height
+                </h4>
+                <canvas id="pie4"></canvas>
+
+            </div>
+            <div class=" p-4 border-2 dark:border-0 rounded-xl shadow-xs dark:bg-secondary">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    Climb
+                </h4>
+                <canvas id="pie3"></canvas>
+
+            </div>
+            
+            
+            
         </div>
+        
     </div>
     </main>
 </div>
@@ -310,24 +309,28 @@
     // Fun Fact: I've lost exactly 3 of my favorite T-shirts and 2 hoodies this way :|
 </script>
 
+
+
 <script>
-    var visionUsedCanvas = document.getElementById("pie");
-    var visionUsedctx = visionUsedCanvas.getContext('2d');
+    var heightCanvas = document.getElementById("pie4");
+    var heightctx = heightCanvas.getContext('2d');
 
     // Global Options:
 
 
 
 
-    var visionUsedData = {
-        labels: ["No", "Yes"],
+    var heightData = {
+        
+        labels: ["Lower Hub", "Upper Hub", "Both Lower and Upper Hub"],
         datasets: [{
             fill: true,
             backgroundColor: [
                 '#c3c3c3',
+                '#17a1cc',
                 '#3af3bb',
             ],
-            data: ['{{pit_stats_vision_yes}}', '{{pit_stats_vision_no}}'],
+            data: ['{{pit_stats_shot_high}}', '{{pit_stats_shot_low}}', '{{pit_stats_shot_both}}'],
 
 
         }]
@@ -336,8 +339,16 @@
 
     // Notice the rotation from the documentation.
 
-    var visionUsedOptions = {
-
+    var heightOptions = {
+        animations: {
+            tension: {
+              duration: 2000,
+              easing: 'linear',
+              from: 0,
+              to: 1,
+              loop: true
+            },
+        },
         responsive: true,
         plugins: {
             legend: {
@@ -352,16 +363,14 @@
 
 
     // Chart declaration:
-    var myPieChart = new Chart(visionUsedctx, {
+    var myPieChart = new Chart(heightctx, {
         type: 'pie',
-        data: visionUsedData,
-        options: visionUsedOptions
+        data: heightData,
+        options: heightOptions
     });
 
     // Fun Fact: I've lost exactly 3 of my favorite T-shirts and 2 hoodies this way :|
 </script>
-
-
 
 
 <script>
@@ -374,14 +383,17 @@
 
 
     var climbData = {
-        labels: ["No", "Yes"],
+        labels: ["Lower Bar", "Middle Bar", 'Upper Bar', 'Traversal Bar'],
         datasets: [{
             fill: true,
             backgroundColor: [
                 '#c3c3c3',
                 '#3af3bb',
+                '#17a1cc',
+                '#176079',
+
             ],
-            data: ['{{pit_stats_climb_no}}', '{{pit_stats_climb_yes}}'],
+            data: ['{{pit_stats_climb_none}}', '{{pit_stats_climb_middle}}', '{{pit_stats_climb_upper}}', '{{pit_stats_climb_traversal}}'],
 
 
         }]
@@ -430,7 +442,7 @@
 
 
 <script>
-    console.log('{{pit_stats_vision_none}}')
+
 
 
     var dtCanvas = document.getElementById("pie5");

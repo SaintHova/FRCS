@@ -79,7 +79,7 @@ class Profile(RandomIDModel):
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
     first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
-    viewPitResubmit = models.BooleanField(default=False)
+
     canEditStats = models.BooleanField(default=True)
     relativeScoring = models.BooleanField(default=False)
     dm = models.BooleanField(default=False)

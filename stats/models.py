@@ -8,21 +8,21 @@ import uuid
 # Create your models here.
 
 class Pit_stats(models.Model):
-    team_num = models.IntegerField(default=810)
+
+    team_num = models.PositiveIntegerField()
     competition = models.CharField(max_length = 100, null = True)
     scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True, blank=True)
 
     date_entered = models.DateTimeField(default=timezone.now())
-    robot_weight = models.IntegerField( null = True, blank = True)
-    robot_frame_length = models.IntegerField( null = True, blank = True)
-    robot_frame_width = models.IntegerField( null = True, blank = True)
+    robot_weight = models.PositiveIntegerField( null = True, blank = True)
+    robot_frame_length = models.PositiveIntegerField( null = True, blank = True)
+    robot_frame_width = models.PositiveIntegerField( null = True, blank = True)
     robot_drivetrain_type = models.CharField(max_length=100, null = True, blank = True)
     robot_vision_type = models.CharField(max_length=100, null = True, blank = True)
     robot_vision_implement = models.CharField(max_length=100, null = True, blank = True)
     robot_goal_height = models.CharField(max_length=100, null = True, blank = True)
     robot_autonomous = models.CharField(max_length=100, null = True, blank = True)
     robot_climb = models.CharField(max_length=100, null = True, blank = True)
-    
     
     customOne = models.CharField(max_length=100, null = True, blank = True)
     customTwo = models.CharField(max_length=100, null = True, blank = True)

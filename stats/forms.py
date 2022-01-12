@@ -27,8 +27,8 @@ VISION_TYPE = [
 
 GOAL_SHOT = [
  ('Lower Hub', 'Lower Hub'),
- ('Upper Hub', 'Inner Hub'),
- ('Both Lower and Upper Hub', 'Both Low and Upper Hub'),
+ ('Upper Hub', 'Upper Hub'),
+ ('Both Lower and Upper Hub', 'Both Lower and Upper Hub'),
 ]
 
 
@@ -51,10 +51,16 @@ TRUE_FALSE = [
     ('Yes', 'Yes'),
 ]
 
+VISION_TRUE_FALSE = [
+    ('0', 'No'),
+    ('1', 'Yes'),
+]
+
 
 CLIMB = [
     ('None', 'None'),
     ('Lower Rung', 'Lower Rung'),
+    ('Middle Rung', 'Middle Rung'),
     ('Upper Rung', 'Upper Rung'),
     ('Traversal Rung', 'Traversal Ring')
     
@@ -64,7 +70,7 @@ class pit_scout_form(ModelForm):
     robot_drivetrain_type = forms.CharField(widget=forms.Select(choices=DRIVETRAIN_TYPE))
     robot_goal_height = forms.CharField(widget=forms.Select(choices=GOAL_SHOT))
     
-    robot_vision_implement = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+    robot_vision_implement = forms.CharField(widget=forms.Select(choices=VISION_TRUE_FALSE))
     robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
     robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_climb = forms.CharField(widget=forms.Select(choices=CLIMB))

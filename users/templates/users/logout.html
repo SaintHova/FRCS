@@ -1,0 +1,28 @@
+{%extends 'users/base.html'%}
+
+
+
+{%block styles%}
+{%endblock styles%}
+{%block content%}
+
+<div class="flex h-screen  dark:bg-dark bg-gray-50">
+  <div class="flex flex-col flex-1 w-full">
+    <main class="">
+      <div class="container mx-auto grid">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+          Logged Out
+        </h2>
+
+        <button class='btn-default' onclick="window.location.href='{% url "home-view"%}'">Return home</button>
+
+
+        
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+
+{%endblock content%}

@@ -24,23 +24,23 @@
                 <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
                     href="https://github.com/estevanmaito/windmill-dashboard">
                     <div class="flex items-center">
+                      
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                       </svg>
-                       
-                        <span>To finish your profile, add your first and last name</span>
-                        
+          
+                      <span>To finish your profile, add your first and last name</span>
 
-                    </div>  
+                    </div>
                            
                 </div>
                 {% endif %}
                 <div class='flex'>
                   <div>
-                    {% if not user.profile.image == 'http://127.0.0.1:8000/profile-pics/default.jpg' %}
+                    {% if user.profile.image %}
                     <a class='cursor-pointer' href='{% url "image-upload-view" request.user.profile.id %}'><img src='../../../profile-pics/{{request.user.profile.image}}' class='h-36 w-36 rounded-xl mr-3'></a>
                     {% else %}
-                    <img href='{% url "image-upload-view" request.user.profile.id %}' src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' class='h-36 w-36 rounded-xl mr-3'>
+                    <a class='cursor-pointer' href='{% url "image-upload-view" request.user.profile.id %}'><img href='{% url "image-upload-view" request.user.profile.id %}' src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' class='h-36 w-36 rounded-xl mr-3'></a>
                     {% endif %}
                   </div>
                   <div>
@@ -74,7 +74,7 @@
                       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                           <div class=" overflow-hidden border-b border-gray-200 dark:border-black border-2 dark:border-0 rounded-xl">
 
-                              <table class="min-w-full divide-y divide-gray-200 bg-cream dark:bg-secondary"
+                              <table class="min-w-full divide-y divide-gray-200  dark:bg-secondary"
                                   id='data-table'>
                                   <thead class="">
                                       <tr>

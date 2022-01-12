@@ -18,17 +18,21 @@ from random import randint
 from django.db.models import Avg
 from django.core.mail import send_mail
 from django.conf import settings
+import uuid
+import base64
 
-
-
+@login_required
 def scouthub(request):
     if(Pit_stats.objects.all().exists()):
+        
         context = {
             #*checks to see if there is data scouted for team
             'team_count': Team.objects.filter(team_users__isnull='').count(),
 
             'sub_count': Match.objects.filter(match_number__isnull='').count() + Pit_stats.objects.all().count(),
             'teams': Game_stats.objects.all(),
+            
+            
             
             'pit_stats_vision_none':  Pit_stats.objects.filter(robot_vision_type='None').count(),
             'pit_stats_vision_limelight':  Pit_stats.objects.filter(robot_vision_type='Limelight').count(),
@@ -46,18 +50,24 @@ def scouthub(request):
             'pit_stats_vision_yes':  Pit_stats.objects.filter(robot_vision_implement='Yes').count(),
             'pit_stats_vision_no':  Pit_stats.objects.filter(robot_vision_implement='No').count(),
             
-            'pit_stats_climb_yes':  Pit_stats.objects.filter(robot_climb='Yes').count(),
-            'pit_stats_climb_no':  Pit_stats.objects.filter(robot_climb='No').count(),
+            'pit_stats_climb_none':  Pit_stats.objects.filter(robot_climb='None').count(),
             
-            'pit_stats_buddy_yes':  Pit_stats.objects.filter(robot_buddy_climb='Yes').count(),
-            'pit_stats_buddy_no':  Pit_stats.objects.filter(robot_buddy_climb='No').count(),
+            'pit_stats_climb_lower':  Pit_stats.objects.filter(robot_climb='Lower Rung').count(),
+            'pit_stats_climb_middle':  Pit_stats.objects.filter(robot_climb='Middle Rung').count(),
+            'pit_stats_climb_upper':  Pit_stats.objects.filter(robot_climb='Upper Rung').count(),
+            'pit_stats_climb_traversal':  Pit_stats.objects.filter(robot_climb='Traversal Rung').count(),
             
-            'pit_stats_height_short':  Pit_stats.objects.filter(robot_highlow='Low - below 28"').count(),
-            'pit_stats_height_tall':  Pit_stats.objects.filter(robot_highlow='High - above 28"').count(),
             
-            'pit_stats_weight': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_weight'))).split('(')[1].split(')')[0].split("'")[1]))),
-            'pit_stats_width': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_width'))).split('(')[1].split(')')[0].split("'")[1]))),
-            'pit_stats_length': str(round(float(str(Pit_stats.objects.all().aggregate(Avg('robot_frame_length'))).split('(')[1].split(')')[0].split("'")[1])))
+            'pit_stats_shot_high':  Pit_stats.objects.filter(robot_goal_height='Lower Hub').count(),
+            'pit_stats_shot_low':  Pit_stats.objects.filter(robot_goal_height='Upper Hub').count(),
+            'pit_stats_shot_both':  Pit_stats.objects.filter(robot_goal_height='Both Lower and Upper Hub').count(),
+            
+            
+            'pit_stats_weight': (int(Pit_stats.objects.all().aggregate(Avg('robot_weight'))['robot_weight__avg'])),
+            'pit_stats_width': (int(Pit_stats.objects.all().aggregate(Avg('robot_frame_width'))['robot_frame_width__avg'])),
+            'pit_stats_length': (int(Pit_stats.objects.all().aggregate(Avg('robot_frame_length'))['robot_frame_length__avg'])),
+            'pit_stats_vision_usage': (int(Pit_stats.objects.all().aggregate(Avg('robot_vision_implement'))['robot_vision_implement__avg']*100)),
+            
         }
         
     else:
@@ -94,6 +104,7 @@ def getPercentage(list):
     calc = [sum1/total, sum2/total]
     return calc
 
+@login_required
 def ScoutDetail(request, id):
     
     stats = get_object_or_404(Game_stats, id=id)
@@ -108,12 +119,14 @@ def ScoutDetail(request, id):
     }
     return render(request, 'stats/game_stats_detail.html', context)
 
+
 class ScoutListView(ListView):
     model = Game_stats
     template_name = 'stats/game_stats_list'  # <app>/<model>_<viewtype>.html
     context_object_name = 'stats'
     ordering = ['-id']
     paginate_by = 20
+
 
 
 class PitListView(ListView):
@@ -124,8 +137,9 @@ class PitListView(ListView):
     ordering = ['-id']
     paginate_by = 20
 
+@login_required
 
-def  PitDetail(request, id):
+def PitDetail(request, id):
     return render(request, 'stats/pit_stats_detail.html', {'object': Pit_stats.objects.get(id=id)})
     
 
@@ -135,6 +149,7 @@ def randomIDGenerator():
     range_end = (10**15)-1
     return randint(range_start, range_end)
 
+@login_required
 def pit_scout(request):
     form = pit_scout_form(request.POST)
     if request.method == 'POST':
@@ -142,6 +157,7 @@ def pit_scout(request):
         if form.is_valid():
             
             obj = form.save(commit=False)
+            
             
             team_num = form.cleaned_data['team_num']
             
@@ -153,12 +169,10 @@ def pit_scout(request):
                 Team.objects.create(team_num = team_num)
 
             if Pit_stats.objects.filter(team_num = team_num).exists():
-                if Profile.objects.get(user=request.user.profile.user).viewPitResubmit:
+                
                     pk = Pit_stats.objects.get(team_num=team_num).pk
                     return redirect('pitdata-view', pk=pk)
-                else:
-                    messages.error(request, "Team pit entry already exists")
-                    return redirect('pitscout-view')
+        
             form.save()
             messages.success(request, "Pit entry submitted, Thank You")
             return redirect('pitscout-view')
@@ -214,7 +228,7 @@ def scout(request):
 
     
 
-  
+@login_required
 def pitFlag(request, id):
     instance = get_object_or_404(Pit_stats, id=id)
     form = pit_correct_form(instance=instance)
@@ -237,6 +251,7 @@ def pitFlag(request, id):
     }
     return render(request, 'stats/pit-flag.html', context)
         
-         
+     
+@login_required    
 def uploadData(request):
     return render(request, 'stats/upload-data.html')

@@ -51,7 +51,7 @@
                             {% if messages %}
                             {% for message in messages %}
                             {% if message.tags == "error" %}
-                            <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
+                            <div class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
                                 href="https://github.com/estevanmaito/windmill-dashboard">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -95,8 +95,8 @@
                                 <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
                                 <script>
                                     $(document).ready(function () {
-                                        window.onload = async function getComps() {
-                                            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
+
+                                            $.get("https://www.thebluealliance.com/api/v3/team/frc" + $('#teamNumber').val() + "/events/2020", {
                                                 "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
                                             }, function (data) {
                                                 var jObject = (data);
@@ -110,7 +110,7 @@
                                                 }
 
                                             })
-                                        }
+
                                     })
 
                                     document.getElementById('select-comp-dropdown').addEventListener("change",
