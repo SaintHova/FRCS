@@ -49,8 +49,8 @@
     btn.onclick = function () {
         modal.style.opacity = "1";
     }
-    
-    
+
+
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
@@ -113,7 +113,8 @@
 
                         <p class=''>This pit data has been flagged as incorrect</p>
                     </div>
-                    <a href='{% url "pit-update-view" object.id %}' class=' transition duration-300 ease-in-out rounded p-0.5 hover:bg-white hover:text-red-500'>
+                    <a href='{% url "pit-update-view" object.id %}'
+                        class=' transition duration-300 ease-in-out rounded p-0.5 hover:bg-white hover:text-red-500'>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -123,32 +124,53 @@
 
                 </div>
                 {% endif %}
-                <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
-
-                    <div>
-                        <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Data submitted on 
-                        </p>
-                        <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                            {{object.date_entered}}
-                        </p>
-                    </div>
-                </div>
                 <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2 ">
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400 ">
+                                Date submitted on
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.date_entered}}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+
+                        <div>
+                            <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Data submitted at
+                            </p>
+                            <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
+                                {{object.competition}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="grid gap-6 mb-8 mt-4 md:grid-cols-2 xl:grid-cols-2 ">
+                    <!-- Card -->
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400 ">
                                 Robot weight
                             </p>
                             <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                {{object.robot_weight}}
+                                {{object.robot_weight}} lbs
                             </p>
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -160,7 +182,8 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -172,7 +195,8 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -184,7 +208,8 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -195,7 +220,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -207,7 +233,8 @@
                         </div>
                     </div>
                     <!-- Card -->
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -218,7 +245,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
 
                         <div>
@@ -230,7 +258,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -241,7 +270,8 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                    <div
+                        class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                         <div>
                             <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -254,7 +284,8 @@
                     </div>
                 </div>
 
-                <div class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
+                <div
+                    class="flex items-center p-4 bg-cream rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
 
                     <div>
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
