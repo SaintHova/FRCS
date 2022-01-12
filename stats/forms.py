@@ -68,11 +68,11 @@ class pit_scout_form(ModelForm):
     robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
     robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_climb = forms.CharField(widget=forms.Select(choices=CLIMB))
-    incorrect_selection = forms.CharField(widget=forms.Select(choices=INCORRECT_CHOICES))
+    
 
     class Meta:
         model = Pit_stats
-        exclude = ['scout', 'date_entered', 'is_incorrect', 'is_hidden']
+        exclude = ['incorrect_selection' ,'is_incorrect', 'is_hidden']
 
 class pit_correct_form(ModelForm):
     is_incorrect = forms.BooleanField(widget=forms.CheckboxInput(
@@ -88,13 +88,7 @@ class pit_correct_form(ModelForm):
         model = Pit_stats
         fields = ['is_incorrect']
 
-MATCH_TYPE = [
-    ('Qualifying Match','Qualifying Match'),
-    ('Quarter Final','Quarter Final'),
-    ('Semi Final','Semi Final'),
-    ('Final','Final'),
-    ('Elimination Final','Elimination Final')
-]
+
 
 class game_scout_form(ModelForm):
     #match_number

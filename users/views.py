@@ -76,6 +76,7 @@ def login(request):
     return render(request, "users/login.html", {"form": form})
 
 
+
 def register(request):
     form = UserCreationForm(request.POST or None)
     if request.method == "POST":

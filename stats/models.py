@@ -7,22 +7,22 @@ import uuid
 
 # Create your models here.
 
-class Pit_stats(RandomIDModel):
-    date_entered = models.DateTimeField(default=timezone.now())
-    team_num = models.IntegerField(null = True)
-    competition = models.CharField(max_length = 100, null = True)
-    scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True)
-    scouting_team = models.CharField(max_length=100, null = True)
-    robot_weight = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
-    robot_frame_length = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
-    robot_frame_width = models.DecimalField(max_digits=5, decimal_places = 2, null = True)
-    robot_drivetrain_type = models.CharField(max_length=100, null = True)
-    robot_vision_type = models.CharField(max_length=100, null = True)
-    robot_vision_implement = models.CharField(max_length=100, null = True)
-    robot_goal_height = models.CharField(max_length=100, null = True)
-    robot_autonomous = models.CharField(max_length=100, null = True)
-    robot_climb = models.CharField(max_length=100, null = True)
-    #robot_buddy_climb = models.CharField(max_length=100, null = True)
+class Pit_stats(models.Model):
+    #date_entered = models.DateTimeField(default=timezone.now())
+    team_num = models.IntegerField(default=810)
+    #competition = models.CharField(max_length = 100, null = True)
+    #scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True)
+
+    robot_weight = models.IntegerField( null = True, blank = True)
+    robot_frame_length = models.IntegerField( null = True, blank = True)
+    robot_frame_width = models.IntegerField( null = True, blank = True)
+    robot_drivetrain_type = models.CharField(max_length=100, null = True, blank = True)
+    robot_vision_type = models.CharField(max_length=100, null = True, blank = True)
+    robot_vision_implement = models.CharField(max_length=100, null = True, blank = True)
+    robot_goal_height = models.CharField(max_length=100, null = True, blank = True)
+    robot_autonomous = models.CharField(max_length=100, null = True, blank = True)
+    robot_climb = models.CharField(max_length=100, null = True, blank = True)
+    
     
     customOne = models.CharField(max_length=100, null = True, blank = True)
     customTwo = models.CharField(max_length=100, null = True, blank = True)
@@ -32,9 +32,9 @@ class Pit_stats(RandomIDModel):
     answerTwo = models.CharField(max_length=100, null = True, blank = True)
     answerThree = models.CharField(max_length=100, null = True, blank = True)
     
-    notes = models.TextField(max_length=100, null = True)
-    is_incorrect = models.BooleanField()
-    incorrect_selection = models.CharField(max_length=100)
+    notes = models.TextField(max_length=100, null = True, blank=True)
+    is_incorrect = models.BooleanField(default=False)
+    incorrect_selection = models.CharField(max_length=100, null=True, blank=True)
     is_hidden = models.BooleanField(default=False)
     
     # custom_questions = models.ForeignKey(CustomPitQuestions, on_delete = models.CASCADE, null = True)

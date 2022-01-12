@@ -138,21 +138,23 @@ def randomIDGenerator():
 def pit_scout(request):
     form = pit_scout_form(request.POST)
     if request.method == 'POST':
+
         if form.is_valid():
+            
             obj = form.save(commit=False)
+            
             team_num = form.cleaned_data['team_num']
-            obj.scout = Profile.objects.get(user=request.user)
             
             obj.is_incorrect = False
             
-            obj.scouted_team_num = request.user.team_num
-            obj.stat_id = randomIDGenerator()
 
+
+            
+            
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)
 
             if Pit_stats.objects.filter(team_num = team_num).exists():
-                
                 if Profile.objects.get(user=request.user.profile.user).viewPitResubmit:
                     pk = Pit_stats.objects.get(team_num=team_num).pk
                     return redirect('pitdata-view', pk=pk)
@@ -165,6 +167,7 @@ def pit_scout(request):
 
         
         else:
+    
             messages.error(request, "Form invalid, Try submitting data again properly")
             return redirect('pitscout-view')
     return render(request, 'stats/pit-scout.html', {'form': form})
@@ -199,10 +202,13 @@ def scout(request):
             # if not Game_stats.objects.filter(team = team_num).exists():
             #     Game_stats.objects.create(team = Team.objects.get(team_num = team_num), rank=0)
             #Finally, add Game_stats object to the team
+            print(form.cleaned_data)
             obj.stat = Team.objects.get(team_num = team_num).game_stats
             form.save()
             return redirect('home-view')
+        
         else:
+            print(form.cleaned_data)
             return redirect('scout-view')
     return render(request, 'stats/scout.html', {'form': form})
 
