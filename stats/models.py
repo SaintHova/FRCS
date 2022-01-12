@@ -8,11 +8,11 @@ import uuid
 # Create your models here.
 
 class Pit_stats(models.Model):
-    #date_entered = models.DateTimeField(default=timezone.now())
     team_num = models.IntegerField(default=810)
-    #competition = models.CharField(max_length = 100, null = True)
-    #scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True)
+    competition = models.CharField(max_length = 100, null = True)
+    scout = models.ForeignKey(Profile, on_delete = models.CASCADE, null = True, blank=True)
 
+    date_entered = models.DateTimeField(default=timezone.now())
     robot_weight = models.IntegerField( null = True, blank = True)
     robot_frame_length = models.IntegerField( null = True, blank = True)
     robot_frame_width = models.IntegerField( null = True, blank = True)

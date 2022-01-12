@@ -72,16 +72,10 @@ class pit_scout_form(ModelForm):
 
     class Meta:
         model = Pit_stats
-        exclude = ['incorrect_selection' ,'is_incorrect', 'is_hidden']
+        exclude = ['scout', 'date_entered', 'incorrect_selection' ,'is_incorrect', 'is_hidden']
 
 class pit_correct_form(ModelForm):
-    is_incorrect = forms.BooleanField(widget=forms.CheckboxInput(
-         attrs={
-            'class': 'inp-cbx',
-            'style': 'display: none;',
-            'id': 'cbx',
-        }
-    ))
+    
     incorrect_selection = forms.CharField(widget=forms.Select(choices=INCORRECT_CHOICES))
 
     class Meta:

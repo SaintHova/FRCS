@@ -147,9 +147,7 @@ def pit_scout(request):
             
             obj.is_incorrect = False
             
-
-
-            
+            obj.scout = Profile.objects.get(user=request.user)
             
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)
