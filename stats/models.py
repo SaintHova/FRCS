@@ -8,6 +8,8 @@ import uuid
 # Create your models here.
 
 class Pit_stats(models.Model):
+    
+    stat_id = models.CharField(max_length=15, null=True)
 
     team_num = models.PositiveIntegerField()
     competition = models.CharField(max_length = 100, null = True)

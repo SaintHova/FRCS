@@ -162,8 +162,13 @@ def pit_scout(request):
             team_num = form.cleaned_data['team_num']
             
             obj.is_incorrect = False
+            stat_gen = randomIDGenerator()
             
             obj.scout = Profile.objects.get(user=request.user)
+            
+            obj.stat_id = stat_gen
+            while Pit_stats.objects.filter(stat_id=stat_gen).exists():
+                obj.stat_id = randomIDGenerator()
             
             if not Team.objects.filter(team_num = team_num).exists():
                 Team.objects.create(team_num = team_num)

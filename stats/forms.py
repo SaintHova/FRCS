@@ -78,7 +78,7 @@ class pit_scout_form(ModelForm):
 
     class Meta:
         model = Pit_stats
-        exclude = ['scout', 'date_entered', 'incorrect_selection' ,'is_incorrect', 'is_hidden']
+        exclude = ['scout', 'stat_id', 'date_entered', 'incorrect_selection' ,'is_incorrect', 'is_hidden']
 
 class pit_correct_form(ModelForm):
     
