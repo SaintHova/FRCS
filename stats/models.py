@@ -8,7 +8,7 @@ import uuid
 # Create your models here.
 
 class Pit_stats(models.Model):
-    
+
     stat_id = models.CharField(max_length=15, null=True)
 
     team_num = models.PositiveIntegerField()
@@ -40,7 +40,6 @@ class Pit_stats(models.Model):
     is_hidden = models.BooleanField(default=False)
     
     # custom_questions = models.ForeignKey(CustomPitQuestions, on_delete = models.CASCADE, null = True)
-
     def __str__(self):
         return f'{self.team_num} Pit Stats'
 class Stat:
@@ -82,5 +81,3 @@ class Match(models.Model):
 
     def __str__(self):
         return f'{self.team_num} - {self.match_number}'
-
-

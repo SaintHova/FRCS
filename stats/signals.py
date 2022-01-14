@@ -8,7 +8,3 @@ from stats.models import Match
 def create_game_stats(sender, instance, created, **kwargs):
     if created:
         Game_stats.objects.create(team = instance)
-
-
-
-

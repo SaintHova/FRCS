@@ -3,10 +3,6 @@ from django.forms import ModelForm
 from .models import Pit_stats, Game_stats, Match
 from users.models import CustomUser
 
-
-
-
-
 DRIVETRAIN_TYPE = [
     ('4 Wheel Skid', '4 Wheel Skid'),
     ('6 Wheel Skid', '6 Wheel Skid'),
@@ -30,7 +26,6 @@ GOAL_SHOT = [
  ('Upper Hub', 'Upper Hub'),
  ('Both Lower and Upper Hub', 'Both Lower and Upper Hub'),
 ]
-
 
 INCORRECT_CHOICES = [
     ('DriveTrain Type', 'DriveTrain Type'),
@@ -56,7 +51,6 @@ VISION_TRUE_FALSE = [
     ('1', 'Yes'),
 ]
 
-
 CLIMB = [
     ('None', 'None'),
     ('Lower Rung', 'Lower Rung'),
@@ -69,12 +63,10 @@ CLIMB = [
 class pit_scout_form(ModelForm):
     robot_drivetrain_type = forms.CharField(widget=forms.Select(choices=DRIVETRAIN_TYPE))
     robot_goal_height = forms.CharField(widget=forms.Select(choices=GOAL_SHOT))
-    
     robot_vision_implement = forms.CharField(widget=forms.Select(choices=VISION_TRUE_FALSE))
     robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
     robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_climb = forms.CharField(widget=forms.Select(choices=CLIMB))
-    
 
     class Meta:
         model = Pit_stats
@@ -88,11 +80,8 @@ class pit_correct_form(ModelForm):
         model = Pit_stats
         fields = ['is_incorrect']
 
-
-
 class game_scout_form(ModelForm):
     #match_number
-    
     left_tarmac = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_climb = forms.CharField(widget=forms.Select(choices=CLIMB))
     # robot_climb_help = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))

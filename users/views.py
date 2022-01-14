@@ -41,9 +41,6 @@ from django.shortcuts import get_object_or_404
 from itertools import chain
 from django.core.mail import send_mail
 
-
-
-
 def index(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST)
@@ -57,7 +54,6 @@ def index(request):
     else:
         form = FeedbackForm()
     return render(request, "users/index.html", {"form": form})
-
 
 def login(request):
     form = UserLoginForm(request.POST or None)
@@ -76,8 +72,6 @@ def login(request):
             messages.warning(request, f"Invalid Credentials")
 
     return render(request, "users/login.html", {"form": form})
-
-
 
 def register(request):
     form = UserCreationForm(request.POST or None)
@@ -119,7 +113,6 @@ def register(request):
     }
     return render(request, "users/register.html", context)
 
-
 def activate_account(request, uidb64, token):
     try:
         uid = force_bytes(urlsafe_base64_decode(uidb64))
@@ -133,10 +126,8 @@ def activate_account(request, uidb64, token):
     else:
         return HttpResponse("Activation link is invalid!")
 
-
 def gettingStarted(request):
     return render(request, "users/getting-started.html")
-
 
 def guest(request):
     send_mail(
@@ -145,17 +136,12 @@ def guest(request):
     'jtyler03@optonline.net',
     ['jtyler03@optonline.net'],
     fail_silently=False,
-)
+    )
     return render(request, "users/guest.html")
-
-
-
-
 
 @login_required
 def welcome(request):
     return render(request, "users/welcome.html")
-
 
 def getAuthLevel():
     if CustomUser.is_team_admin:
@@ -163,21 +149,14 @@ def getAuthLevel():
     else:
         return "Team Member"
 
-    
-    
-
 @login_required
 def ProfileSettings(request, id):
-    
-
-    
     instance = Profile.objects.get(user=request.user.profile.user)
     form = NameEditForm(request.POST, instance=instance)
     p_form = ProfileSettingsForm(request.POST, instance=instance)
     p_first_name = Profile.objects.get(user=request.user).first_name
     p_last_name = Profile.objects.get(user=request.user).last_name
     
-        
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
@@ -195,29 +174,25 @@ def ProfileSettings(request, id):
             form.save()
             p_form.save()
             return redirect("profile-view")
-        
     return render(request, "users/profile-settings.html", context)
 
 @login_required
 def profile(request):
-    
     context = {
         "user_admins": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=True),
         "users": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=False),
         "auth_level": getAuthLevel(),
         "code": Team.objects.get(team_num=request.user.team_num).team_code,
-        "phonetic": alpha.read(Team.objects.get(team_num=request.user.team_num).team_code),
         "picture": request.user.profile.image,
         'stat': Match.objects.filter(scout=request.user),
         'result_list': list(chain(Match.objects.all(), Pit_stats.objects.all()))
     }
     return render(request, "users/profile.html", context)
 
-
 class JSONResponseMixin:
     """
-  A mixin that can be used to render a JSON response.
-  """
+    A mixin that can be used to render a JSON response.
+    """
 
     def render_to_json_response(self, context, **response_kwargs):
         """
@@ -234,7 +209,6 @@ class JSONResponseMixin:
         # objects -- such as Django model instances or querysets
         # -- can be serialized as JSON.
         return context
-
 
 @login_required
 def teamManagement(request):
@@ -265,7 +239,6 @@ def teamInfo(request):
             instance = form.save(commit=False)
             instance.save()
             return render(request, "users/team-manager.html", context)
-    
     return render(request, "users/team-info.html", context) 
 
 @login_required
@@ -297,7 +270,6 @@ def teamManagementUserEdit(request, id):
             instance.save()
             return render(request, "users/team-manager-user.html", context)
     return render(request, "users/team-manager-user.html", context) 
-
 
 @login_required
 def changelog(request):
@@ -352,13 +324,20 @@ def imageUpload(request, id):
 
 @login_required
 def accountEdit(request, id):
-    instance = get_object_or_404(CustomUser, username=request.user.username) #!DOESNT WORL - NEEDS TO OCCUPY FIELDS WITH COORESPONDING ACCOUNT DATA
+    f_name = CustomUser.objects.get(id=id).profile.first_name
+    l_name = CustomUser.objects.get(id=id).profile.last_name
+    username = CustomUser.objects.get(id=id).username
+    email = CustomUser.objects.get(id=id).email
+
     form = UserEditForm(request.POST, instance=instance)
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
         "picture": request.user.profile.image,
-        
+        "f_name": f_name,
+        "l_name": l_name,
+        "username": username,
+        "email": email,
     }
     if request.method == "POST":
         if form.is_valid:
@@ -375,4 +354,3 @@ def del_user(request, id):
     u.delete()
 
     return render(request, 'index.html')
-

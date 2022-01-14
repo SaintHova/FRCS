@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -76,7 +74,6 @@ SERIALIZATION_MODULES = {
     'json': 'wadofstuff.django.serializers.json'
 }
 
-
 MIDDLEWARE = [
     
     "django.middleware.security.SecurityMiddleware",
@@ -88,9 +85,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-
 # --- Specify the authentication backends 
-
 
 # AUTHENTICATION_BACKENDS = ('users.backends.CustomUserAuth',)
 
@@ -103,7 +98,6 @@ REST_FRAMEWORK = {
 
 # crisy looks good with this - uses bootstrap framework
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-
 
 ROOT_URLCONF = "DjangoFRCS.urls"
 
@@ -123,16 +117,13 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = "DjangoFRCS.wsgi.application"
 
 # mutes profile picture warning on server startup
 SILENCED_SYSTEM_CHECKS = ["fields.W161"]
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 
 # if DEBUG:
 DATABASES = {
@@ -141,6 +132,7 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
+
 # else:
 #    DATABASES = {
 #    'default': {
@@ -153,14 +145,12 @@ DATABASES = {
 #    }
 # }
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -175,10 +165,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
 
 # STATIC FILE DIRS
 STATIC_URL = "/static/"
@@ -186,15 +174,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 LOGIN_URL = "login-view"
 
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.google.com'
 EMAIL_HOST_USER = 'frcsassistant@gmail.com'
 EMAIL_HOST_PASSWORD = 'bbqdjfcccrjagkyu'
 EMAIL_PORT = 587
-
 
 # MEDIA FILE DIRS
 MEDIA_ROOT = os.path.join(BASE_DIR, "profile-pics")

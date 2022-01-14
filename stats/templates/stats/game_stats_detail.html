@@ -1,149 +1,133 @@
 {% extends 'users/base.html' %}
-
-<script>
-    $(document).ready(function () {
-        setTitle("Pit Data");
-    });
-</script>
-
-{%block styles%}
-{%endblock styles%}
-
+    <script>
+        $(document).ready(function () {
+            setTitle("Pit Data");
+        });
+    </script>
+    {%block styles%}
+    {%endblock styles%}
 {%block content%}
+    <script>
+        $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{stat.team.team_num}}' + "/simple", {
+            "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+        }, function (data) {
+            var jObject = (data);
+            $("#nickname").html(jObject['nickname']);
+            console.log(jObject);
+        })
+    </script>
 
+    <script>
+        window.onload = function populateAverages(){
+            var climb_data = {{data.robot_climb | safe}}
+            var CLIMB_DATA = climb_data.map(i => Number(i))
+            var total = 0;
+            for (var i = 0; i < CLIMB_DATA.length; i++) {
+                CLIMB_DATA.splice(CLIMB_DATA.indexOf(100), 1, 1)
+                total += CLIMB_DATA[i];
+            }
+            var climb_avg = total / CLIMB_DATA.length;
+            document.getElementById('avg-climb').innerHTML = climb_avg
 
-
-<script>
-    $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{stat.team.team_num}}' + "/simple", {
-        "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-    }, function (data) {
-        var jObject = (data);
-        $("#nickname").html(jObject['nickname']);
-        console.log(jObject);
-    })
-</script>
-
-<script>
-    window.onload = function populateAverages(){
-
-
-        var climb_data = {{data.robot_climb | safe}}
-        var CLIMB_DATA = climb_data.map(i => Number(i))
-
-        var total = 0;
-        for (var i = 0; i < CLIMB_DATA.length; i++) {
-            CLIMB_DATA.splice(CLIMB_DATA.indexOf(100), 1, 1)
-            total += CLIMB_DATA[i];
+            var defense_data = {{data.defense_percentage | safe}}
+            var DEF_DATA = defense_data.map(i => Number(i))
+            var total = 0;
+            for (var i = 0; i < DEF_DATA.length; i++) {
+                total += DEF_DATA[i];
+            }
+            var def_avg = total / DEF_DATA.length;
+            document.getElementById('avg-defense').innerHTML = def_avg + "%"
         }
-        var climb_avg = total / CLIMB_DATA.length;
-        document.getElementById('avg-climb').innerHTML = climb_avg
+    </script>
 
-
-        var defense_data = {{data.defense_percentage | safe}}
-        var DEF_DATA = defense_data.map(i => Number(i))
-
-        var total = 0;
-        for (var i = 0; i < DEF_DATA.length; i++) {
-            total += DEF_DATA[i];
-        }
-        var def_avg = total / DEF_DATA.length;
-        document.getElementById('avg-defense').innerHTML = def_avg + "%"
-    }
-</script>
-
-
-<div class="flex bg-gray-50 dark:bg-dark">
-    <div class="flex flex-col flex-1 w-full">
-        <main class="h-full overflow-y-auto">
-            <div class="container mx-auto grid">
-                <div class='md:flex md:justify-between'>
-                    <div>
-                        <h2 class="mt-6 text-left text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                            Match Data for Team {{stat.team.team_num}}
-                        </h2>
-                        <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Loading...</h2>
-                    </div>
-                </div>
-                <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-                    <!-- Card -->
-                    <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs">
-                        <div
-                            class="p-3 mr-4 text-blue-100 bg-blue-500 rounded-full">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
-                                </path>
-                            </svg>
-                        </div>
+    <div class="flex bg-gray-50 dark:bg-dark">
+        <div class="flex flex-col flex-1 w-full">
+            <main class="h-full overflow-y-auto">
+                <div class="container mx-auto grid">
+                    <div class='md:flex md:justify-between'>
                         <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                Average ...
-                            </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-white">
-                               
-                            </p>
+                            <h2 class="mt-6 text-left text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                                Match Data for Team {{stat.team.team_num}}
+                            </h2>
+                            <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Loading...</h2>
                         </div>
                     </div>
-                    <!-- Card -->
-                    <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
-                        <div
-                            class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
-                            </svg>
+                    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+                        <!-- Card -->
+                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs">
+                            <div
+                                class="p-3 mr-4 text-blue-100 bg-blue-500 rounded-full">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Average ...
+                                </p>
+                                <p class="text-lg font-semibold text-gray-700 dark:text-white">
+                                
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                Average Defense
-                            </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-white">
-                            
-                            </p>
+                        <!-- Card -->
+                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
+                            <div
+                                class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Average Defense
+                                </p>
+                                <p class="text-lg font-semibold text-gray-700 dark:text-white">
+                                
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
-                        <div
-                            class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
-                            </svg>
+                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
+                            <div
+                                class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Average Defense
+                                </p>
+                                <p class="text-lg font-semibold text-gray-700 dark:text-white">
+                                
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                Average Defense
-                            </p>
-                            <p class="text-lg font-semibold text-gray-700 dark:text-white">
-                            
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
-                        <div
-                            class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                            
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                              </svg>
-                        </div>
-                        <div>
-                            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                Average Defense
-                            </p>
-                            <p id='avg-defense' class="text-lg font-semibold text-gray-700 dark:text-white">
-                            
-                            </p>
+                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
+                            <div
+                                class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Average Defense
+                                </p>
+                                <p id='avg-defense' class="text-lg font-semibold text-gray-700 dark:text-white">
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
-
-
-
 {%endblock content%}

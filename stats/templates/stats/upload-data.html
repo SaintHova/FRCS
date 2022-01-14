@@ -1,46 +1,31 @@
 {% extends 'users/base.html' %}
-
-{% load widget_tweaks %}
-
-{%block styles%}
-{%endblock styles%}
-
+    {% load widget_tweaks %}
+    {%block styles%}
+    {%endblock styles%}
 {%block content%}
-
-
-
-
-
-
-<div class="flex bg-gray-50 dark:bg-dark">
-    <div class="flex flex-col w-full">
-        <main>
-            <div class="container overflow-y-visible px-6 mx-auto">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                    Upload Data
-                </h2>
-                <img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
-                        class="img-responsive img-rounded mx-auto" height="200px" width="200px"
-                        style="border-radius: 10px; cursor: pointer;" src="../../../profile-pics/{{image}}"
-                        alt="User picture">
-                <br>
-                <form method="POST" enctype='multipart/form-data' class='dark:text-white mx-auto max-w-lg'>
-                    {% csrf_token %}
-                    
-                    {{form.image}}
-                    
-                    
-                    <button class="btn-default mt-4">Submit</button>
-                </form>
-            </div>
-            
-        </main>
+    <div class="flex bg-gray-50 dark:bg-dark">
+        <div class="flex flex-col w-full">
+            <main>
+                <div class="container overflow-y-visible px-6 mx-auto">
+                    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Upload Data
+                    </h2>
+                    <img data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+                            class="img-responsive img-rounded mx-auto" height="200px" width="200px"
+                            style="border-radius: 10px; cursor: pointer;" src="../../../profile-pics/{{image}}"
+                            alt="User picture">
+                    <br>
+                    <form method="POST" enctype='multipart/form-data' class='dark:text-white mx-auto max-w-lg'>
+                        {% csrf_token %}
+                        
+                        {{form.image}}
+                        
+                        
+                        <button class="btn-default mt-4">Submit</button>
+                    </form>
+                </div>
+                
+            </main>
+        </div>
     </div>
-</div>
-
-
-
-
-
-
 {%endblock content%}

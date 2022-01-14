@@ -7,7 +7,6 @@ from .models import Profile
 from stats.models import Match, Pit_stats
 from teams.models import Team
 
-
 def getProfileFirstName(request):
     f_placeholder = Profile.objects.get(request.user).first_name
     print(f_placeholder)
@@ -15,14 +14,11 @@ def getProfileFirstName(request):
 
 User = get_user_model()
 
-
 class UserCreationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={
             'class':"appearance-none rounded-none relative block w-full px-3 py-2 border border-black placeholder-black text-gray-900 focus:outline-none focus:ring-black focus:border-black focus:z-10 sm:text-sm darK:bg-secondary dark:placeholder-white dark:text-white",
             'placeholder': 'Password'
-
-
         }
     ))
     username = forms.CharField(label='Username', widget=forms.TextInput(
@@ -51,10 +47,8 @@ class UserCreationForm(forms.ModelForm):
             'style': 'display: none;',
             'id': 'cbx',
             'name': 'is_team_admin'
-
         }
     ))
-
     class Meta:
         model = User
         fields = ['username', 'email', 'team_num']
@@ -69,8 +63,6 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
-
 class UserLoginForm(forms.Form):
     query = forms.CharField(label='Username / Email', widget=forms.TextInput(
         attrs={
@@ -104,10 +96,7 @@ class UserLoginForm(forms.Form):
             raise forms.ValidationError("credentials are not correct")
         self.cleaned_data["user_obj"] = user_obj
         return super(UserLoginForm, self).clean(*args, **kwargs)
-
-
 class UserEditForm(UserChangeForm):
-    
     email = forms.CharField(label='Email', widget=forms.TextInput(
         attrs={
             'id':"email-address",
@@ -116,7 +105,6 @@ class UserEditForm(UserChangeForm):
             'placeholder':'Email'
         }
     ))
-    
     username = forms.CharField(label='Username', widget=forms.TextInput(
         attrs={
             'id':"username",
@@ -130,8 +118,6 @@ class UserEditForm(UserChangeForm):
             'email',
             'username'
         )
-
-
 class ProfileEditForm(forms.ModelForm):
     
     image = forms.FileField(widget=forms.ClearableFileInput(
@@ -139,13 +125,9 @@ class ProfileEditForm(forms.ModelForm):
             'class': 'file:bg-blue-500'
             }
         ))
-
-    
     class Meta:
         model = Profile
         fields = ('image',)
-
-
 class GameEditForm(forms.ModelForm):
     class Meta:
         model = Match
@@ -155,8 +137,6 @@ BOT_HEIGHT = [
  ('Low - below 28"', 'Low - below 28"'),
  ('High - above 28"', 'High - above 28"'),
 ]
-
-
 DRIVETRAIN_TYPE = [
     ('4 Wheel Skid', '4 Wheel Skid'),
     ('6 Wheel Skid', '6 Wheel Skid'),
@@ -166,7 +146,6 @@ DRIVETRAIN_TYPE = [
     ('Swerve','Swerve'),
     ('Other','Other'),	
 ]
-
 VISION_TYPE = [
     
  ('None', 'None'),
@@ -174,22 +153,16 @@ VISION_TYPE = [
  ('Raspberry Pi', 'Raspberry Pi'),
  ('Other', 'Other'),
 ]
-
 GOAL_SHOT = [
- 
  ('Lower', 'Lower'),
  ('Inner', 'Inner'),
  ('Outer', 'Outer'),
  ('Both Low and High', 'Both Low and High'),
 ]
-
-
-
 TRUE_FALSE = [
     ('No', 'No'),
     ('Yes', 'Yes'),
 ]
-
 PENALTIES = [
     ('None', 'None'),
     ('Disbaled', 'Disabled'),
@@ -198,7 +171,6 @@ PENALTIES = [
     ('Yellow Card', 'Yellow Card'),
     ('Red Card', 'Red Card')
 ]
-
 CP = [
     ('No', 'No'),
     ('Positional', 'Positional'),
@@ -206,17 +178,20 @@ CP = [
     ('Both Position and Rotation', 'Both Position and Rotation')
     
 ]
-
 class PitEditForm(forms.ModelForm):
-    
     robot_drivetrain_type = forms.CharField(widget=forms.Select(choices=DRIVETRAIN_TYPE))
-    robot_highlow = forms.CharField(widget=forms.Select(choices=BOT_HEIGHT))
-    robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))
+
     robot_goal = forms.CharField(widget=forms.Select(choices=GOAL_SHOT))
+    robot_highlow = forms.CharField(widget=forms.Select(choices=BOT_HEIGHT))
+
+    robot_vision_type = forms.CharField(widget=forms.Select(choices=VISION_TYPE))    
     robot_vision_implement = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+
     robot_autonomous = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+
     robot_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_buddy_climb = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
+
     robot_control_panel_pos = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
     robot_control_panel_rot = forms.CharField(widget=forms.Select(choices=TRUE_FALSE))
 
@@ -225,7 +200,6 @@ class PitEditForm(forms.ModelForm):
         exclude = ['scout', 'scouting_team', 'date_entered', 'is_incorrect', 'is_hidden']
         
 class TeamEditForm(forms.ModelForm):
-    
     email = forms.EmailField(label='Email', widget=forms.EmailInput(
         attrs={
             'class':"form-single",
@@ -233,7 +207,6 @@ class TeamEditForm(forms.ModelForm):
             'id': 'email-form',
         }
     ))
-    
     pit_stats_hide = forms.BooleanField(label='Hide Pit Stat', required=False, widget=forms.CheckboxInput(
         attrs={
             'class': 'inp-cbx',
@@ -244,34 +217,25 @@ class TeamEditForm(forms.ModelForm):
     class Meta:
         model = Team
         fields = ['email', 'pit_stats_hide']
-
-
 class NameEditForm(forms.ModelForm):
-    
-    
     first_name = forms.CharField(label='First Name', required=False, widget=forms.TextInput(
         attrs={
             'class': 'form-single',
             'id': 'form-first_name'
         }
     ))
-    
     last_name = forms.CharField(label='Last Name', required=False, widget=forms.TextInput(
         attrs={
             'class': 'form-single',
             'id': 'form-last_name'
-            
         }
     ))
-
     class Meta:
         model = Profile
         fields = (
             'first_name',
             'last_name',
         )
-      
-
 class ProfileSettingsForm(forms.ModelForm):
     
     viewPitResubmit = forms.BooleanField(label='viewPitResubmit', required=False, widget=forms.CheckboxInput(
@@ -290,7 +254,6 @@ class ProfileSettingsForm(forms.ModelForm):
         }
     ))
 
-    
     class Meta:
         model = Profile
         fields = ('viewPitResubmit','relativeScoring')
@@ -316,5 +279,3 @@ class TeamSettingsForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('canEditStats', )
-        
-        

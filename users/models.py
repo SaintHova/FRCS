@@ -11,6 +11,12 @@ class CustomUserManager(BaseUserManager):
     def create_user(self, username, email, team_num, password, **kwargs):
         if not email:
             raise ValueError("Email must be present")
+        if not username:
+            raise ValueError("Username must be present")
+        if not team_num:
+            raise ValueError("Team number must be present")
+        if not password:
+            raise ValueError("Password must be present")
 
         email = self.normalize_email(email)
         user = self.model(
@@ -27,7 +33,6 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(username, email, 810, password=password)
         user.is_admin = True
         user.is_staff = True
-
         user.is_active = True
         user.save(using=self._db)
         return user
@@ -70,10 +75,9 @@ class CustomUser(AbstractBaseUser):
 
 #Profile model
 class Profile(RandomIDModel):
-    
     range_start = 10**(7-1)
     range_end = (10**7)-1
-    
+
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
     image = models.ImageField(default='default.jpg', upload_to='profile-pics')
@@ -83,9 +87,6 @@ class Profile(RandomIDModel):
     canEditStats = models.BooleanField(default=True)
     relativeScoring = models.BooleanField(default=False)
     dm = models.BooleanField(default=False)
-    
-    
-    
     
     def __str__(self):
        return f'{self.user.username}'

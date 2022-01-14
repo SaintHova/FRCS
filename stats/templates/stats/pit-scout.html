@@ -1,106 +1,82 @@
 {%extends 'users/base.html'%}
-{% load widget_tweaks %}
-{%block styles%}
-
-
-{%endblock styles%}
-
+    {% load widget_tweaks %}
+    {%block styles%}
+    {%endblock styles%}
 {%block content%}
+    <script>
+        function changeName() {
 
+            var teamNumber = document.getElementById("teamNumber").value;
 
+            $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
+                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+            }, function (data) {
+                var jObject = (data);
+                $("#nickname").html(jObject['nickname']);
 
+            })
+        }
+    </script>
 
-
-
-<script>
-    function changeName() {
-
-        var teamNumber = document.getElementById("teamNumber").value;
-
-        $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
-            "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-        }, function (data) {
-            var jObject = (data);
-            $("#nickname").html(jObject['nickname']);
-
-        })
-    }
-</script>
-
-</body>
-
-<div>
-    <div class=" bg-gray-50 dark:bg-dark">
-
-        <!-- Desktop sidebar -->
-
-        <!-- Mobile sidebar -->
-        <!-- Backdrop -->
-
-        <div class="">
-            <main class=" overflow-y-auto">
-                <div class="container mx-auto grid">
-                    <div class=>
-                        <h2 class="my-6 mb-0 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                            Pit Scouting
-                        </h2>
-                        <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
-                    </div>
-
-
+    </body>
+    <div>
+        <div class=" bg-gray-50 dark:bg-dark">
+            <!-- Desktop sidebar -->
+            <!-- Mobile sidebar -->
+            <!-- Backdrop -->
+            <div class="">
+                <main class=" overflow-y-auto">
+                    <div class="container mx-auto grid">
+                        <div class=>
+                            <h2 class="my-6 mb-0 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                                Pit Scouting
+                            </h2>
+                            <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
+                        </div>
                             {% if messages %}
-                            {% for message in messages %}
-                            {% if message.tags == "error" %}
-                            <div class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
-                                href="https://github.com/estevanmaito/windmill-dashboard">
-                                <div class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                    
-                                    <span>{{message}}</span>
-                    
-                                </div>
-                            </div>
+                                {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                    <div class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
+                                        href="https://github.com/estevanmaito/windmill-dashboard">
+                                        <div class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            <span>{{message}}</span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% if message.tags == "success" %}
+                                        <div class="flex items-center justify-between p-4 text-sm font-semibold text-green-100 bg-green-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
+                                            href="https://github.com/estevanmaito/windmill-dashboard">
+                                            <div class="flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                </svg>
+                                                <span>{{message}}</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
-                            {% if message.tags == "success" %}
-                            <div class="flex items-center justify-between p-4 text-sm font-semibold text-green-100 bg-green-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
-                                href="https://github.com/estevanmaito/windmill-dashboard">
-                                <div class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                      </svg>
-                    
-                                    <span>{{message}}</span>
-                    
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% endif %}
-
-
-                    <div class="formContents">
-                        <form method="post">
-                            {% csrf_token %}
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Team number</p>
-                            {{ form.team_num|attr:"class:form-single"|attr:"placeholder:00"|attr:"id:teamNumber" |attr:"name: teamNumber"|attr:"onchange:changeName()"}}
-                            <br>
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Select Competition</p>
-                            <select id='select-comp-dropdown' class='dd-single'>
-                                <option>Select Competition</option>
-                                <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
-                                <script>
-                                    $(document).ready(function () {
-
+                        <div class="formContents">
+                            <form method="post">
+                                {% csrf_token %}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Team number</p>
+                                {{ form.team_num|attr:"class:form-single"|attr:"placeholder:00"|attr:"id:teamNumber" |attr:"name: teamNumber"|attr:"onchange:changeName()"}}
+                                <br>
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Select Competition</p>
+                                <select id='select-comp-dropdown' class='dd-single'>
+                                    <option>Select Competition</option>
+                                    <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
+                                    <script>
+                                        $(document).ready(function () {
                                             $.get("https://www.thebluealliance.com/api/v3/team/frc" + $('#teamNumber').val() + "/events/2020", {
                                                 "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
                                             }, function (data) {
                                                 var jObject = (data);
-
                                                 for (i = 0; i < 5; i++) {
                                                     console.log(jObject[i]['name'])
                                                     $('#select-comp-dropdown').append(
@@ -108,189 +84,156 @@
                                                             'name'
                                                         ] + '</option>')
                                                 }
-
                                             })
+                                        })
+                                        document.getElementById('select-comp-dropdown').addEventListener("change",
+                                            function () {
+                                                var comp = document.getElementById("select-comp-dropdown").value;
+                                                console.log(comp);
+                                                document.getElementById("comp").value = comp;
+                                            });
+                                    </script>
+                                </select>
 
-                                    })
-
-                                    document.getElementById('select-comp-dropdown').addEventListener("change",
-                                        function () {
-                                            var comp = document.getElementById("select-comp-dropdown").value;
-                                            console.log(comp);
-                                            document.getElementById("comp").value = comp;
-                                        });
-                                </script>
-                            </select>
-
-                            <div class='hidden'>
-                                {{form.competition|attr:"class:form-single"|attr:"placeholder:Competition"|attr:"id:comp" }}
-                            </div>
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Robot weight</p>
-                            {{form.robot_weight|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Robot frame perimeter</p>
-                            <div class='flex space-x-5'>
-
-                                <div class='w-1/2'>
-                                    {{ form.robot_frame_length|attr:"class:form-single"|attr:"placeholder:Robot length"|attr:"id: dim" }}
+                                <div class='hidden'>
+                                    {{form.competition|attr:"class:form-single"|attr:"placeholder:Competition"|attr:"id:comp" }}
                                 </div>
 
-                                <div class='w-1/2'>
-                                    {{ form.robot_frame_width|attr:"class:form-single"|attr:"placeholder:Robot width"|attr:"id: dim" }}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Robot weight</p>
+                                {{form.robot_weight|attr:"class:form-single"|attr:"placeholder:000LBS"|attr:"id: teamNumber" }}
+
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Robot frame perimeter</p>
+                                <div class='flex space-x-5'>
+
+                                    <div class='w-1/2'>
+                                        {{ form.robot_frame_length|attr:"class:form-single"|attr:"placeholder:Robot length"|attr:"id: dim" }}
+                                    </div>
+
+                                    <div class='w-1/2'>
+                                        {{ form.robot_frame_width|attr:"class:form-single"|attr:"placeholder:Robot width"|attr:"id: dim" }}
+                                    </div>
                                 </div>
-                            </div>
 
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>DriveTrain type</p>
-                            {{form.robot_drivetrain_type|attr:"class:dd-single"}}
-                            <br>
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do they perform in autonomous</p>
-                            {{form.robot_autonomous|attr:"class:dd-single"}}
-                            <br>
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Is vision implemented during the match</p>
-                            {{form.robot_vision_implement|attr:"class:dd-single"}}
-                            <br>
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Vision type</p>
-                            {{form.robot_vision_type|attr:"class:dd-single"}}
-                            <br>
-
-                       
-<!-- 
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Are they a high or low bot</p>
-                            {{form.robot_highlow|attr:"class:dd-single"}}
-                            <br> -->
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do they shoot for lower hub, upper hub, or both</p>
-                            {{form.robot_goal_height|attr:"class:dd-single"}}
-                            <br>
-
-                            <!-- <p id="label" class='mt-4 mb-2 dark:text-white'>Do they complete rotational control</p>
-                            {{form.robot_control_panel_rot|attr:"class:dd-single"}}
-                            <br> -->
-
-                            <!-- <p id="label" class='mt-4 mb-2 dark:text-white'>Do they complete positional control</p>
-                            {{form.robot_control_panel_pos|attr:"class:dd-single"}}
-                            <br> -->
-
-                            
-
-
-                            <p id="label" class='mt-4 mb-2 dark:text-white'>Do they climb</p>
-                            {{form.robot_climb|attr:"class:dd-single"}}
-                            <br>
-
-                            <!-- <p id="label" class='mt-4 mb-2 dark:text-white'>Do They Help Others Climb</p>
-                            {{form.robot_buddy_climb|attr:"class:dd-single"}}
-                            <br> -->
-
-                            <!-- Custom Questions -->
-                            <div id='customOne'>
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question one: </p>
-                                {{form.customOne|attr:"class:form-single"}}
-                                <p id="label" class='mt-4 mb-2  dark:text-white'>Answer one: </p>
-                                {{form.answerOne|attr:"class:form-single"}}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>DriveTrain type</p>
+                                {{form.robot_drivetrain_type|attr:"class:dd-single"}}
                                 <br>
-                            </div>
 
-                            <div id='customTwo'>
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question two: </p>
-                                {{form.customTwo|attr:"class:form-single"}}
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer two: </p>
-                                {{form.answerTwo|attr:"class:form-single"}}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Do they perform in autonomous</p>
+                                {{form.robot_autonomous|attr:"class:dd-single"}}
                                 <br>
-                            </div>
 
-                            <div id='customThree'>
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Question three: </p>
-                                {{form.customThree|attr:"class:form-single"}}
-                                <p id="label" class='mt-4 mb-2 dark:text-white'>Answer three: </p>
-                                {{form.answerThree|attr:"class:form-single"}}
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Is vision implemented during the match</p>
+                                {{form.robot_vision_implement|attr:"class:dd-single"}}
                                 <br>
+
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Vision type</p>
+                                {{form.robot_vision_type|attr:"class:dd-single"}}
+                                <br>
+                
+                                <!-- 
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Are they a high or low bot</p>
+                                {{form.robot_highlow|attr:"class:dd-single"}}
+                                <br> -->
+
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Do they shoot for lower hub, upper hub, or both</p>
+                                {{form.robot_goal_height|attr:"class:dd-single"}}
+                                <br>
+
+                                <!-- <p id="label" class='mt-4 mb-2 dark:text-white'>Do they complete rotational control</p>
+                                {{form.robot_control_panel_rot|attr:"class:dd-single"}}
+                                <br> -->
+
+                                <!-- <p id="label" class='mt-4 mb-2 dark:text-white'>Do they complete positional control</p>
+                                {{form.robot_control_panel_pos|attr:"class:dd-single"}}
+                                <br> -->
+                                <p id="label" class='mt-4 mb-2 dark:text-white'>Do they climb</p>
+                                {{form.robot_climb|attr:"class:dd-single"}}
+                                <br>
+
+                                <!-- <p id="label" class='mt-4 mb-2 dark:text-white'>Do They Help Others Climb</p>
+                                {{form.robot_buddy_climb|attr:"class:dd-single"}}
+                                <br> -->
+
+                                <!-- Custom Questions -->
+                                <div id='customOne'>
+                                    <p id="label" class='mt-4 mb-2 dark:text-white'>Question one: </p>
+                                    {{form.customOne|attr:"class:form-single"}}
+                                    <p id="label" class='mt-4 mb-2  dark:text-white'>Answer one: </p>
+                                    {{form.answerOne|attr:"class:form-single"}}
+                                    <br>
+                                </div>
+
+                                <div id='customTwo'>
+                                    <p id="label" class='mt-4 mb-2 dark:text-white'>Question two: </p>
+                                    {{form.customTwo|attr:"class:form-single"}}
+                                    <p id="label" class='mt-4 mb-2 dark:text-white'>Answer two: </p>
+                                    {{form.answerTwo|attr:"class:form-single"}}
+                                    <br>
+                                </div>
+
+                                <div id='customThree'>
+                                    <p id="label" class='mt-4 mb-2 dark:text-white'>Question three: </p>
+                                    {{form.customThree|attr:"class:form-single"}}
+                                    <p id="label" class='mt-4 mb-2 dark:text-white'>Answer three: </p>
+                                    {{form.answerThree|attr:"class:form-single"}}
+                                    <br>
+                                </div>
+                                <button type="button" id='add-question' class='mt-4 transition border-2 border-blue-500 border-dotted rounded-xl w-full h-14 text-black dark:text-white hover:bg-blue-600'>Add
+                                    Question
+                                </button>
+                                <label id="label" class='mt-4 mb-2 dark:text-white'>Notes</label>
+                                <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
+                                {{ form.notes|attr:"class:form-single"|attr:"rows:3"|attr:"id: notes-text" }}
+
+                                <button type="submit" class="btn-default mt-3">
+                                    <p class='font-semibold text-white'>Submit Data</p>
+                                </button>
                             </div>
-                            <button  type="button" id='add-question'
-                                class='mt-4 transition border-2 border-blue-500 border-dotted rounded-xl w-full h-14 text-black dark:text-white hover:bg-blue-600'>Add
-                                Question</button>
-
-                            <label id="label" class='mt-4 mb-2 dark:text-white'>Notes</label>
-                            <!--<textarea class="form-control" id="notes-text" rows="3"></textarea> -->
-                            {{ form.notes|attr:"class:form-single"|attr:"rows:3"|attr:"id: notes-text" }}
-
-                            <button type="submit" class="btn-default mt-3">
-                                
-                                <p class='font-semibold text-white'>Submit Data</p>
-                            </button>
+                        </form>
                     </div>
-
-
-
-                    </form>
-
-
-
                 </div>
+            </div>
+            </main>
         </div>
-
-
     </div>
-    </main>
-</div>
-</div>
-<script>
-    $(document).ready(function () {
-        window.onload = async function getComps() {
-            $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
-                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-            }, function (data) {
-                var jObject = (data);
-
-                for (i = 0; i < 5; i++) {
-                    console.log(jObject[i]['name'])
-                    $('#select-comp-dropdown').append(
-                        '<option>' + jObject[i][
-                            'name'
-                        ] + '</option>')
-                }
-
-            })
-        }
-    })
-
-    document.getElementById('select-comp-dropdown').addEventListener("change",
-        function () {
-            var comp = document.getElementById("select-comp-dropdown").value;
-            console.log(comp);
-            document.getElementById("comp").value = comp;
-        });
-
-
-
-    $(document).ready(function () {
-        document.getElementById('customOne').style.display = 'none';
-        document.getElementById('customTwo').style.display = 'none';
-        document.getElementById('customThree').style.display = 'none';
-    });
-
-
-
-    document.getElementById('add-question').addEventListener("click", function () {
-        if (document.getElementById('customOne').style.display == 'none') {
-            document.getElementById('customOne').style.display = 'block';
-        } else if (document.getElementById('customTwo').style.display == 'none') {
-            document.getElementById('customTwo').style.display = 'block';
-        } else if (document.getElementById('customThree').style.display == 'none') {
-
-            document.getElementById('customThree').style.display = 'block';
-            document.getElementById('add-question').style.display = 'none';
-        } else {
+    <script>
+        $(document).ready(function () {
+            window.onload = async function getComps() {
+                $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
+                    "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+                }, function (data) {
+                    var jObject = (data);
+                    for (i = 0; i < 5; i++) {
+                        console.log(jObject[i]['name'])
+                        $('#select-comp-dropdown').append(
+                            '<option>' + jObject[i][
+                                'name'
+                            ] + '</option>')
+                    }
+                })
+            }
+        })
+        document.getElementById('select-comp-dropdown').addEventListener("change", function () {
+                var comp = document.getElementById("select-comp-dropdown").value;
+                console.log(comp);
+                document.getElementById("comp").value = comp;
+            });
+        $(document).ready(function () {
+            document.getElementById('customOne').style.display = 'none';
+            document.getElementById('customTwo').style.display = 'none';
             document.getElementById('customThree').style.display = 'none';
-        }
-
-
-    });
-</script>
-
+        });
+        document.getElementById('add-question').addEventListener("click", function () {
+            if (document.getElementById('customOne').style.display == 'none') {
+                document.getElementById('customOne').style.display = 'block';
+            } else if (document.getElementById('customTwo').style.display == 'none') {
+                document.getElementById('customTwo').style.display = 'block';
+            } else if (document.getElementById('customThree').style.display == 'none') {
+                document.getElementById('customThree').style.display = 'block';
+                document.getElementById('add-question').style.display = 'none';
+            } else {
+                document.getElementById('customThree').style.display = 'none';
+            }
+        });
+    </script>
 {%endblock content%}

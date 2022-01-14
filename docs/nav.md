@@ -1,10 +1,6 @@
 <!-- _navbar.md -->
-
 * Getting started
-
   * [What is FRCS](README.md)
-
-
 * API
   * [Configuration](configuration.md)
   * [Themes](themes.md)
