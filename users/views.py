@@ -230,7 +230,6 @@ def teamManagement(request):
 
 @login_required
 def teamInfo(request):
-    #!THIS DOESNT WORK
     instance = Team.objects.get(team_num=request.user.team_num)
     form = TeamEditForm(request.POST or None, instance=instance)
     context = {"instance": instance, "form": form}

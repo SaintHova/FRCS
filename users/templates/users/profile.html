@@ -1,18 +1,14 @@
 {%extends 'users/base.html'%}
-<link rel="stylesheet" href="../../static/users/assets/css/bg.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="../../static/users/assets/css/profile.css">
+
 
 
 {%block styles%}
 {%endblock styles%}
 
 {%block content%}
-<script src="https://code.jquery.com/jquery-3.5.0.slim.js"
-  integrity="sha256-sCexhaKpAfuqulKjtSY7V9H7QT0TCN90H+Y5NlmqOUE=" crossorigin="anonymous"></script>
-
-
+<script src="https://code.jquery.com/jquery-3.5.0.slim.js" integrity="sha256-sCexhaKpAfuqulKjtSY7V9H7QT0TCN90H+Y5NlmqOUE=" crossorigin="anonymous"></script>
 <div class="flex h-screen  dark:bg-dark bg-gray-50 pt-3">
     <div class="flex flex-col flex-1 w-full">   
         <main class="">
@@ -139,7 +135,7 @@
                       </div>
                     </div>
                   </div>
-                  </div>
+                </div>
             </div>
         </main>
     </div>
@@ -147,26 +143,8 @@
 
   
   <!-- page-wrapper -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
-  <style>
-
-
-  </style>
   <script>
-    jQuery(function ($) {
-
-      $("#close-sidebar").click(function () {
-        $(".page-wrapper").removeClass("toggled");
-      });
-      $("#show-sidebar").click(function () {
-        $(".page-wrapper").addClass("toggled");
-      });
-    });
     setInterval(function () {
       var color = $('.darkmode--activated .navigation-wrap').css('background-color');
       value = "rgb(33, 33, 33)"
@@ -177,9 +155,5 @@
       }
     }, 50)
   </script>
-  <script src='../../static/users/assets/js/GetTeamStats.js'></script>
-  </body>
-
-  </html>
-
-  {%endblock content%}
+  <script src="../../static/users/assets/js/search.js"></script>
+{%endblock content%}
