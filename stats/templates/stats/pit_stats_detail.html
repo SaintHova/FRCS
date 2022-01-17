@@ -72,7 +72,7 @@
                                 </h2>
                             </div>
                             {% if not object.is_incorrect %}
-                            <button id='incorrect-btn' onclick='location.href="{% url 'pit-flag-view' id=object.id %}"'
+                            <button id='incorrect-btn' onclick='location.href="{% url 'pit-flag-view' stat_id=object.stat_id %}"'
                                 class='inline-flex mt-6 w-14 h-14 items-center text-lg justify-center font-semibold tracking-wide text-white transition duration-200 bg-red-500 rounded-lg hover:bg-red-600'>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -94,7 +94,7 @@
                             </svg>
                             <p class=''>This pit data has been flagged as incorrect</p>
                         </div>
-                        <a href='{% url "pit-update-view" object.id %}'
+                        <a href='{% url "pit-update-view" object.stat_id %}'
                             class=' transition duration-300 ease-in-out rounded p-0.5 hover:bg-white hover:text-red-500'>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">

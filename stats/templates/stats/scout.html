@@ -5,6 +5,9 @@
     {%block content%}
     <script>
         function changeName() {
+
+            getComps();
+
             var teamNumber = document.getElementById("teamNumber").value;
 
             $.get("https://www.thebluealliance.com/api/v3/team/frc" + teamNumber + "/simple", {
@@ -78,9 +81,9 @@
                                     <option>Select Competition</option>
                                     <!--THIS COULD BE TEMPORAY IF WE FIGURE OUT HOW TO ADD COMPS TO A DJANGO SELECT WIDGET-->
                                     <script>
-                                        $(document).ready(function () {
-                                            window.onload = async function getComps() {
-                                                $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
+
+                                            function getComps() {
+                                                $.get("https://www.thebluealliance.com/api/v3/team/frc" + $('#teamNumber').val() +"/events/2022", {
                                                     "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
                                                 }, function (data) {
                                                     var jObject = (data);
@@ -95,7 +98,7 @@
 
                                                 })
                                             }
-                                        })
+
                                         document.getElementById('select-comp-dropdown').addEventListener("change",
                                             function () {
                                                 var comp = document.getElementById("select-comp-dropdown").value;
@@ -164,27 +167,5 @@
             </main>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            window.onload = async function getComps() {
-                $.get("https://www.thebluealliance.com/api/v3/team/frc810/events/2020", {
-                    "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
-                }, function (data) {
-                    var jObject = (data);
-                    for (i = 0; i < 5; i++) {
-                        console.log(jObject[i]['name'])
-                        $('#select-comp-dropdown').append(
-                            '<option>' + jObject[i][
-                                'name'
-                            ] + '</option>')
-                    }
-                })
-            }
-        })
-        document.getElementById('select-comp-dropdown').addEventListener("change", function () {
-                var comp = document.getElementById("select-comp-dropdown").value;
-                console.log(comp);
-                document.getElementById("comp").value = comp;
-            });
-    </script>
+
 {%endblock content%}

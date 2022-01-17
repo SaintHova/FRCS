@@ -118,8 +118,10 @@ class PitListView(ListView):
     paginate_by = 20
 
 @login_required
-def PitDetail(request, id):
-    return render(request, 'stats/pit_stats_detail.html', {'object': Pit_stats.objects.get(id=id)})
+def PitDetail(request, stat_id):
+    return render(request, 'stats/pit_stats_detail.html', {'object': Pit_stats.objects.get(stat_id=stat_id)})
+
+
 def randomIDGenerator():
     range_start = 10**(15-1)
     range_end = (10**15)-1
@@ -196,8 +198,8 @@ def scout(request):
             return redirect('scout-view')
     return render(request, 'stats/scout.html', {'form': form})
 @login_required
-def pitFlag(request, id):
-    instance = get_object_or_404(Pit_stats, id=id)
+def pitFlag(request, stat_id):
+    instance = get_object_or_404(Pit_stats, stat_id=stat_id)
     form = pit_correct_form(instance=instance)
     # subject = 'Thank you for registering to our site'
     # message = 'it means a world to us '

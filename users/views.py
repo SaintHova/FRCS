@@ -162,7 +162,7 @@ def ProfileSettings(request, id):
         "form": form,
         "p_form": p_form,
         "picture": request.user.profile.image,
-        'viewPitResubmit': Profile.objects.get(user=request.user).viewPitResubmit,
+
         'relativeScoring': Profile.objects.get(user=request.user).relativeScoring,
         'p_fn': p_first_name,
         'p_ln': p_last_name,
@@ -279,8 +279,8 @@ def passwordUpdate(request):
     return render(request, 'users/password-change.html')
 
 @login_required
-def pitUpdate(request, team_num):
-    instance = Pit_stats.objects.get(team_num=request.user.team_num)
+def pitUpdate(request, stat_id):
+    instance = Pit_stats.objects.get(stat_id=stat_id)
     form = PitEditForm(request.POST or None, instance=instance)
     context = {"instance": instance, "form": form}
     if request.method == 'POST':
@@ -293,8 +293,8 @@ def pitUpdate(request, team_num):
     return render(request, "users/data/pit-update.html", context)
 
 @login_required
-def gameUpdate(request, match_id):
-    instance = get_object_or_404(Match, match_id=match_id)
+def gameUpdate(request, stat_id):
+    instance = get_object_or_404(Match, stat_id=stat_id)
     form = GameEditForm(request.POST or None, instance=instance)
     context = {"instance": instance, "form": form}
     if request.method == 'POST':

@@ -238,13 +238,7 @@ class NameEditForm(forms.ModelForm):
         )
 class ProfileSettingsForm(forms.ModelForm):
     
-    viewPitResubmit = forms.BooleanField(label='viewPitResubmit', required=False, widget=forms.CheckboxInput(
-        attrs={
-            'class': 'inp-cbx',
-            'style': 'display: none;',
-            'id': 'cbx',
-        }
-    ))
+  
     
     relativeScoring = forms.BooleanField(label='relativeScoring', required=False, widget=forms.CheckboxInput(
         attrs={
@@ -256,7 +250,7 @@ class ProfileSettingsForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('viewPitResubmit','relativeScoring')
+        fields = ('relativeScoring',)
 
 class TeamSettingsForm(forms.ModelForm):
 
