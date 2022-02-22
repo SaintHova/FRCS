@@ -4,7 +4,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from DjangoFRCS import settings
-from django.conf.urls import url
+from django.conf.urls import re_path
 
 urlpatterns = [
     path('', views.index, name = 'home-view'),
@@ -24,7 +24,7 @@ urlpatterns = [
 
     path('guest/', views.guest, name = 'guest-view'),
 
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate_account, name='activate'),
+    re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate_account, name='activate'),
     path('issues/', views.issues, name='issues-view'),
     # path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'),  name='password_reset'),
     # path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'),  name='password_reset_done'),

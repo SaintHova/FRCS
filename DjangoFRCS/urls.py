@@ -17,12 +17,9 @@ from django.contrib import admin
 from django.urls import include, path
 from stats import views as scout_views
 from . import settings
-from rest_framework.routers import DefaultRouter
-from django.conf.urls import url
+from django.conf.urls import re_path
 from rest_framework.authtoken import views 
-from django.conf.urls import url
-from rest_framework.schemas import get_schema_view
-from rest_framework.renderers import CoreJSONRenderer
+
 
 urlpatterns = [
     path('', include('users.urls')),
@@ -39,7 +36,7 @@ urlpatterns = [
     path('list/game', scout_views.ScoutListView.as_view(), name = 'gamedatahub-view'),
     path('flag/<int:stat_id>', scout_views.pitFlag , name='pit-flag-view'),
     path('upload-data', scout_views.uploadData , name='upload-data-view'),
-    url(r'^api/', include('api.urls')),
+    re_path(r'^api/', include('api.urls')),
 ]
 
 if settings.DEBUG:
