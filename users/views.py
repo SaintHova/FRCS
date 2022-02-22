@@ -352,4 +352,8 @@ def del_user(request, id):
     u = User.objects.get(username = username)
     u.delete()
 
-    return render(request, 'index.html')
+    return render(request, 'users/index.html')
+
+def issues(request):    
+
+    return render(request, 'users/issues.html')

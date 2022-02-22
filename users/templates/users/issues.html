@@ -1,0 +1,33 @@
+{% extends 'users/base.html' %}
+
+
+
+{%block styles%}
+{%endblock styles%}
+
+{%block content%}
+
+{% if user.is_admin %}
+<div class="flex h-screen dark:bg-dark bg-gray-50 pt-3">
+    <div class="flex flex-col flex-1 w-full">
+        <main class="">
+            <div class="container mx-auto grid">
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-white">
+                    Issues
+                </h2>
+                <ul class='dark:text-white'>
+                    <li>
+                        When chaning team email, pit status changes to "No Data"
+                    </li>
+                </ul>
+            </div>
+           
+
+
+        </main>
+    </div>
+</div>
+
+{% endif %}
+
+{%endblock content%}

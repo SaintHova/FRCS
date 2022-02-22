@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.utils.http import urlquote
 from django.utils import timezone
 from django_random_id_model import RandomIDModel
 from random import randint
@@ -58,8 +57,7 @@ class CustomUser(AbstractBaseUser):
         verbose_name = ('user')
         verbose_name_plural = ('users')
 
-    def get_absolute_url(self):
-        return '/users/%s/' % urlquote(self.email)
+
 
     #def get_short_name(self):
     #    return self.first_name
