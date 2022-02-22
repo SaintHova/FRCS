@@ -4,7 +4,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from DjangoFRCS import settings
-from django.conf.urls import re_path
+from django.urls import re_path
 
 urlpatterns = [
     path('', views.index, name = 'home-view'),

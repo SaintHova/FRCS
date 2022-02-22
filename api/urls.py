@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from .views import MatchViewSet, UserDetailViewSet, PitViewSet, EmailViewSet, TeamDetailViewset, UserRecordView, ProfileViewSet, UserViewSet, statsViewSet, matchDetailViewSet
 from rest_framework.authtoken.views import obtain_auth_token  
 from rest_framework import permissions
-from django.conf.urls import re_path
+from django.urls import re_path
 from rest_framework.authtoken import views
 
 
