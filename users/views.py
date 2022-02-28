@@ -84,26 +84,29 @@ def register(request):
             email = form.cleaned_data["email"]
             
             user = CustomUser.objects.filter(username=username)
-            #!set to false after registration is finished
+            #! set to false after registration is finished
             user.is_active = True
             
-            team_code = form.cleaned_data["team_num"]
+            team_num = form.cleaned_data["team_num"]
            
 
-            # user.first().email_verify()
+
             if is_team_admin:
                 user.update(is_admin=True)
-            else:
-                team_code = Team.objects.filter(form.cleaned_data["team_num"])
+           
 
-            if not Team.objects.filter(team_num=team_code).exists():
+            if not Team.objects.filter(team_num=team_num).exists():
 
                 Team.objects.create(
-                    team_users=user_obj, team_num=team_code
+                    team_users=user_obj, team_num=team_num
                 )
+
+                   
+            
             
             LOGIN(request, user_obj)
-            return redirect("welcome-view")
+            return redirect("home-view")
+     
 
         else:
             # Registration error check

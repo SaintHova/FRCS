@@ -48,10 +48,7 @@
                       </thead>
                       <tbody class=" divide-y divide-gray-200">
                         {% for stat in stats %}
-                        <script>
-                          console.log('{{stat.team.team_num}}')
-                        </script>
-                        {% if stat.team.team_num %}
+                        {% if True %}
                         <script>
                           $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{stat.team.team_num}}' + "/simple", {
                             "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"

@@ -3,7 +3,7 @@ from teams.models import Team
 from users.models import CustomUser, Profile
 from django.utils import timezone
 from django_random_id_model import RandomIDModel
-import uuid
+
 
 # Create your models here.
 
@@ -71,11 +71,14 @@ class Match(models.Model):
     opposite_color = models.CharField(max_length=100, null = True, blank=True)
     
     robot_climb = models.CharField(max_length=100, null = True, blank=True)
-    # robot_climb_help = models.CharField(max_length=100, null = True)
+    
+    updatingEntry = models.BooleanField(default=False)
     
     defense_percentage = models.IntegerField(null = True, blank=True)
 
     notes = models.TextField(max_length=100, null = True, blank=True)
+
+
 
     score = models.IntegerField(null = True, blank=True)
 

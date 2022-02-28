@@ -1,12 +1,13 @@
-{% extends 'users/base.html' %}
-    <script>
+{% extends "users/base.html" %}
+<script>
         $(document).ready(function () {
             setTitle("Pit Data");
         });
-    </script>
-    {%block styles%}
-    {%endblock styles%}
-{%block content%}
+</script>
+{% block styles %}
+{% endblock styles %}
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{stat.team.team_num}}' + "/simple", {
             "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
@@ -16,18 +17,52 @@
             console.log(jObject);
         })
     </script>
-
     <script>
-        window.onload = function populateAverages(){
-            var climb_data = {{data.robot_climb | safe}}
-            var CLIMB_DATA = climb_data.map(i => Number(i))
-            var total = 0;
-            for (var i = 0; i < CLIMB_DATA.length; i++) {
-                CLIMB_DATA.splice(CLIMB_DATA.indexOf(100), 1, 1)
-                total += CLIMB_DATA[i];
+        $(document).ready(function(){
+
+            var auto_low_data = {{data.auto_lower | safe}}
+            var AUTO_LOW_DATA = auto_low_data.map(i => Number(i))
+            var auto_low_total = 0;
+            for (var i = 0; i < AUTO_LOW_DATA.length; i++) {
+                auto_low_total += AUTO_LOW_DATA[i];
             }
-            var climb_avg = total / CLIMB_DATA.length;
-            document.getElementById('avg-climb').innerHTML = climb_avg
+
+            var auto_data = {{data.auto_upper | safe}}
+            var AUTO_DATA = auto_data.map(i => Number(i))
+            var auto_total = 0;
+            for (var i = 0; i < AUTO_DATA.length; i++) {
+                auto_total += AUTO_DATA[i];
+            }
+            
+            var auto_avg = Math.floor((Number(auto_total) + Number(auto_low_total)) / (AUTO_LOW_DATA.length + AUTO_DATA.length));
+            document.getElementById('avg-auto').innerHTML = auto_avg
+
+
+            //----------------------------------------------------------------------
+
+            
+            var teleop_low_data = {{data.lower | safe}}
+            var TELEOP_LOW_DATA = teleop_low_data.map(i => Number(i))
+            var teleop_low_data = 0;
+            for (var i = 0; i < TELEOP_LOW_DATA.length; i++) {
+                teleop_low_data += TELEOP_LOW_DATA[i];
+            }
+
+            var teleop_data = {{data.upper | safe}}
+            var TELEOP_DATA = teleop_data.map(i => Number(i))
+            var teleop_total = 0;
+            for (var i = 0; i < TELEOP_DATA.length; i++) {
+                teleop_total += TELEOP_DATA[i];
+            }
+            
+
+
+            
+            var teleop_avg = Math.floor((Number(teleop_total) + Number(teleop_low_data)) / (AUTO_LOW_DATA.length + AUTO_DATA.length));
+            document.getElementById('avg-teleop').innerHTML = teleop_avg
+
+            
+            //----------------------------------------------------------------------
 
             var defense_data = {{data.defense_percentage | safe}}
             var DEF_DATA = defense_data.map(i => Number(i))
@@ -35,99 +70,539 @@
             for (var i = 0; i < DEF_DATA.length; i++) {
                 total += DEF_DATA[i];
             }
-            var def_avg = total / DEF_DATA.length;
-            document.getElementById('avg-defense').innerHTML = def_avg + "%"
-        }
-    </script>
 
-    <div class="flex bg-gray-50 dark:bg-dark">
+            var def_avg = Math.floor(total / DEF_DATA.length);
+            document.getElementById('avg-defense').innerHTML = def_avg + "%"
+
+
+            //-----------------------------------------------------------------------
+
+            function SimpleMode(arr) { 
+                var mode = 0;
+                var count = 0;
+                  for(var i = 0; i < arr.length; i++){
+                    for(var j = 0; j < i; j++){
+                       if(arr[j] === arr[i]){
+                           mode = arr[j];
+                           count++;
+                           console.log(count);
+                       }
+                    }
+                  }
+                  return mode;
+                }
+
+            var climb_data = {{data.robot_climb | safe}}
+            var dict = [];
+            for(var i = 0 ; i<{{data.robot_climb | safe}}.length; i++){
+                if(climb_data[i] == "None"){
+                    dict[i] = 0
+                }
+                if(climb_data[i] == "Lower Rung"){
+                    dict[i] = 1
+                }
+                if(climb_data[i] == "Middle Rung"){
+                    dict[i] = 2
+                }
+                if(climb_data[i] == "Upper Rung"){
+                    dict[i] = 3
+                }
+                if(climb_data[i] == "Traversal Rung"){
+                    dict[i] = 4
+                }
+            }
+
+
+
+
+
+            if(SimpleMode(dict) == 0){
+                document.getElementById('avg-climb').innerHTML = "None"
+            }
+            if(SimpleMode(dict) == 1){
+                document.getElementById('avg-climb').innerHTML = "Lower"
+            }
+            if(SimpleMode(dict) == 2){
+                document.getElementById('avg-climb').innerHTML = "Middle"
+            }
+            if(SimpleMode(dict) == 3){
+                document.getElementById('avg-climb').innerHTML = "Upper"
+            }
+            if(SimpleMode(dict) == 4){
+                document.getElementById('avg-climb').innerHTML = "Traversal"
+            }
+
+
+        })
+    </script>
+    <div class="bg-gray-50 dark:bg-dark">
         <div class="flex flex-col flex-1 w-full">
-            <main class="h-full overflow-y-auto">
+            <main class="">
                 <div class="container mx-auto grid">
-                    <div class='md:flex md:justify-between'>
+                    <div class="md:flex md:justify-between">
                         <div>
                             <h2 class="mt-6 text-left text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                                Match Data for Team {{stat.team.team_num}}
+                                Match Data for Team {{ stat.team.team_num }}
                             </h2>
-                            <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Loading...</h2>
+                            <h2 class="mb-3 mt-1 text-xl font-semibold text-gray-400 text-left"
+                                id="nickname">Loading...</h2>
                         </div>
                     </div>
+                    {% if not data.left_tarmac %}
+                        <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-white bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
+                             href="https://github.com/estevanmaito/windmill-dashboard">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="w-5 h-5 mr-2"
+                                     viewBox="0 0 20 20"
+                                     fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+                                <span>No match data found for this team yet</span>
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-                        <!-- Card -->
                         <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs">
-                            <div
-                                class="p-3 mr-4 text-blue-100 bg-blue-500 rounded-full">
+                            <div class="p-3 mr-4 text-blue-100 bg-blue-500 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="w-6 h-6"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2"
+                                     stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="feather feather-compass">
+                                    <circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Average Auto Points
+                                </p>
+                                <p id="avg-auto"
+                                   class="text-lg font-semibold text-gray-700 dark:text-white">
+                                    ...
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
+                            <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
                                     </path>
                                 </svg>
                             </div>
                             <div>
                                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Average ...
+                                    Average Teleop Points
                                 </p>
-                                <p class="text-lg font-semibold text-gray-700 dark:text-white">
-                                
+                                <p id="avg-teleop"
+                                   class="text-lg font-semibold text-gray-700 dark:text-white">
+                                    ...
                                 </p>
                             </div>
                         </div>
-                        <!-- Card -->
                         <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
-                            <div
-                                class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
+                            <div class="p-3 mr-4 text-yellow-500 bg-yellow-100 rounded-full dark:text-yellow-100 dark:bg-yellow-500">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-6 w-6"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M5 11l7-7 7 7M5 19l7-7 7 7"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                    Average Climb
+                                </p>
+                                <p id='avg-climb'
+                                   class="text-lg font-semibold text-gray-700 dark:text-white">
+                                    ...
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
+                            <div class="p-3 mr-4 text-purple-500 bg-purple-100 rounded-full dark:text-purple-100 dark:bg-purple-500">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-6 w-6"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                          stroke-width="2"
+                                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                                 </svg>
                             </div>
                             <div>
                                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                                     Average Defense
                                 </p>
-                                <p class="text-lg font-semibold text-gray-700 dark:text-white">
-                                
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
-                            <div
-                                class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Average Defense
-                                </p>
-                                <p class="text-lg font-semibold text-gray-700 dark:text-white">
-                                
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs ">
-                            <div
-                                class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-                                
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Average Defense
-                                </p>
-                                <p id='avg-defense' class="text-lg font-semibold text-gray-700 dark:text-white">
+                                <p id="avg-defense"
+                                   class="text-lg font-semibold text-gray-700 dark:text-white">
+                                    ...
                                 </p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </main>
-        </div>
-    </div>
-{%endblock content%}
+                    <div class='overflow-y-hidden'>
+                        <div class="grid overflow-hidden  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                            <div style='height: 400px;'
+                                 class="w-full h-96 p-4 border-2 dark:border-0 sm:h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Leaves Tarmac</h4>
+                                <div class='pb-10 container'>
+                                    <canvas id="myChart3" class='box-border'></canvas>
+                                </div>
+                            </div>
+                            <div style='height: 400px;'
+                                 class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Low Auto Points</h4>
+                                <div class='pb-2'>
+                                    <canvas style='height: 300px;' id="myChart" class=''></canvas>
+                                </div>
+                            </div>
+                            <div style='height: 400px;'
+                                 class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Upper Auto Points</h4>
+                                <div class='pb-2'>
+                                    <canvas style='height: 300px;' id="myChart2" class=''></canvas>
+                                </div>
+                            </div>
+                            <div style='height: 400px;'
+                                 class="w-full p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Lower Teleop Points</h4>
+                                <div class='pb-10 container'>
+                                    <canvas style='height: 300px;' id="myChart4" class='box-border'></canvas>
+                                </div>
+                            </div>
+                            <div style='height: 400px;'
+                                 class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Upper Teleop Points</h4>
+                                <div class='pb-2'>
+                                    <canvas style='height: 300px;' id="myChart5" class=''></canvas>
+                                </div>
+                            </div>
+                            <div style='height: 400px;'
+                                 class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">High Auto Points</h4>
+                                <div class='pb-2'>
+                                    <canvas style='height: 300px;' id="myChart6" class=''></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 grid-cols-1 grid-rows-1 gap-10 mt-10">
+                            <div style='height: 400px;'
+                                 class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Incorrect Ball Scored</h4>
+                                <div class='pb-2'>
+                                    <canvas style='height: 300px;' id="myChart7" class=''></canvas>
+                                </div>
+                            </div>
+                            <div style='height: 400px;'
+                                 class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Defense Percentage</h4>
+                                <div class='pb-2'>
+                                    <canvas style='height: 300px;' id="myChart8" class=''></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='mt-10'
+                             class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
+                            <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Notes</h4>
+                            <div class='dark:text-white'>
+                                {% for i in data.notes %}
+                                    <p>
+                                        {{i}}
+                                    </p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <script>
+                var yes = 0;
+                var no = 0;
+    
+                for(var i = 0; i<{{data.left_tarmac | safe}}.length; i++){
+                    if({{data.left_tarmac | safe}}[i] == "No"){
+                        no++;
+                    }
+                    else{
+                        yes++;
+                    }
+                }
+    
+                console.log(yes)
+    
+                const ctx2 = document.getElementById('myChart3').getContext('2d');
+                const myChart2 = new Chart(ctx2, {
+                    type: 'pie',
+                    
+                    data: {
+                        labels: ["No", "Yes"],
+    
+                        datasets: [{
+    
+                            fill: true,
+                            backgroundColor: [
+                        '#c3c3c3',
+                        '#17a1cc',
+                            ],
+    
+    
+                            data: [no, yes]
+                        }]
+                    },
+                    options: {
+                        rotation: 180,
+                    }
+                });
+            </script>
+            <script>
+            const ctx = document.getElementById('myChart').getContext('2d');
+
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{data.match_number | safe}},
+                    datasets: [{
+                        fill: true,
+                        backgroundColor: "#17a1cc",
+                        borderRadius: 15,
+                        borderWidth: 3,
+                        label: 'Autonomous Lower Hub',
+                        data: {{data.auto_lower | safe}},
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false //This will do the task
+                     },
+                     scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                   
+                }
+            });
+            </script>
+            <script>
+                const ctx3 = document.getElementById('myChart2').getContext('2d');
+                const myChart3 = new Chart(ctx3, {
+                    type: 'bar',
+
+                    data: {
+                        labels: {{data.match_number | safe}},
+                        datasets: [{
+                            fill: true,
+                            backgroundColor: "#17a1cc",
+
+                            borderRadius: 15,
+                            borderWidth: 3,
+                            label: 'Autonomous Upper Hub',
+                            data: {{data.auto_upper | safe}},
+                        }]
+                    },
+                    options: {
+                    responsive: true,
+
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false //This will do the task
+                         },
+                         scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                        
+                    }
+                });
+            </script>
+            <script>
+            const ctx4 = document.getElementById('myChart4').getContext('2d');
+
+            const myChart4 = new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: {{data.match_number | safe}},
+                    datasets: [{
+                        fill: true,
+                        backgroundColor: "#17a1cc",
+                        borderRadius: 15,
+                        borderWidth: 3,
+                        label: 'Teleop Lower Hub',
+                        data: {{data.lower | safe}},
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false //This will do the task
+                     },
+                     scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                   
+                }
+            });
+            </script>
+            <script>
+                const ctx5 = document.getElementById('myChart5').getContext('2d');
+                const myChart5 = new Chart(ctx5, {
+                    type: 'bar',
+
+                    data: {
+                        labels: {{data.match_number | safe}},
+                        datasets: [{
+                            fill: true,
+                            backgroundColor: "#17a1cc",
+
+                            borderRadius: 15,
+                            borderWidth: 3,
+                            label: 'Teleop Upper Hub',
+                            data: {{data.upper | safe}},
+                        }]
+                    },
+                    options: {
+                    responsive: true,
+
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false //This will do the task
+                         },
+                         scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                        
+                    }
+                });
+            </script>
+            <script>
+            const ctx6 = document.getElementById('myChart6').getContext('2d');
+            const myChart6 = new Chart(ctx6, {
+                type: 'bar',
+
+                data: {
+                    labels: {{data.match_number | safe}},
+                    datasets: [{
+                        fill: true,
+                        backgroundColor: "#17a1cc",
+                        borderRadius: 15,
+                        borderWidth: 3,
+                        label: 'Teleop Upper Hub',
+                        data: {{data.upper | safe}},
+                    }]
+                },
+                options: {
+                responsive: true,
+
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false //This will do the task
+                     },
+                     scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                    
+                }
+            });
+            </script>
+            <script>
+                const ctx7 = document.getElementById('myChart7').getContext('2d');
+                const myChart7 = new Chart(ctx7, {
+                    type: 'bar',
+    
+                    data: {
+                        labels: {{data.match_number | safe}},
+                        datasets: [{
+                            fill: true,
+                            backgroundColor: "#17a1cc",
+                            borderRadius: 15,
+                            borderWidth: 3,
+                            label: 'Incorrect Ball Scored',
+                            data: {{data.opposite_color | safe}},
+                        }]
+                    },
+                    options: {
+                    responsive: true,
+    
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false //This will do the task
+                         },
+                         scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                        
+                    }
+                });
+            </script>
+            <script>
+                    const ctx8 = document.getElementById('myChart8').getContext('2d');
+                    const myChart8 = new Chart(ctx8, {
+                        type: 'bar',
+        
+                        data: {
+                            labels: {{data.match_number | safe}},
+                            datasets: [{
+                                fill: true,
+                                backgroundColor: "#17a1cc",
+                                borderRadius: 15,
+                                borderWidth: 3,
+                                label: 'Defense Played %',
+                                data: {{data.defense_percentage | safe}},
+                            }]
+                        },
+                        options: {
+                        responsive: true,
+        
+                            maintainAspectRatio: false,
+                            legend: {
+                                display: false //This will do the task
+                             },
+                           
+
+                             scales: {
+                                y: {
+                                  // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
+                                  suggestedMin: 0,
+                          
+                                  // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
+                                  suggestedMax: 100,
+                                }
+                              }
+                            
+                        }
+                    });
+            </script>
+        {% endblock content %}

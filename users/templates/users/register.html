@@ -9,6 +9,7 @@
       
         <div class="max-w-md w-full space-y-8">
           <div>
+            
             <h2 class="mt-6 text-black dark:text-white text-center text-4xl font-extrabold">
               Register an account
             </h2>
@@ -20,7 +21,24 @@
                 </a>
               </p>
           </div>
-
+          {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "warning" %}
+                <div class="flex items-center justify-between p-4 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
+                    href="https://github.com/estevanmaito/windmill-dashboard">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>{{message}}</span>
+                    </div>
+                </div>
+                {% endif %}
+               
+            {% endfor %}
+        {% endif %}
           <form class="mt-8 space-y-6" action="#" method="POST">
             {%csrf_token%}
 
@@ -59,8 +77,8 @@
                 <div class="checkbox">
                     <label class="checkbox-wrapper">
                         <input type="checkbox" id='mentor-cbx' class="checkbox-input" onclick='mentorToggled()' />
-                        <span class="checkbox-tile">
-                            <span class="checkbox-icon">
+                        <span class="checkbox-tile ">
+                            <span class="checkbox-icon ">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
@@ -232,6 +250,8 @@
                     document.getElementById("cbx").checked = true;
                     document.getElementById("member-cbx").checked = false;
                     document.getElementById("mentor-cbx").checked = true;   
+
+                    console.log(document.getElementById("cbx").checked)
             }
 
             function memberToggled() {
@@ -239,6 +259,8 @@
 
                 document.getElementById("mentor-cbx").checked = false;
                 document.getElementById("member-cbx").checked = true;   
+
+                console.log(document.getElementById("cbx").checked);
         }
 
        
