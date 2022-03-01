@@ -187,8 +187,6 @@ def profile(request):
         "auth_level": getAuthLevel(),
         "code": Team.objects.get(team_num=request.user.team_num).team_code,
         "picture": request.user.profile.image,
-        'stat': Match.objects.filter(scout=request.user),
-        'result_list': list(chain(Match.objects.all(), Pit_stats.objects.all()))
     }
     return render(request, "users/profile.html", context)
 
@@ -326,20 +324,15 @@ def imageUpload(request, id):
 
 @login_required
 def accountEdit(request, id):
-    f_name = CustomUser.objects.get(id=id).profile.first_name
-    l_name = CustomUser.objects.get(id=id).profile.last_name
-    username = CustomUser.objects.get(id=id).username
-    email = CustomUser.objects.get(id=id).email
+    instance = get_object_or_404(CustomUser, id=id)
+   
 
     form = UserEditForm(request.POST, instance=instance)
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
         "picture": request.user.profile.image,
-        "f_name": f_name,
-        "l_name": l_name,
-        "username": username,
-        "email": email,
+
     }
     if request.method == "POST":
         if form.is_valid:

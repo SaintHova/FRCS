@@ -82,3 +82,4 @@ class Match(models.Model):
 
     def __str__(self):
         return f'{self.team_num} - {self.match_number}'
+    

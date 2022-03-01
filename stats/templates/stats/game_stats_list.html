@@ -11,7 +11,7 @@
       <!-- Mobile sidebar -->
       <!-- Backdrop -->
       <div class="">
-        <main class=" overflow-y-auto">
+        <main class="">
           <div class="container mx-auto grid">
             <div class='flex justify-between'>
               <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -38,8 +38,6 @@
                             class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                             Team
                           </th>
-
-
                           <th scope="col"
                             class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
                             View Data
@@ -48,7 +46,7 @@
                       </thead>
                       <tbody class=" divide-y divide-gray-200">
                         {% for stat in stats %}
-                        {% if not stat.archived %}
+                        {% if stat %}
                         <script>
                           $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{stat.team.team_num}}' + "/simple", {
                             "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"

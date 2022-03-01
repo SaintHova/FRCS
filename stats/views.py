@@ -250,7 +250,9 @@ def downloadGameData(request, id):
     stat = stats.values_list('id','team_num', 'competition', 'match_number', 'left_tarmac', 'auto_lower', 'auto_upper', 'lower', 'upper', 'robot_climb', 'defense_percentage', 'notes')
     for std in stat:
         writer.writerow(std)
-    Game_stats.objects.get(id=id).delete()
+    if(Match.objects.filter(team_num=request.user.team_num).count() > 0):
+        for i in Match.objects.filter(team_num=request.user.team_num):
+            i.delete()
     return response
 
 

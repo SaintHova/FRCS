@@ -190,7 +190,11 @@
                                     Is Vision Implemented
                                 </p>
                                 <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
-                                    {{object.robot_vision_implement}}
+                                    {% if object.robot_vision_implement == '1' %}
+                                    Yes
+                                    {% else %}
+                                    No
+                                    {% endif %}
                                 </p>
                             </div>
                         </div>
@@ -207,7 +211,7 @@
                         <div class="flex items-center p-4  rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary">
                             <div>
                                 <p class="mb-2 text-left text-sm font-medium text-gray-600 dark:text-gray-400">
-                                    Does the Robot Climb
+                                    Which Rung Does the Robot Climb To
                                 </p>
                                 <p class="text-lg font-semibold text-left text-gray-700 dark:text-white">
                                     {{object.robot_climb}}
