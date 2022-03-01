@@ -133,25 +133,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-
-#     'default': {
-
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-#         'NAME': 'FRCS',
-
-#         'USER': 'postgres',
-
-#         'PASSWORD': 'Jacktyler03',
-
-#         'HOST': 'localhost',
-
-#         'PORT': '5432',
-
-#     }
-
-# }
 
 # else:
 #    DATABASES = {

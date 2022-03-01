@@ -17,3 +17,5 @@ $("#search-bar").on("keyup", function () {
       }
     }
     })
+
+    

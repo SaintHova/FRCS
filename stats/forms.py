@@ -89,3 +89,4 @@ class game_scout_form(ModelForm):
         model = Match
         exclude = ['scouting_teamber', 'stat', 'scout', 'score']
         
+        

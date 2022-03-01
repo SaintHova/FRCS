@@ -25,6 +25,19 @@
 
           </div>
         </div>
+        <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-blue-100 bg-blue-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
+        href="https://github.com/estevanmaito/windmill-dashboard">
+        <div class="flex items-center">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+
+          <span>Please remember at the end of competitions to archive data - Game Scout -> Your team -> red button at top right</span>
+
+        </div>
+               
+    </div>
         {% if is_hidden %}
         <div
           class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-red-100 bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue "
@@ -61,7 +74,6 @@
           </div>
           {% if is_incorrect %}
           <div>
-            <!-- Card -->
             <div class="flex items-center p-4  rounded-xl shadow-xs border-2 dark:border-0 dark:bg-secondary ">
               <div class="p-3 mr-4 text-red-100 bg-red-500 rounded-full ">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -125,6 +137,7 @@
 
           {% endif %}
         </div>
+        
 
         <div class="flex flex-col w-full mx-auto">
           <div class="-my-2  sm:-mx-6 lg:-mx-8">

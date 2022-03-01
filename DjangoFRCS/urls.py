@@ -35,7 +35,10 @@ urlpatterns = [
     path('list/pit', scout_views.PitListView.as_view(), name = 'pitdatahub-view'),
     path('list/game', scout_views.ScoutListView.as_view(), name = 'gamedatahub-view'),
     path('flag/<int:stat_id>', scout_views.pitFlag , name='pit-flag-view'),
-    path('upload-data', scout_views.uploadData , name='upload-data-view'),
+    path('archive/<int:id>', scout_views.archiveWarning , name='archive-view'),
+    path('delete/<int:id>', scout_views.downloadGameData , name='delete-view'),
+    
+    
     re_path(r'^api/', include('api.urls')),
 ]
 

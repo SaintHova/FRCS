@@ -37,7 +37,7 @@
                             </a>
                         </div>
                         </div>
-                        <button onclick='window.location.href="{% url "upload-data-view" %}"'
+                      
                         class="inline-flex items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-xl hover:bg-blue-600">
             
                         <p class='font-semibold text-white'>New Data</p>
@@ -84,11 +84,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col w-full mx-auto">
+                    {% comment %} <div class="flex flex-col w-full mx-auto">
                         <div class="-my-2  sm:-mx-6 lg:-mx-8">
                             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                                 <div class="overflow-hidden border-b border-gray-200 dark:border-black border-2 dark:border-0 rounded-xl">
-                                    <table class="min-w-full divide-y divide-gray-200  dark:bg-secondary"
+
+                                    {% comment %} <table class="min-w-full divide-y divide-gray-200  dark:bg-secondary"
                                         id='data-table'>
                                         <thead class="">
                                             <tr>
@@ -119,11 +120,11 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table> 
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     <h2 class="mt-12 text-2xl font-semibold text-gray-700 dark:text-white">
                         Global Data
                     </h2>
@@ -318,7 +319,7 @@
                     '#176079',
 
                 ],
-                data: ['{{pit_stats_climb_none}}', '{{pit_stats_climb_middle}}', '{{pit_stats_climb_upper}}', '{{pit_stats_climb_traversal}}'],
+                data: [{{pit_stats_climb_none}}, {{pit_stats_climb_middle}}, {{pit_stats_climb_upper}}, {{pit_stats_climb_traversal}}],
             }]
         };
         // Notice the rotation from the documentation.

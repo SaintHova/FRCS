@@ -48,18 +48,16 @@ class Stat:
 class Game_stats(models.Model):
     team = models.OneToOneField(Team, on_delete = models.CASCADE) #TAKE NULL = TRUE OUT IN PROD
     rank = models.IntegerField(null = True)
-    
 
     def __str__(self):
        return f'{self.team} Game Stat List'
 
 class Match(models.Model):
     
-    
     stat = models.ForeignKey(Game_stats, on_delete = models.CASCADE, null = True)
     team_num = models.IntegerField(null = True)
     scout = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null = True, related_name='scouter')
-    # competition = models.CharField(max_length=100, null = True)
+    competition = models.CharField(max_length=100, null = True)
     match_number = models.IntegerField(null = True, blank=True)
 
     left_tarmac = models.CharField(max_length=100, null = True, blank=True)

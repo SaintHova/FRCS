@@ -139,14 +139,22 @@
         <div class="flex flex-col flex-1 w-full">
             <main class="">
                 <div class="container mx-auto grid">
-                    <div class="md:flex md:justify-between">
+                    <div class='md:flex md:justify-between '>
                         <div>
                             <h2 class="mt-6 text-left text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                                Match Data for Team {{ stat.team.team_num }}
+                                Game Data for Team {{stat.team.team_num}}
                             </h2>
-                            <h2 class="mb-3 mt-1 text-xl font-semibold text-gray-400 text-left"
-                                id="nickname">Loading...</h2>
+                            <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'>Loading...
+                            </h2>
                         </div>
+                        {% if user.team_num == stat.team.team_num %}
+                        <button id='incorrect-btn' onclick='location.href="{% url 'archive-view' id=stat.id %}"'
+                            class='inline-flex mt-6 w-14 h-14 items-center text-lg justify-center font-semibold tracking-wide text-white transition duration-200 bg-red-500 rounded-lg hover:bg-red-600'>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                              </svg>
+                        </button>
+                        {% endif %}
                     </div>
                     {% if not data.left_tarmac %}
                         <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-white bg-red-500 rounded-xl shadow-md focus:outline-none focus:shadow-outline-blue"
@@ -160,7 +168,7 @@
                                           d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                                           clip-rule="evenodd"/>
                                 </svg>
-                                <span>No match data found for this team yet</span>
+                                <span>No match data scouted for this team yet</span>
                             </div>
                         </div>
                     {% endif %}
@@ -256,7 +264,7 @@
                     <div class='overflow-y-hidden'>
                         <div class="grid overflow-hidden  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                             <div style='height: 400px;'
-                                 class="w-full h-96 p-4 border-2 dark:border-0 sm:h-72 rounded-xl shadow-xs dark:bg-secondary">
+                                 class=" w-full h-96 p-4 border-2 dark:border-0 sm:h-72 rounded-xl shadow-xs dark:bg-secondary">
                                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Leaves Tarmac</h4>
                                 <div class='pb-10 container'>
                                     <canvas id="myChart3" class='box-border'></canvas>
@@ -313,6 +321,7 @@
                                     <canvas style='height: 300px;' id="myChart8" class=''></canvas>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class='mt-10'
                              class=" p-4 border-2 dark:border-0 h-72 rounded-xl shadow-xs dark:bg-secondary">
@@ -363,6 +372,7 @@
                         }]
                     },
                     options: {
+                        responsive: true,
                         rotation: 180,
                     }
                 });
@@ -599,10 +609,19 @@
                           
                                   // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
                                   suggestedMax: 100,
+                                  ticks: {
+                                    
+                                  
+                                  callback: function(value, index, ticks) {
+                                    return value + '%';
+                                  }
+                                }
                                 }
                               }
                             
                         }
                     });
             </script>
+
+
         {% endblock content %}

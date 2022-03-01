@@ -1,0 +1,23 @@
+{% extends 'users/base.html' %}
+    {% load widget_tweaks %}
+    {%block styles%}
+    {%endblock styles%}
+{%block content%}
+    <div class=" bg-gray-50 dark:bg-dark">
+        <div class="">
+            <main class=" overflow-y-auto">
+                <div class="container mx-auto grid">
+                    <div class='flex justify-between'>
+                        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                            Archive Game Data
+                        </h2>
+                    </div>
+                   <p class='dark:text-white'>This will permanently delete the data scouted at your last competition</p>
+                        <button onclick='location.href="{% url 'delete-view' id=id %}"' type="submit" class='btn-default'>Proceed</button>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+{%endblock content%}

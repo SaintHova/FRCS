@@ -1,5 +1,7 @@
+import csv
 from math import floor
 import os
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from teams.models import Team
@@ -25,7 +27,7 @@ def scouthub(request):
             #*checks to see if there is data scouted for team
             'team_count': Team.objects.filter(team_users__isnull='').count(),
 
-            'sub_count': Match.objects.filter(match_number__isnull='').count() + Pit_stats.objects.all().count(),
+            'sub_count': (Match.objects.all().count() - Match.objects.filter(match_number__isnull='').count()) + Pit_stats.objects.all().count(),
             'teams': Game_stats.objects.all(),
 
             'pit_stats_vision_yes':  Pit_stats.objects.filter(robot_vision_implement='Yes').count(),
@@ -64,6 +66,8 @@ def scouthub(request):
         'sub_count': Game_stats.objects.all().count(),
         'teams': Game_stats.objects.all(),
         }
+        
+
     return render(request, 'stats/scout-hub.html', context)
 
 
@@ -208,6 +212,8 @@ def scout(request):
         else:
             return redirect('scout-view')
     return render(request, 'stats/scout.html', {'form': form})
+
+
 @login_required
 def pitFlag(request, stat_id):
     instance = get_object_or_404(Pit_stats, stat_id=stat_id)
@@ -228,6 +234,23 @@ def pitFlag(request, stat_id):
         'form': form
     }
     return render(request, 'stats/pit-flag.html', context)
-@login_required    
-def uploadData(request):
-    return render(request, 'stats/upload-data.html')
+
+@login_required
+def archiveWarning(request, id):
+    context = {'id': id}
+    return render(request, 'stats/warning.html', context)
+
+@login_required
+def downloadGameData(request, id):
+    stats = Match.objects.all()
+    response = HttpResponse('text/csv')
+    response['Content-Disposition'] = 'attachment; filename=match_data.csv'
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'Team Number', 'Competition', 'Match Number', 'Left Tarmac', 'Auto Lower', 'Auto Upper', 'Lower', 'Upper', 'Climb', 'Defense Percentage', 'Notes'])
+    stat = stats.values_list('id','team_num', 'competition', 'match_number', 'left_tarmac', 'auto_lower', 'auto_upper', 'lower', 'upper', 'robot_climb', 'defense_percentage', 'notes')
+    for std in stat:
+        writer.writerow(std)
+    Game_stats.objects.get(id=id).delete()
+    return response
+
+
