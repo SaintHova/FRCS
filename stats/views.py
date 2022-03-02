@@ -27,7 +27,7 @@ def scouthub(request):
             #*checks to see if there is data scouted for team
             'team_count': Team.objects.filter(team_users__isnull='').count(),
 
-            'sub_count': (Match.objects.all().count() - Match.objects.filter(match_number__isnull='').count()) + Pit_stats.objects.all().count(),
+            'sub_count': (Match.objects.all().count() - Match.objects.filter(match_number__isnull=True).count()) + Pit_stats.objects.all().count(),
             'teams': Game_stats.objects.all(),
 
             'pit_stats_vision_yes':  Pit_stats.objects.filter(robot_vision_implement='Yes').count(),
@@ -116,6 +116,12 @@ class ScoutListView(ListView):
     context_object_name = 'stats'
     ordering = ['-id']
     paginate_by = 20
+    
+    def get_context_data(self, *args, **kwargs):          
+        context = super(ScoutListView, self).get_context_data(*args, **kwargs)
+        new_context_entry = Match.objects.values_list('team_num', flat=True).distinct()
+        context["team"] = new_context_entry
+        return context
     
 
 class PitListView(ListView):

@@ -6,6 +6,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
+
     <div class="bg-gray-50 dark:bg-dark">
       <!-- Desktop sidebar -->
       <!-- Mobile sidebar -->
@@ -46,7 +48,7 @@
                       </thead>
                       <tbody class=" divide-y divide-gray-200">
                         {% for stat in stats %}
-                        {% if stat %}
+                        {% if stat.team.team_num in team %}
                         <script>
                           $.get("https://www.thebluealliance.com/api/v3/team/frc" + '{{stat.team.team_num}}' + "/simple", {
                             "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
