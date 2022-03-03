@@ -145,7 +145,7 @@ code, pre {
 
 pre.literal-block {
     margin: 10px;
-    ;
+    background: #eee;
     padding: 6px 8px;
 }
 
@@ -156,7 +156,7 @@ code strong {
 hr {
     clear: both;
     color: #eee;
-    ;
+    background-color: #eee;
     height: 1px;
     border: none;
     margin: 0;
@@ -306,7 +306,7 @@ thead th a:link, thead th a:visited {
 }
 
 thead th.sorted {
-    ;
+    background: #eee;
 }
 
 thead th.sorted .text {
@@ -325,7 +325,7 @@ table thead th .text a {
 }
 
 table thead th .text a:focus, table thead th .text a:hover {
-    ;
+    background: #eee;
 }
 
 thead th.sorted a.sortremove {

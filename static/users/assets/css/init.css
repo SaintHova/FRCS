@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-single {
+    @apply transition w-full dark:bg-secondary border-gray-200 dark:text-white dark:focus:bg-dark border-2 dark:border-transparent rounded-lg  focus:border-black focus:bg-white focus:ring-black dark:focus:ring-white text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
+}
+
+.dd-single {
+    @apply transition w-full bg-white dark:bg-secondary border-gray-200 dark:text-white dark:focus:bg-dark border-2 dark:border-transparent rounded-lg  focus:border-black focus:bg-white focus:ring-black dark:focus:ring-white text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
+}
+
+
+.btn-default{
+    @apply inline-flex w-full items-center text-lg justify-center h-12 px-6 font-semibold tracking-wide text-white transition duration-200 bg-blue-500 rounded-lg hover:bg-blue-600
+}
+
+.form-search{
+    @apply transition w-56 h-10 dark:bg-secondary border-white dark:text-white dark:focus:bg-dark border-2 dark:border-transparent rounded-lg  focus:border-black focus:bg-white focus:ring-black dark:focus:ring-light text-base outline-none text-gray-700 py-1 px-3 leading-8 ease-in-out
+}

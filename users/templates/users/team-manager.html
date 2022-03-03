@@ -162,16 +162,10 @@
                   <tbody class="divide-y divide-gray-200  dark:bg-secondary">
                     {% for user in users %}
                     {% if user.id != request.user.id %}
-
-
-
                     <tr>
-
                       <td class=" py-4 whitespace-nowrap">
                         <div class='flex ml-4'>
-                          {% if user.profile.image == 'http://127.0.0.1:8000/profile-pics/default.jpg' %}
-                          <img class='mr-3 h-7 rounded' src="../../../profile-pics/{{user.profile.image}}">
-                          {% else %}
+                         
                           <a class="mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 dark:text-white" fill="none" viewBox="0 0 24 24"
                               stroke="currentColor">
@@ -180,7 +174,7 @@
                             </svg>
                           </a>
 
-                          {% endif %}
+
                           <div class="">
                             <div class="text-sm font-medium text-black bg-text-white">
                               {% if user.first_name %}

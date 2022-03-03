@@ -25,7 +25,7 @@ def scouthub(request):
     if(Pit_stats.objects.all().exists()):
         context = {
             #*checks to see if there is data scouted for team
-            'team_count': Team.objects.filter(team_users__isnull='').count(),
+            'team_count': Team.objects.filter(team_users__isnull=True).count(),
 
             'sub_count': (Match.objects.all().count() - Match.objects.filter(match_number__isnull=True).count()) + Pit_stats.objects.all().count(),
             'teams': Game_stats.objects.all(),
@@ -62,7 +62,7 @@ def scouthub(request):
         }
     else:
         context = {
-        'team_count': Team.objects.filter(team_users__isnull='').count(),
+        'team_count': Team.objects.filter(team_users__isnull=True).count(),
         'sub_count': Game_stats.objects.all().count(),
         'teams': Game_stats.objects.all(),
         }

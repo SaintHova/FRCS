@@ -1,3 +1,4 @@
+from email.message import EmailMessage
 import os
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -13,10 +14,10 @@ from users.forms import (
     UserEditForm,
     ProfileEditForm,
     NameEditForm,
-    GameEditForm,
+
     ProfileSettingsForm,
     TeamSettingsForm,
-    PitEditForm,
+
     TeamEditForm
 )
 from users.models import CustomUser, Profile
@@ -31,12 +32,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 import random, string
-import phonetic_alphabet as alpha
+
 from django.shortcuts import get_object_or_404
 from itertools import chain
 from django.core.mail import send_mail
@@ -164,7 +165,7 @@ def ProfileSettings(request, id):
         "auth_level": getAuthLevel(),
         "form": form,
         "p_form": p_form,
-        "picture": request.user.profile.image,
+
 
         'relativeScoring': Profile.objects.get(user=request.user).relativeScoring,
         'p_fn': p_first_name,
@@ -186,7 +187,6 @@ def profile(request):
         "users": CustomUser.objects.filter(team_num=request.user.team_num, is_team_admin=False),
         "auth_level": getAuthLevel(),
         "code": Team.objects.get(team_num=request.user.team_num).team_code,
-        "picture": request.user.profile.image,
     }
     return render(request, "users/profile.html", context)
 
@@ -279,48 +279,6 @@ def changelog(request):
 def passwordUpdate(request):
     return render(request, 'users/password-change.html')
 
-@login_required
-def pitUpdate(request, stat_id):
-    instance = Pit_stats.objects.get(stat_id=stat_id)
-    form = PitEditForm(request.POST or None, instance=instance)
-    context = {"instance": instance, "form": form}
-    if request.method == 'POST':
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.is_incorrect = False
-            instance.save()
-            return render(request, "users/team-manager.html", context)
-
-    return render(request, "users/data/pit-update.html", context)
-
-@login_required
-def gameUpdate(request, stat_id):
-    instance = get_object_or_404(Match, stat_id=stat_id)
-    form = GameEditForm(request.POST or None, instance=instance)
-    context = {"instance": instance, "form": form}
-    if request.method == 'POST':
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.user = request.user.username
-            instance.save()
-            return render(request, "users/team-manager.html", context)
-
-    return render(request, "users/data/game-edit.html", context)
-
-@login_required
-def imageUpload(request, id):
-    if request.method == 'POST':
-        form = ProfileEditForm(request.POST, request.FILES,  instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-    else:
-        form = ProfileEditForm(instance=request.user.profile)
-        
-    context = {
-        "form": form,
-        'image': request.user.profile.image,
-    }
-    return render(request, "users/image-upload.html", context)
 
 @login_required
 def accountEdit(request, id):
@@ -331,7 +289,7 @@ def accountEdit(request, id):
     context = {
         "auth_level": getAuthLevel(),
         "form": form,
-        "picture": request.user.profile.image,
+
 
     }
     if request.method == "POST":
@@ -351,5 +309,15 @@ def del_user(request, id):
     return render(request, 'users/index.html')
 
 def issues(request):    
+    
+    from django.core.mail import EmailMultiAlternatives
+
+    subject, from_email, to = 'hello', 'frcsassistant@gmail.com', 'jtyler03@optonline.net'
+    text_content = 'This is an important message.'
+    html_content = '<p>This is an <strong>important</strong> message.</p>'
+    msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 
     return render(request, 'users/issues.html')
+

@@ -31,14 +31,9 @@
                            
                 </div>
                 {% endif %}
+             
                 <div class='flex'>
-                  <div>
-                    {% if user.profile.image %}
-                    <a class='cursor-pointer' href='{% url "image-upload-view" request.user.profile.id %}'><img src='../../../profile-pics/{{request.user.profile.image}}' class='h-36 w-36 rounded-xl mr-3'></a>
-                    {% else %}
-                    <a class='cursor-pointer' href='{% url "image-upload-view" request.user.profile.id %}'><img href='{% url "image-upload-view" request.user.profile.id %}' src='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' class='h-36 w-36 rounded-xl mr-3'></a>
-                    {% endif %}
-                  </div>
+                 
                   <div>
                 {% if user.profile.first_name %}
                   <h1 class="text-5xl font-bold text-black dark:text-white">{{user.profile.first_name}} {{user.profile.last_name}}</h1>
@@ -72,15 +67,17 @@
   <!-- page-wrapper -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
-    setInterval(function () {
-      var color = $('.darkmode--activated .navigation-wrap').css('background-color');
-      value = "rgb(33, 33, 33)"
-      if (color == value) {
-        $('#darkButton').html('DARK MODE')
-      } else {
-        $('#darkButton').html('LIGHT MODE')
-      }
-    }, 50)
+    window.onload = function(){
+
+
+            $.get("https://www.thebluealliance.com/api/v3/team/frc" + {{request.user.team_num}} + "/simple", {
+                "X-TBA-Auth-Key": "PzOW8s1DYGlVkgAsikwVlhy5wZ5Tm85fKSjd0DfiUJFQOGhsReyZEf88EEoAU1Cw"
+            }, function (data) {
+                var jObject = (data);
+                $("#nickname").html(jObject['nickname']);
+
+            })
+          }
   </script>
   <script src="../../static/users/assets/js/search.js"></script>
 {%endblock content%}

@@ -179,7 +179,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.google.com'
 EMAIL_HOST_USER = 'frcsassistant@gmail.com'
-EMAIL_HOST_PASSWORD = 'bbqdjfcccrjagkyu'
+EMAIL_HOST_PASSWORD = 'lllmvkmopdnkfjwl'
 EMAIL_PORT = 587
 
 # MEDIA FILE DIRS

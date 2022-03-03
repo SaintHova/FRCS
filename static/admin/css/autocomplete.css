@@ -80,7 +80,7 @@ select.admin-autocomplete {
 }
 
 .select2-container--admin-autocomplete.select2-container--disabled .select2-selection--single {
-    ;
+    background-color: #eee;
     cursor: default;
 }
 
@@ -168,7 +168,7 @@ select.admin-autocomplete {
 }
 
 .select2-container--admin-autocomplete.select2-container--disabled .select2-selection--multiple {
-    ;
+    background-color: #eee;
     cursor: default;
 }
 

@@ -78,7 +78,7 @@ class Profile(RandomIDModel):
 
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
-    image = models.ImageField(default='default.jpg', upload_to='profile-pics')
+
     first_name = models.CharField(verbose_name="First Name", max_length=254, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=254, blank=True)
 

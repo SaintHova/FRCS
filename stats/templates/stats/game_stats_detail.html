@@ -174,7 +174,7 @@
                     {% endif %}
                     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                         <div class="flex items-center p-4 border-2 dark:border-0 dark:bg-secondary rounded-xl shadow-xs">
-                            <div class="p-3 mr-4 text-blue-100 bg-blue-500 rounded-full">
+                            <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="w-6 h-6"
                                      viewBox="0 0 24 24"
@@ -328,9 +328,10 @@
                             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">Notes</h4>
                             <div class='dark:text-white'>
                                 {% for i in data.notes %}
-                                    <p>
+                                    <p class='dark:text-white py-2'>
                                         {{i}}
                                     </p>
+                                    <hr>
                                 {% endfor %}
                             </div>
                         </div>
@@ -381,12 +382,13 @@
             const ctx = document.getElementById('myChart').getContext('2d');
 
             const myChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: true,
-                        backgroundColor: "#17a1cc",
+                        backgroundColor: "#dbf6ff",
+                        borderColor: '#2bcaff',
                         borderRadius: 15,
                         borderWidth: 3,
                         label: 'Autonomous Lower Hub',
@@ -402,7 +404,14 @@
                      scales: {
                         y: {
                             beginAtZero: true
-                        }
+                        },
+                        x: {
+                            ticks: {
+                            callback: function(value, index, ticks) {
+                                return "Match " + (value + 1);
+                              }
+                         },
+                        },
                     }
                    
                 }
@@ -411,13 +420,14 @@
             <script>
                 const ctx3 = document.getElementById('myChart2').getContext('2d');
                 const myChart3 = new Chart(ctx3, {
-                    type: 'bar',
+                    type: 'line',
 
                     data: {
                         labels: {{data.match_number | safe}},
                         datasets: [{
                             fill: true,
-                            backgroundColor: "#17a1cc",
+                            backgroundColor: "#dbf6ff",
+                            borderColor: '#2bcaff',
 
                             borderRadius: 15,
                             borderWidth: 3,
@@ -433,11 +443,16 @@
                             display: false //This will do the task
                          },
                          scales: {
-                            yAxes: [{
+                            y: {
+                                beginAtZero: true
+                            },
+                            x: {
                                 ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
+                                callback: function(value, index, ticks) {
+                                    return "Match " + (value + 1);
+                                  }
+                             },
+                            },
                         }
                         
                     }
@@ -447,12 +462,13 @@
             const ctx4 = document.getElementById('myChart4').getContext('2d');
 
             const myChart4 = new Chart(ctx4, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: true,
-                        backgroundColor: "#17a1cc",
+                        backgroundColor: "#dbf6ff",
+                        borderColor: '#2bcaff',
                         borderRadius: 15,
                         borderWidth: 3,
                         label: 'Teleop Lower Hub',
@@ -468,7 +484,14 @@
                      scales: {
                         y: {
                             beginAtZero: true
-                        }
+                        },
+                        x: {
+                            ticks: {
+                            callback: function(value, index, ticks) {
+                                return "Match " + (value + 1);
+                              }
+                         },
+                        },
                     }
                    
                 }
@@ -477,13 +500,14 @@
             <script>
                 const ctx5 = document.getElementById('myChart5').getContext('2d');
                 const myChart5 = new Chart(ctx5, {
-                    type: 'bar',
+                    type: 'line',
 
                     data: {
                         labels: {{data.match_number | safe}},
                         datasets: [{
                             fill: true,
-                            backgroundColor: "#17a1cc",
+                            backgroundColor: "#dbf6ff",
+                            borderColor: '#2bcaff',
 
                             borderRadius: 15,
                             borderWidth: 3,
@@ -499,12 +523,18 @@
                             display: false //This will do the task
                          },
                          scales: {
-                            yAxes: [{
+                            y: {
+                                beginAtZero: true
+                            },
+                            x: {
                                 ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
+                                callback: function(value, index, ticks) {
+                                    return "Match " + (value + 1);
+                                  }
+                             },
+                            },
+                        },
+                        
                         
                     }
                 });
@@ -512,13 +542,14 @@
             <script>
             const ctx6 = document.getElementById('myChart6').getContext('2d');
             const myChart6 = new Chart(ctx6, {
-                type: 'bar',
+                type: 'line',
 
                 data: {
                     labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: true,
-                        backgroundColor: "#17a1cc",
+                        backgroundColor: "#dbf6ff",
+                        borderColor: '#2bcaff',
                         borderRadius: 15,
                         borderWidth: 3,
                         label: 'Teleop Upper Hub',
@@ -533,11 +564,16 @@
                         display: false //This will do the task
                      },
                      scales: {
-                        yAxes: [{
+                        y: {
+                            beginAtZero: true
+                        },
+                        x: {
                             ticks: {
-                                beginAtZero: true
-                            }
-                        }]
+                            callback: function(value, index, ticks) {
+                                return "Match " + (value + 1);
+                              }
+                         },
+                        },
                     }
                     
                 }
@@ -546,13 +582,14 @@
             <script>
                 const ctx7 = document.getElementById('myChart7').getContext('2d');
                 const myChart7 = new Chart(ctx7, {
-                    type: 'bar',
+                    type: 'line',
     
                     data: {
                         labels: {{data.match_number | safe}},
                         datasets: [{
                             fill: true,
-                            backgroundColor: "#17a1cc",
+                            backgroundColor: "#dbf6ff",
+                        borderColor: '#2bcaff',
                             borderRadius: 15,
                             borderWidth: 3,
                             label: 'Incorrect Ball Scored',
@@ -567,11 +604,16 @@
                             display: false //This will do the task
                          },
                          scales: {
-                            yAxes: [{
+                            y: {
+                                beginAtZero: true
+                            },
+                            x: {
                                 ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
+                                callback: function(value, index, ticks) {
+                                    return "Match " + (value + 1);
+                                  }
+                             },
+                            },
                         }
                         
                     }
@@ -580,13 +622,14 @@
             <script>
                     const ctx8 = document.getElementById('myChart8').getContext('2d');
                     const myChart8 = new Chart(ctx8, {
-                        type: 'bar',
+                        type: 'line',
         
                         data: {
                             labels: {{data.match_number | safe}},
                             datasets: [{
                                 fill: true,
-                                backgroundColor: "#17a1cc",
+                                backgroundColor: "#dbf6ff",
+                        borderColor: '#2bcaff',
                                 borderRadius: 15,
                                 borderWidth: 3,
                                 label: 'Defense Played %',
@@ -603,6 +646,14 @@
                            
 
                              scales: {
+                                
+                                 x: {
+                                    ticks: {
+                                    callback: function(value, index, ticks) {
+                                        return "Match " + (value + 1);
+                                      }
+                                 },
+                                },
                                 y: {
                                   // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
                                   suggestedMin: 0,
