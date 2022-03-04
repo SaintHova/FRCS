@@ -339,6 +339,8 @@
                 </main>
             </div>
             <script>
+
+                
                 var yes = 0;
                 var no = 0;
     
@@ -359,27 +361,27 @@
                     
                     data: {
                         labels: ["No", "Yes"],
-    
                         datasets: [{
-    
                             fill: true,
                             backgroundColor: [
                         '#c3c3c3',
-                        '#17a1cc',
+                        '#2bcaff',
                             ],
-    
-    
                             data: [no, yes]
                         }]
                     },
                     options: {
                         responsive: true,
                         rotation: 180,
+                        
+                        
                     }
                 });
             </script>
             <script>
             const ctx = document.getElementById('myChart').getContext('2d');
+
+           
 
             const myChart = new Chart(ctx, {
                 type: 'line',
@@ -387,7 +389,7 @@
                     labels: {{data.match_number | safe}},
                     datasets: [{
                         fill: true,
-                        backgroundColor: "#dbf6ff",
+                        backgroundColor: 'rgba(219, 246, 255)',
                         borderColor: '#2bcaff',
                         borderRadius: 15,
                         borderWidth: 3,
@@ -398,18 +400,29 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    legend: {
-                        display: false //This will do the task
-                     },
+                    scaleLabel: function (label) {
+                        return Math.round(label.value);
+                    },
                      scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                            callback: function(label, index, labels) {
+                                // when the floored value is the same as the value we have a whole number
+                                if (Math.floor(label) === label) {
+                                    return label;
+                                }
+           
+                            },
+                        },
                         },
                         x: {
                             ticks: {
                             callback: function(value, index, ticks) {
+                                
                                 return "Match " + (value + 1);
-                              }
+                              },
+                              
                          },
                         },
                     }
@@ -444,7 +457,16 @@
                          },
                          scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(label, index, labels) {
+                                        // when the floored value is the same as the value we have a whole number
+                                        if (Math.floor(label) === label) {
+                                            return label;
+                                        }
+                   
+                                    },
+                                },
                             },
                             x: {
                                 ticks: {
@@ -483,7 +505,16 @@
                      },
                      scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(label, index, labels) {
+                                    // when the floored value is the same as the value we have a whole number
+                                    if (Math.floor(label) === label) {
+                                        return label;
+                                    }
+               
+                                },
+                            },
                         },
                         x: {
                             ticks: {
@@ -524,7 +555,16 @@
                          },
                          scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(label, index, labels) {
+                                        // when the floored value is the same as the value we have a whole number
+                                        if (Math.floor(label) === label) {
+                                            return label;
+                                        }
+                   
+                                    },
+                                },
                             },
                             x: {
                                 ticks: {
@@ -565,7 +605,16 @@
                      },
                      scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(label, index, labels) {
+                                    // when the floored value is the same as the value we have a whole number
+                                    if (Math.floor(label) === label) {
+                                        return label;
+                                    }
+               
+                                },
+                            },
                         },
                         x: {
                             ticks: {
@@ -605,7 +654,16 @@
                          },
                          scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(label, index, labels) {
+                                        // when the floored value is the same as the value we have a whole number
+                                        if (Math.floor(label) === label) {
+                                            return label;
+                                        }
+                   
+                                    },
+                                },
                             },
                             x: {
                                 ticks: {
@@ -657,6 +715,15 @@
                                 y: {
                                   // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
                                   suggestedMin: 0,
+                                  ticks: {
+                                    callback: function(label, index, labels) {
+                                        // when the floored value is the same as the value we have a whole number
+                                        if (Math.floor(label) === label) {
+                                            return label;
+                                        }
+                   
+                                    },
+                                },
                           
                                   // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
                                   suggestedMax: 100,

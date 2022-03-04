@@ -11,17 +11,21 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dotenv # <- New
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = 'soyccfn)r&ad^9*k(v64%_it=0d7qqsv04$%0=!xc#yrek)8sp'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 try:
     None
@@ -31,7 +35,7 @@ except KeyError:
     print("This is for security issues")
 
 # SECURITY WARNING: don't run with debug tuned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     ALLOWED_HOSTS = ["localhost", "*", "192.168.86.37"]
@@ -178,8 +182,8 @@ LOGIN_URL = "login-view"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.google.com'
-EMAIL_HOST_USER = 'frcsassistant@gmail.com'
-EMAIL_HOST_PASSWORD = 'lllmvkmopdnkfjwl'
+EMAIL_HOST_USER = os.environ['EMAIL']
+EMAIL_HOST_PASSWORD = os.environ['PASS']
 EMAIL_PORT = 587
 
 # MEDIA FILE DIRS

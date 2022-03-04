@@ -34,7 +34,7 @@
                             <h2 class='mb-3 mt-1 text-xl font-semibold text-gray-400 text-left' id='nickname'></h2>
                         </div>
                         <center>
-                            <div style='width: 85%;'>
+                            <div>
                                     {% if messages %}
                                     {% for message in messages %}
                                         {% if message.tags == "error" %}
@@ -65,6 +65,7 @@
                                             </div>
                                         </div>
                                         {% endif %}
+                                       
                                     {% endfor %}
                                 {% endif %}
                             </div>

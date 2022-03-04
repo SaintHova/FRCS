@@ -216,6 +216,7 @@ def scout(request):
             form.save()
             return redirect('home-view')
         else:
+            messages.error(request, "Data already scouted for this team during this match")
             return redirect('scout-view')
     return render(request, 'stats/scout.html', {'form': form})
 
