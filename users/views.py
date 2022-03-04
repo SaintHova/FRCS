@@ -279,6 +279,20 @@ def changelog(request):
 def passwordUpdate(request):
     return render(request, 'users/password-change.html')
 
+@login_required
+def pitUpdate(request, stat_id):
+    instance = Pit_stats.objects.get(stat_id=stat_id)
+    form = PitEditForm(request.POST or None, instance=instance)
+    context = {"instance": instance, "form": form}
+    if request.method == 'POST':
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.is_incorrect = False
+            instance.save()
+            return render(request, "users/team-manager.html", context)
+
+    return render(request, "users/data/pit-update.html", context)
+
 
 @login_required
 def accountEdit(request, id):

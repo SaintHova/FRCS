@@ -38,16 +38,9 @@ except KeyError:
 DEBUG = False
 
 if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "*", "192.168.86.37"]
+    ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = [
-        "*",
-        "104.248.235.19",
-        "frcscouting.systems",
-        "www.frcscouting.systems",
-        ".frcscouting.systems",
-        "127.0.0.1",
-    ]
+    ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ['localhost']
 #'192.168.86.60'
 AUTH_USER_MODEL = "users.CustomUser"

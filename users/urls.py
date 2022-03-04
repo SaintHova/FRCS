@@ -30,6 +30,8 @@ urlpatterns = [
     # path('password-reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
     # path('password-reset_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),  name='password_reset_complete'),
     path('delete-user/', views.del_user,  name='delete-user-view'),
+    
+    path('pit/<stat_id>/', views.pitUpdate, name = 'pit-update-view'),
     path('accounts/', include('django.contrib.auth.urls')),
   ]
 if settings.DEBUG:
