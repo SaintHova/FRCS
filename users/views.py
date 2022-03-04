@@ -8,6 +8,7 @@ from django.http import request, JsonResponse
 from feedback.forms import FeedbackForm
 from feedback.models import Feedback
 from users.forms import (
+    PitEditForm,
     UserCreationForm,
     UserLoginForm,
     UserChangeForm,
@@ -218,6 +219,8 @@ def teamManagement(request):
             'users': CustomUser.objects.filter(team_num=request.user.team_num),
             'usersCount': CustomUser.objects.filter(team_num=request.user.team_num).count(),
             'is_incorrect': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_incorrect,
+            'incorrect': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).incorrect_selection,
+            
             'is_hidden': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).is_hidden,
             'link': Pit_stats.objects.get(team_num=CustomUser.objects.get(username=request.user.username).team_num).id
         }

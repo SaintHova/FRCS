@@ -125,12 +125,12 @@
                 href="{% url 'profile-view' %}" data-config-id="link2">Profile</a></li>
             {% if user.is_admin %}
             <li class="mb-1 px-10 hover:no-underline transition duration-300"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl"
-                href="{% url 'profile-view' %}" data-config-id="link2">Team</a></li>
+                href="{% url 'management-view' %}" data-config-id="link2">Team</a></li>
             {% endif %}
             <li class="mb-1 px-10 hover:no-underline transition duration-300"><a class="block pl-8 py-2 text-xl text-white hover:bg-gray-500 rounded-xl"
                 href="{% url 'logout-view' %}" data-config-id="link2">Logout</a></li>
             {% else %}
-            <li class="mb-1 px-10 hover:no-underline transition duration-300"><a class="block pl-8 py-4 text-xl text-white hover:bg-gray-500 rounded-xl" href="#"
+            <li class="mb-1 px-10 hover:no-underline transition duration-300"><a class="block pl-8 py-4 text-xl text-white hover:bg-gray-500 rounded-xl" href="{% url 'login-view' %}"
                 data-config-id="link3">Login</a></li>
             {% endif %}
           </ul>
@@ -205,26 +205,31 @@
               </h3>
               <ul>
                 {% if user.is_authenticated %}
-                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="#">Data Hub</a>
+                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="{% url 'scouthub-view' %}">Data Hub</a>
                 </li>
-                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="#">Game Scout</a>
+                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="{% url 'gamedatahub-view' %}">Game Scout</a>
                 </li>
-                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="#">Game Data</a>
+                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="{% url 'pitdatahub-view' %}">Pit Scout</a>
                 </li>
-                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="#">Profile</a>
+                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="{% url 'profile-view' %}">Profile</a>
                 </li>
-                <li class="mb-4"><a class="text-gray-800 hover:text-red-500 dark:text-gray-400" href="#">Logout</a></li>
+                {% if user.is_admin %}
+                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="{% url 'management-view' %}">Team</a>
+                </li>
+                {% endif %}
+
+                <li class="mb-4"><a class="text-gray-800 hover:text-red-500 dark:text-gray-400" href="{% url 'logout-view' %}">Logout</a></li>
 
                 {% else %}
-                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="#">Register</a>
+                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="{% url 'register-view' %}">Register</a>
                 </li>
-                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="#">Login</a></li>
+                <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="{% url 'login-view' %}">Login</a></li>
 
                 {% endif %}
               </ul>
             </div>
             <div class="w-full md:w-1/3 lg:w-auto mb-16 md:mb-0">
-              <h3 class="mb-6 text-2xl font-bold text-black dark:text-white" data-config-id="03_header2">Learn More</h3>
+              <h3 class="mb-6 text-2xl font-bold text-black dark:text-white">Learn More</h3>
               <ul>
                 <li class="mb-4"><a class="text-gray-800 hover:text-gray-600 dark:text-gray-400" href="#">About Us</a>
                 </li>

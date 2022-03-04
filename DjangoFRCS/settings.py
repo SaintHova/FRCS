@@ -35,7 +35,7 @@ except KeyError:
     print("This is for security issues")
 
 # SECURITY WARNING: don't run with debug tuned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
