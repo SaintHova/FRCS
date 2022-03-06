@@ -105,8 +105,13 @@
             <p data-aos="smooth" class="lg:w-2/3 mx-auto text-center leading-relaxed text-base mt-4 dark:text-gray-400">FRCS is a new way to scout teams during competitions. You can scout anything from crucial game data to pit information</p>
         </div>
         <div class="flex justify-center items-center mb-10 sm:mb-20">
+          {% if request.user.is_authenticated %}
+            <button data-aos="smooth2" onclick='window.location.href="{% url 'gamedatahub-view' %}"' class="font-semibold hover:bg-blue-600 bg-blue-500 text-semibold transition ease-in-out rounded-xl text-white px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Scout a Game</button>
+            <button data-aos="smooth2" onclick='window.location.href="{% url 'pitdatahub-view' %}"' class="font-semibold hover:bg-blue-600 bg-blue-500 text-semibold transition ease-in-out rounded-xl text-white px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Scout the Pits</button>
+            {% else %}
             <button data-aos="smooth2" onclick='window.location.href="{% url 'register-view' %}"' class="font-semibold hover:bg-blue-600 bg-blue-500 text-semibold transition ease-in-out rounded-xl text-white px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Get Started</button>
-            <button data-aos="smooth2" id='learn-btn' class="font-semibold dark:bg-white bg-gray-200 hover:bg-gray-300 text-semibold transition ease-in-out rounded-xl text-black px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Learn More</button>
+          {% endif %}
+            <button data-aos="smooth2" id='learn-btn' class="font-semibold dark:bg-white bg-gray-200 hover:bg-gray-300 text-semibold transition ease-in-out rounded-xl text-black px-4 sm:px-8 py-1 sm:py-3 text-sm p-3 mx-1">Guide to FRCS</button>
         </div>
     </div>
     <div data-aos="smooth3" data-aos-easing="ease-in-out-cubic" class="container mx-auto flex justify-center md:-mt-72 -mt-20 sm:-mt-40" id='main-img'>
@@ -277,7 +282,7 @@
             <img class=" transition transform hover:scale-105 duration-500 mb-8 w-full h-112 md:h-96 object-cover object-top rounded-2xl" src="../../static/users/assets/images/aaquib.jpeg" alt="" data-config-id="image1">
             <a class="hover:no-underline text-left transition transform hover:scale-105 duration-500 inline-block w-full p-10 bg-blue-500 hover:bg-blue-600 rounded-2xl" href="https://github.com/Aaquib111">
               <h3 class="mb-2 text-3xl text-white font-bold font-heading" data-config-id="name1">Aaquib Syed</h3>
-              <p class="mb-4 text-lg text-white font-bold" data-config-id="job1">Backend Developer</p>
+              <p class="mb-4 text-lg text-white font-bold" data-config-id="job1">"Full Stack" (Backend) Developer</p>
               <div class="flex justify-end">
                 <svg width="27" height="15" viewbox="0 0 27 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M26.2042 7.78599L19.5171 14.4731L18.6812 13.6372L24.3611 7.95734L0.709572 7.96153L0.709572 6.78292L24.3611 6.77874L19.0992 1.51681L19.9351 0.680916L26.2042 6.9501C26.4351 7.18093 26.4351 7.55515 26.2042 7.78599Z" fill="white"></path>

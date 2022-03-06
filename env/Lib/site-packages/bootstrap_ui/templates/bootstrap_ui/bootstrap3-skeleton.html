@@ -1,0 +1,46 @@
+{% extends "bootstrap_ui/html5-skeleton.html" %}
+
+{% load bootstrap_ui_tags %}
+
+{% block head-meta %}
+    <!-- The following two meta tags *must* come next in the head; any other head content must come *after* these tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block head-css %}
+    {% get_value_from_session_or_cookie 'DJANGO_BOOTSTRAP_UI_THEME' as theme %}
+
+    {% if theme|slice:':11' == 'bootswatch-' %}
+        <!-- Bootswatch theme styles -->
+        <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/{{ theme|slice:'11:' }}/bootstrap.min.css" rel="stylesheet" type="text/css">
+    {% else %}
+        <!-- Bootstrap base styles -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+        {% if theme == 'bootstrap' %}
+            <!-- Bootstrap theme styles -->
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+        {% endif %}
+    {% endif %}
+
+    <!-- Font Awesome icon font -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block head-javascript %}
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+{% endblock %}
+
+{% block body-javascript %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}

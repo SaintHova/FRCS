@@ -25,7 +25,7 @@ if os.path.isfile(dotenv_file):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'soyccfn)r&ad^9*k(v64%_it=0d7qqsv04$%0=!xc#yrek)8sp'
 
 try:
     None
@@ -175,8 +175,8 @@ LOGIN_URL = "login-view"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.google.com'
-EMAIL_HOST_USER = os.environ['EMAIL']
-EMAIL_HOST_PASSWORD = os.environ['PASS']
+#EMAIL_HOST_USER = os.environ['EMAIL']
+#EMAIL_HOST_PASSWORD = os.environ['PASS']
 EMAIL_PORT = 587
 
 # MEDIA FILE DIRS

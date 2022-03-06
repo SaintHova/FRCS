@@ -1,0 +1,164 @@
+Metadata-Version: 2.1
+Name: django-bootstrap-ui
+Version: 2.0.0
+Summary: django-bootstrap-ui simplifies the integration of the popular bootstrap UI framework (http://getbootstrap.com).
+Home-page: https://gitlab.com/texperience/django-bootstrap-ui
+Author: Timo Rieber
+Author-email: trieber@texperience.de
+License: ISC License (ISCL)
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: ISC License (ISCL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: django (<4.1,>=2.2)
+Provides-Extra: development
+Requires-Dist: coverage (<6.0,>=5.0) ; extra == 'development'
+Requires-Dist: flake8 (<4.0,>=3.7) ; extra == 'development'
+Requires-Dist: tox (<4.0,>=3.14) ; extra == 'development'
+
+Welcome to django-bootstrap-ui
+==============================
+
+.. image:: https://gitlab.com/texperience/django-bootstrap-ui/badges/master/pipeline.svg
+    :target: https://gitlab.com/texperience/django-bootstrap-ui/pipelines
+
+.. image:: https://gitlab.com/texperience/django-bootstrap-ui/badges/master/coverage.svg
+    :target: https://gitlab.com/texperience/django-bootstrap-ui/-/jobs
+
+.. image:: https://img.shields.io/pypi/v/django-bootstrap-ui.svg
+    :target: https://pypi.python.org/pypi/django-bootstrap-ui
+
+.. image:: https://img.shields.io/pypi/l/django-bootstrap-ui.svg
+    :target: http://en.wikipedia.org/wiki/ISC_license
+
+.. image:: https://readthedocs.org/projects/django-bootstrap-ui/badge/?version=stable
+    :target: http://django-bootstrap-ui.readthedocs.org/stable/
+
+django-bootstrap-ui simplifies the integration of the popular `Bootstrap UI framework`_. It is written in `Python`_ and built on the `Django web framework <https://www.djangoproject.com/>`_.
+
+.. _Bootstrap UI framework: http://getbootstrap.com/
+.. _Python: https://www.python.org/
+.. _Django web framework: https://www.djangoproject.com/
+
+Basic features
+--------------
+
+* Basic HTML5 template
+* Extensive and up-to-date documentation
+* Mainstream Python and Django support
+* Outstanding test coverage
+* Continuously integrated codebase
+
+Bootstrap 4 features
+--------------------
+
+* Full-featured Bootstrap 4 template (4.6.1)
+* Integrated Google material design icon font
+
+Bootstrap 3 features
+--------------------
+
+* Full-featured Bootstrap 3 template (3.3.7)
+* Latest Font Awesome integration (4.7.0)
+* Built-in Bootstrap and `Bootswatch`_ themes (3.3.7)
+
+.. _Bootswatch: https://bootswatch.com/
+
+Technical requirements
+----------------------
+
+Below is the list of currently supported combinations of Django and Python:
+
++---+---------------+-------------------------+
+| # | Python        | Django                  |
++===+===============+=========================+
+| 1 | 3.7, 3.8, 3.9 | 2.2, 3.0, 3.1, 3.2, 4.0 |
++---+---------------+-------------------------+
+| 2 | 3.10          | 3.2, 4.0                |
++---+---------------+-------------------------+
+
+Code and contribution
+---------------------
+
+The code is open source and released under the `ISC License (ISCL)`_. It is available on `Gitlab`_ and follows the guidelines about `Semantic Versioning`_ for transparency within the release cycle and backward compatibility whenever possible.
+
+All contributions are welcome, whether bug reports, code contributions and reviews, documentation or feature requests.
+
+.. _ISC License (ISCL): http://en.wikipedia.org/wiki/ISC_license
+.. _Semantic Versioning: http://semver.org/
+.. _Gitlab: https://gitlab.com/texperience/django-bootstrap-ui
+
+.. inclusion-marker-for-deduplicating-content-in-the-docs
+
+Installation
+------------
+
+#. First install the package using ``pip``:
+
+    .. code:: bash
+
+        pip install django-bootstrap-ui
+
+#. Add ``bootstrap_ui`` to your ``INSTALLED_APPS`` setting:
+
+    .. code:: python
+
+        INSTALLED_APPS = (
+            ...
+            'bootstrap_ui',
+            ...
+        )
+
+Usage
+-----
+
+Template skeletons
+******************
+
+Prepare your page for HTML5, Bootstrap 3 or 4 using our base templates and provide your content:
+
+#. Extend ``html5-skeleton.html``, ``bootstrap3-skeleton.html`` or ``bootstrap4-skeleton.html`` in your base template:
+
+    .. code:: Django
+
+        {% extends "bootstrap_ui/bootstrap3-skeleton.html" %}
+
+#. Fill predefined blocks with your content:
+
+    .. code:: Django
+
+        {% block body-content %}
+            <h1>Hello, I'm using django-bootstrap-ui!</h1>
+        {% endblock %}
+
+Bootstrap 3 themes
+******************
+
+You can style your page with Bootstrap or Bootswatch themes. Set ``DJANGO_BOOTSTRAP_UI_THEME`` to a valid identifier in your ``settings.py`` for a project-wide default theme:
+
+.. code:: python
+
+    # django-bootstrap-ui settings
+    DJANGO_BOOTSTRAP_UI_THEME = 'bootswatch-paper'
+
+Continue reading in our `detailed documentation <https://django-bootstrap-ui.readthedocs.org>`_ at readthedocs.org.
+
+
