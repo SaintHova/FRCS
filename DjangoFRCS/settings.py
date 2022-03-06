@@ -25,7 +25,7 @@ if os.path.isfile(dotenv_file):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = 'soyccfn)r&ad^9*k(v64%_it=0d7qqsv04$%0=!xc#yrek)8sp'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 try:
     None
@@ -35,7 +35,7 @@ except KeyError:
     print("This is for security issues")
 
 # SECURITY WARNING: don't run with debug tuned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
@@ -72,7 +72,7 @@ SERIALIZATION_MODULES = {
 }
 
 MIDDLEWARE = [
-    
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -82,14 +82,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# --- Specify the authentication backends 
+# --- Specify the authentication backends
 
 # AUTHENTICATION_BACKENDS = ('users.backends.CustomUserAuth',)
 
 # API Authentication settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
 
@@ -175,8 +175,8 @@ LOGIN_URL = "login-view"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.google.com'
-#EMAIL_HOST_USER = os.environ['EMAIL']
-#EMAIL_HOST_PASSWORD = os.environ['PASS']
+EMAIL_HOST_USER = os.environ['EMAIL']
+EMAIL_HOST_PASSWORD = os.environ['PASS']
 EMAIL_PORT = 587
 
 # MEDIA FILE DIRS
