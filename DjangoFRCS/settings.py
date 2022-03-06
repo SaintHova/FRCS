@@ -35,7 +35,7 @@ except KeyError:
     print("This is for security issues")
 
 # SECURITY WARNING: don't run with debug tuned on in production!
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
@@ -72,7 +72,7 @@ SERIALIZATION_MODULES = {
 }
 
 MIDDLEWARE = [
-    
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -82,14 +82,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# --- Specify the authentication backends 
+# --- Specify the authentication backends
 
 # AUTHENTICATION_BACKENDS = ('users.backends.CustomUserAuth',)
 
 # API Authentication settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
 

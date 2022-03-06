@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="TemplateMo">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
     rel="stylesheet">
   <title>FRCS</title>
@@ -25,9 +26,9 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-  
+
   <link rel="shortcut icon" href="../../static/users/assets/images/favicon.png">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
   {%block styles%}
   {%endblock styles%}
@@ -56,7 +57,7 @@
         <ul class="flex items-center space-x-10 text-lg font-bold dark:text-white">
           <li><a class="hover:no-underline transition duration-300" href="{% url 'home-view' %}" data-config-id="link1">Home</a></li>
 
-          
+
           {% if user.is_authenticated %}
           <li><a class="hover:no-underline transition duration-300" href="{% url 'scouthub-view' %}" data-config-id="link2">Data Hub</a></li>
           <li><a class="hover:no-underline transition duration-300" href="{% url 'gamedatahub-view' %}" data-config-id="link2">Game Scout</a>
@@ -258,20 +259,54 @@
 
   </section>
 
-  <script src="../../static/users/assets/js/jquery-2.1.0.min.js"></script>
+  <script>
+      // Burger menus
+document.addEventListener('DOMContentLoaded', function() {
+    // open
+    const burger = document.querySelectorAll('.navbar-burger');
+    const menu = document.querySelectorAll('.navbar-menu');
+
+    if (burger.length && menu.length) {
+        for (var i = 0; i < burger.length; i++) {
+            burger[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
+            });
+        }
+    }
+
+    // close
+    const close = document.querySelectorAll('.navbar-close');
+    const backdrop = document.querySelectorAll('.navbar-backdrop');
+
+    if (close.length) {
+        for (var i = 0; i < close.length; i++) {
+            close[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
+            });
+        }
+    }
+
+    if (backdrop.length) {
+        for (var i = 0; i < backdrop.length; i++) {
+            backdrop[i].addEventListener('click', function() {
+                for (var j = 0; j < menu.length; j++) {
+                    menu[j].classList.toggle('hidden');
+                }
+            });
+        }
+    }
+});
+  </script>
 
   <script src="../../static/users/assets/js/bootstrap.min.js"></script>
 
   <script src="../../static/users/assets/js/scrollreveal.min.js"></script>
 
-  <script src="../../static/users/assets/js/jquery.counterup.min.js"></script>
-
   <script src="../../static/users/assets/js/script.js"></script>
-
-
-
-
-
 
   <script src="../../static/users/assets/js/requirejs.min.js"></script>
 
