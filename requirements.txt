@@ -35,7 +35,7 @@ pylint==2.4.4
 python-dotenv==0.19.2
 python-utils==3.0.0
 pytz==2019.3
-PyYAML==3.10
+PyYAML==5.4
 requests==2.23.0
 six==1.14.0
 sqlparse==0.3.0
