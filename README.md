@@ -17,6 +17,10 @@ This is where you:
 - Login to existing accounts
 - Access all other tabs using the navigation bar
 
+TODO: Github not up to date, live server is newer
+Push from pythonanywhere server to update repo to latest changes
+
+
 # Data collection - Game Scouting
 ![image](https://user-images.githubusercontent.com/47124521/142777823-7d4722f5-769c-4076-8a94-ae0cda6644da.png)
 The Game Scouting page is meant for data collection on events occuring during in-game scenarios
